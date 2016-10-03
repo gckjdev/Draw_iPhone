@@ -185,12 +185,6 @@
 
 - (void)viewDidLoad
 {
-    /*
-    PPDebug(@"CommonTabController viewDidLoad");
-    [super viewDidLoad];
-    PPDebug(@"CommonTabController viewDidLoad done");
-    return;
-    */
     PPDebug(@"CommonTabController viewDidLoad");
     if ((self.pullRefreshType & PullRefreshTypeFooter) != 0) {
         [self setSupportRefreshFooter:YES];

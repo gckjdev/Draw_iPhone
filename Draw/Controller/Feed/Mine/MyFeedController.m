@@ -196,25 +196,16 @@ typedef enum{
 {
     switch (self.currentTab.tabID) {
         case MyTypeDrawToMe:
-//            if (isDrawApp() || isLittleGeeAPP()) {
-//                return [RankView heightForRankViewType:RankViewTypeNormal]+1;
-//            }else if (isSingApp()){
-//                return [RankView heightForRankViewType:RankViewTypeWhisper];
-//            }
-            
             return [CellManager getLastStyleCellHeightWithIndexPath:indexPath];
         
         case MyTypeTimelineOpus:
         case MyTypeTimelineGuess:
         case MyTypeTimeLineConquerDraw:
-//            return [FeedCell getCellHeight];
             return [CellManager getTimelineStyleCellHeight];
+
         case MyTypeComment:
             return [CellManager getCommentStyleCellHeightWithDataList:self.tabDataList indexPath:indexPath];
-//        {
-//            CommentFeed * commentFeed = [self.tabDataList objectAtIndex:indexPath.row];
-//            return [MyCommentCell  getCellHeight:commentFeed];
-//        }
+
         default:
             return 44.0f;
     }
@@ -227,66 +218,6 @@ typedef enum{
         }
     }    
 }
-
-//- (void)setFirstRankCell:(UITableViewCell *)cell WithFeed:(DrawFeed *)feed
-//{
-//    RankView *view = [RankView createRankView:self type:RankViewTypeFirst];
-//    [view setViewInfo:feed];
-//    [cell.contentView addSubview:view];
-//}
-
-//- (void)setSencodRankCell:(UITableViewCell *)cell 
-//                WithFeed1:(DrawFeed *)feed1 
-//                    feed2:(DrawFeed *)feed2
-//{
-//    RankView *view1 = [RankView createRankView:self type:RankViewTypeSecond];
-//    [view1 setViewInfo:feed1];
-//    RankView *view2 = [RankView createRankView:self type:RankViewTypeSecond];
-//    [view2 setViewInfo:feed2];
-//    [cell.contentView addSubview:view1];
-//    [cell.contentView addSubview:view2];
-//    
-//    CGFloat x2 = (CGRectGetWidth(cell.frame) -  [RankView widthForRankViewType:RankViewTypeSecond]);
-//    view2.frame = CGRectMake(x2, 0, view2.frame.size.width, view2.frame.size.height);
-//}
-
-
-//#define NORMAL_CELL_VIEW_NUMBER 3
-
-//#define WIDTH_SPACE 1
-//- (void)setNormalRankCell:(UITableViewCell *)cell
-//                WithFeeds:(NSArray *)feeds
-//{
-//    CGFloat width = [RankView widthForRankViewType:RankViewTypeNormal];
-//    CGFloat height = [RankView heightForRankViewType:RankViewTypeNormal];
-//    CGFloat space =  WIDTH_SPACE;
-//    CGFloat x = 0;
-//    CGFloat y = 0;
-//    for (DrawFeed *feed in feeds) {
-//        RankView *rankView = [RankView createRankView:self type:RankViewTypeNormal];
-//        [rankView setViewInfo:feed];
-//        [cell.contentView addSubview:rankView];
-//        rankView.frame = CGRectMake(x, y, width, height);
-//        x += width + space;
-//    }
-//}
-
-//- (void)setWhisperRankCell:(UITableViewCell *)cell
-//                 WithFeeds:(NSArray *)feeds
-//{
-//    CGFloat width = [RankView widthForRankViewType:RankViewTypeWhisper];
-//    CGFloat height = [RankView heightForRankViewType:RankViewTypeWhisper];
-//    CGFloat x = 0;
-//    CGFloat y = 0;
-//    for (DrawFeed *feed in feeds) {
-//        RankView *rankView = [RankView createRankView:self type:RankViewTypeWhisper];
-//        [rankView setViewInfo:feed];
-//        [cell.contentView addSubview:rankView];
-//        rankView.frame = CGRectMake(x, y, width, height);
-//        x += width;
-//    }
-//}
-
 
 - (NSObject *)saveGetObjectForIndex:(NSInteger)index
 {

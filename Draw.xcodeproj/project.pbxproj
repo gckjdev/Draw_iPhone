@@ -1097,7 +1097,6 @@
 		A461B3BF174CBAA70088B061 /* LittleGeeImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C21CD7C6173CAFA100C699C2 /* LittleGeeImageManager.m */; };
 		A461B3C0174CBAA70088B061 /* Sing.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A461B06D174CADF10088B061 /* Sing.pb.m */; };
 		A461B3C3174CBAA70088B061 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C28A9935173562A7007A819F /* AddressBookUI.framework */; };
-		A461B3C4174CBAA70088B061 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD9F1B01735531500011AFA /* PassKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A461B3C5174CBAA70088B061 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD9F1AE1735530100011AFA /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A461B3C6174CBAA70088B061 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2BB7DF817226E1700E78E0C /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A461B3C7174CBAA70088B061 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C28A23D1166C92C1007C9EA5 /* OpenGLES.framework */; };
@@ -4119,7 +4118,6 @@
 		C28A9C9E1738F04B007A819F /* FeedSceneGuessResult.m in Sources */ = {isa = PBXBuildFile; fileRef = C28A9907173561E6007A819F /* FeedSceneGuessResult.m */; };
 		C28A9CA01738F04B007A819F /* PhotoDrawSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD0FFA17376A9B00A2F930 /* PhotoDrawSheet.m */; };
 		C28A9CA21738F04B007A819F /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C28A9935173562A7007A819F /* AddressBookUI.framework */; };
-		C28A9CA31738F04B007A819F /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD9F1B01735531500011AFA /* PassKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C28A9CA41738F04B007A819F /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD9F1AE1735530100011AFA /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C28A9CA51738F04B007A819F /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2BB7DF817226E1700E78E0C /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C28A9CA61738F04B007A819F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C28A23D1166C92C1007C9EA5 /* OpenGLES.framework */; };
@@ -6306,7 +6304,6 @@
 		CAD9C7131574CCFA00F2C8E1 /* fireworks2.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD9C7111574CCFA00F2C8E1 /* fireworks2.png */; };
 		CAD9C7151574D02A00F2C8E1 /* snow.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD9C7141574D02A00F2C8E1 /* snow.png */; };
 		CAD9F1AF1735530100011AFA /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD9F1AE1735530100011AFA /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		CAD9F1B11735531600011AFA /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD9F1B01735531500011AFA /* PassKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		CADB1EEE17EB49CF0048698F /* icon76.png in Resources */ = {isa = PBXBuildFile; fileRef = CADB1EEB17EB49CE0048698F /* icon76.png */; };
 		CADB1EEF17EB49D00048698F /* icon120.png in Resources */ = {isa = PBXBuildFile; fileRef = CADB1EEC17EB49CF0048698F /* icon120.png */; };
 		CADB1EF017EB49D00048698F /* icon152.png in Resources */ = {isa = PBXBuildFile; fileRef = CADB1EED17EB49CF0048698F /* icon152.png */; };
@@ -7572,7 +7569,6 @@
 		EA411B1B176066F500DA72D0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3FAE0E115536F8E008B5827 /* AudioToolbox.framework */; };
 		EA411B1C176066F500DA72D0 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4990767174DBB21005AF334 /* CoreAudio.framework */; };
 		EA411B1D176066F500DA72D0 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C28A9935173562A7007A819F /* AddressBookUI.framework */; };
-		EA411B1E176066F500DA72D0 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD9F1B01735531500011AFA /* PassKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		EA411B1F176066F500DA72D0 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD9F1AE1735530100011AFA /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		EA411B20176066F500DA72D0 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2BB7DF817226E1700E78E0C /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		EA411B21176066F500DA72D0 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C28A23D1166C92C1007C9EA5 /* OpenGLES.framework */; };
@@ -8551,6 +8547,8 @@
 		36B420E01AA7F91900F8A9B1 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		36B420E11AA7F91900F8A9B1 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		36B420E21AA7F91900F8A9B1 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		36D6EE2E1DA1FA3B0007EDAD /* Draw.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Draw.entitlements; sourceTree = "<group>"; };
+		36D6EE2F1DA1FE810007EDAD /* LittleGeeDraw.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LittleGeeDraw.entitlements; sourceTree = "<group>"; };
 		36E65E0D1ACA97720092009D /* libprotocolc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libprotocolc.a; sourceTree = "<group>"; };
 		4C73340CC5434A5894CC26E7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F5CBE3EAF724F1A9042D44B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -11086,7 +11084,6 @@
 		CAD9C7111574CCFA00F2C8E1 /* fireworks2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fireworks2.png; sourceTree = "<group>"; };
 		CAD9C7141574D02A00F2C8E1 /* snow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snow.png; sourceTree = "<group>"; };
 		CAD9F1AE1735530100011AFA /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		CAD9F1B01735531500011AFA /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
 		CADB1EEB17EB49CE0048698F /* icon76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon76.png; sourceTree = "<group>"; };
 		CADB1EEC17EB49CF0048698F /* icon120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon120.png; sourceTree = "<group>"; };
 		CADB1EED17EB49CF0048698F /* icon152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon152.png; sourceTree = "<group>"; };
@@ -11749,7 +11746,6 @@
 				A461B3C3174CBAA70088B061 /* AddressBookUI.framework in Frameworks */,
 				36B4208C1AA762F800F8A9B1 /* AlipaySDK.framework in Frameworks */,
 				D8CF8AA21977981F0044E305 /* opencv2.framework in Frameworks */,
-				A461B3C4174CBAA70088B061 /* PassKit.framework in Frameworks */,
 				A461B3C5174CBAA70088B061 /* Social.framework in Frameworks */,
 				3672C2261ABA7C4500AEC29D /* TencentOpenAPI.framework in Frameworks */,
 				A461B3C6174CBAA70088B061 /* AdSupport.framework in Frameworks */,
@@ -11814,7 +11810,6 @@
 				36099F141AFAFCD700522A4F /* libprotocolc.a in Frameworks */,
 				A4F04B84180643BD007274BE /* AssetsLibrary.framework in Frameworks */,
 				C28A9CA21738F04B007A819F /* AddressBookUI.framework in Frameworks */,
-				C28A9CA31738F04B007A819F /* PassKit.framework in Frameworks */,
 				C28A9CA41738F04B007A819F /* Social.framework in Frameworks */,
 				3672C2461ABA7C4600AEC29D /* ShareSDKiPhoneDefaultShareViewUI.framework in Frameworks */,
 				3672C2491ABA7C4600AEC29D /* ShareSDKShareActionSheet.framework in Frameworks */,
@@ -11896,7 +11891,6 @@
 				C28A9936173562A7007A819F /* AddressBookUI.framework in Frameworks */,
 				36B420601AA75E2700F8A9B1 /* AlipaySDK.framework in Frameworks */,
 				D8CF8AA01977981E0044E305 /* opencv2.framework in Frameworks */,
-				CAD9F1B11735531600011AFA /* PassKit.framework in Frameworks */,
 				CAD9F1AF1735530100011AFA /* Social.framework in Frameworks */,
 				3672C2241ABA7C4500AEC29D /* TencentOpenAPI.framework in Frameworks */,
 				C2BB7DF917226E1700E78E0C /* AdSupport.framework in Frameworks */,
@@ -11959,7 +11953,6 @@
 				EA411B1C176066F500DA72D0 /* CoreAudio.framework in Frameworks */,
 				CACD6CFE18E03C0A003F97C0 /* libleveldb.a in Frameworks */,
 				EA411B1D176066F500DA72D0 /* AddressBookUI.framework in Frameworks */,
-				EA411B1E176066F500DA72D0 /* PassKit.framework in Frameworks */,
 				EA411B1F176066F500DA72D0 /* Social.framework in Frameworks */,
 				EA411B20176066F500DA72D0 /* AdSupport.framework in Frameworks */,
 				EA411B21176066F500DA72D0 /* OpenGLES.framework in Frameworks */,
@@ -16807,6 +16800,7 @@
 		CA745D131503B1B400600024 = {
 			isa = PBXGroup;
 			children = (
+				36D6EE2F1DA1FE810007EDAD /* LittleGeeDraw.entitlements */,
 				CA745D281503B1B500600024 /* Draw */,
 				CA745D211503B1B500600024 /* Frameworks */,
 				CA745D1F1503B1B500600024 /* Products */,
@@ -16837,7 +16831,6 @@
 				A4990769174DBB35005AF334 /* AudioUnit.framework */,
 				A4990767174DBB21005AF334 /* CoreAudio.framework */,
 				C28A9935173562A7007A819F /* AddressBookUI.framework */,
-				CAD9F1B01735531500011AFA /* PassKit.framework */,
 				CAD9F1AE1735530100011AFA /* Social.framework */,
 				C2BB7DF817226E1700E78E0C /* AdSupport.framework */,
 				C28A23D1166C92C1007C9EA5 /* OpenGLES.framework */,
@@ -16877,6 +16870,7 @@
 		CA745D281503B1B500600024 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				36D6EE2E1DA1FA3B0007EDAD /* Draw.entitlements */,
 				CA2A28A4195C120600A97478 /* Tutorial */,
 				CA0174E01940524E005E4390 /* OpusClass */,
 				CA1162511834A84F00FDD3A9 /* Task */,
@@ -19572,8 +19566,23 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				TargetAttributes = {
+					C28A99641738F04B007A819F = {
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
+					};
 					CA745D1D1503B1B400600024 = {
 						DevelopmentTeam = LPN7A567X3;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.Wallet = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -28413,8 +28422,8 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = LittleGeeDraw;
-				PROVISIONING_PROFILE = "56edbd0e-8c32-4ba4-8e48-da7ffdf872eb";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "56edbd0e-8c32-4ba4-8e48-da7ffdf872eb";
+				PROVISIONING_PROFILE = "9071d6a3-5d9f-4666-b59d-078ada21f5d7";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9071d6a3-5d9f-4666-b59d-078ada21f5d7";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
@@ -28570,8 +28579,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "8a5ec613-059c-4292-8d43-66f057d2d448";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8a5ec613-059c-4292-8d43-66f057d2d448";
+				PROVISIONING_PROFILE = "9071d6a3-5d9f-4666-b59d-078ada21f5d7";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9071d6a3-5d9f-4666-b59d-078ada21f5d7";
 				SDKROOT = iphoneos;
 				STRIP_INSTALLED_PRODUCT = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -28603,8 +28612,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "fe65e183-734f-4aaf-8294-0a4cbbaec33a";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "fe65e183-734f-4aaf-8294-0a4cbbaec33a";
+				PROVISIONING_PROFILE = "04f97ffc-c446-43aa-b4c8-1a7cbd45edf4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "04f97ffc-c446-43aa-b4c8-1a7cbd45edf4";
 				SDKROOT = iphoneos;
 				STRIP_INSTALLED_PRODUCT = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -28619,6 +28628,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_ENTITLEMENTS = Draw/Draw.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				COPY_PHASE_STRIP = YES;
@@ -28733,8 +28743,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "890c9a34-f8bb-4613-8ed6-ca75968551d5";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "890c9a34-f8bb-4613-8ed6-ca75968551d5";
 				VALID_ARCHS = "armv7s arm64 armv7";
 				WRAPPER_EXTENSION = app;
 			};
@@ -28746,6 +28756,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_ENTITLEMENTS = Draw/Draw.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng (LPN7A567X3)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng (LPN7A567X3)";
 				COPY_PHASE_STRIP = YES;

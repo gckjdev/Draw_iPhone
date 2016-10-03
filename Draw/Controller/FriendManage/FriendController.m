@@ -237,9 +237,10 @@ typedef enum{
     self.dataTableView.separatorColor = [UIColor clearColor];
     
     
+    [self.view sendSubviewToBack:self.dataTableView];
+    self.view.backgroundColor = COLOR_WHITE;
     
     [self.dataTableView updateOriginDataViewTableY:(COMMON_TAB_BUTTON_Y + COMMON_TAB_BUTTON_HEIGHT)];
-    
     
     SET_BUTTON_ROUND_STYLE_YELLOW(searchUserButton);
     SET_BUTTON_ROUND_STYLE_YELLOW(inviteButton);
