@@ -190,6 +190,8 @@
 		3672C2491ABA7C4600AEC29D /* ShareSDKShareActionSheet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3672C1FF1ABA7C4400AEC29D /* ShareSDKShareActionSheet.framework */; };
 		3672C24A1ABA7C4600AEC29D /* ShareSDKShareActionSheet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3672C1FF1ABA7C4400AEC29D /* ShareSDKShareActionSheet.framework */; };
 		3672C24B1ABA885F00AEC29D /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 362E78E21AB943B400E5F2D5 /* GTMBase64.m */; };
+		36A36E3F1DA621FB008A5C78 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36A36E3E1DA621FB008A5C78 /* Launch Screen.storyboard */; };
+		36A36E401DA621FB008A5C78 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36A36E3E1DA621FB008A5C78 /* Launch Screen.storyboard */; };
 		36B4205F1AA75E2700F8A9B1 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 36B41FFD1AA75E2700F8A9B1 /* AlipaySDK.bundle */; };
 		36B420601AA75E2700F8A9B1 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B41FFE1AA75E2700F8A9B1 /* AlipaySDK.framework */; };
 		36B420611AA75E2800F8A9B1 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B41FFF1AA75E2700F8A9B1 /* libcrypto.a */; };
@@ -8437,6 +8439,7 @@
 		3672C1FD1ABA7C4400AEC29D /* ShareSDKiPhoneDefaultShareViewUI.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShareSDKiPhoneDefaultShareViewUI.bundle; sourceTree = "<group>"; };
 		3672C1FE1ABA7C4400AEC29D /* ShareSDKiPhoneDefaultShareViewUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKiPhoneDefaultShareViewUI.framework; sourceTree = "<group>"; };
 		3672C1FF1ABA7C4400AEC29D /* ShareSDKShareActionSheet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKShareActionSheet.framework; sourceTree = "<group>"; };
+		36A36E3E1DA621FB008A5C78 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		36B41FFD1AA75E2700F8A9B1 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		36B41FFE1AA75E2700F8A9B1 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		36B41FFF1AA75E2700F8A9B1 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
@@ -16800,6 +16803,7 @@
 		CA745D131503B1B400600024 = {
 			isa = PBXGroup;
 			children = (
+				36A36E3E1DA621FB008A5C78 /* Launch Screen.storyboard */,
 				36D6EE2F1DA1FE810007EDAD /* LittleGeeDraw.entitlements */,
 				CA745D281503B1B500600024 /* Draw */,
 				CA745D211503B1B500600024 /* Frameworks */,
@@ -21129,6 +21133,7 @@
 				36B420701AA762BE00F8A9B1 /* AlipaySDK.bundle in Resources */,
 				CA2489081753B97300848A5F /* LittleGeeDefault-568h@2x.png in Resources */,
 				CA2489091753B97C00848A5F /* LittleGeeDefault-568h@2x.png in Resources */,
+				36A36E401DA621FB008A5C78 /* Launch Screen.storyboard in Resources */,
 				CA1CC3AA19C43E04006E06C7 /* brush_show_gouache@2x.png in Resources */,
 				CA24890A1753B98600848A5F /* LittleGeeDefault@2x.png in Resources */,
 				CA24890B1753B98C00848A5F /* LittleGeeDefault@2x~ipad.png in Resources */,
@@ -22671,6 +22676,7 @@
 				A4D8FE7717DB089C0085061F /* draw_up_panel_draw_to_btn@2x.png in Resources */,
 				D8A270A4196FE1E6006DDF20 /* lock_new2.jpg in Resources */,
 				A4D8FE7B17DB089C0085061F /* draw_up_panel_edit_btn@2x.png in Resources */,
+				36A36E3F1DA621FB008A5C78 /* Launch Screen.storyboard in Resources */,
 				D8D2807819C982360027E3BE /* rankEnterBtn@2x.png in Resources */,
 				A4D8FE7F17DB089C0085061F /* draw_up_panel_help_btn_@2x.png in Resources */,
 				A4D8FE8317DB089C0085061F /* draw_up_panel_page_bg_btn@2x.png in Resources */,
@@ -28612,8 +28618,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "04f97ffc-c446-43aa-b4c8-1a7cbd45edf4";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "04f97ffc-c446-43aa-b4c8-1a7cbd45edf4";
+				PROVISIONING_PROFILE = "3fd24bfa-45be-4ad4-b803-0b4e8b216475";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3fd24bfa-45be-4ad4-b803-0b4e8b216475";
 				SDKROOT = iphoneos;
 				STRIP_INSTALLED_PRODUCT = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -28629,7 +28635,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_ENTITLEMENTS = Draw/Draw.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_BITCODE = NO;
@@ -28681,7 +28687,7 @@
 					"${SRCROOT}/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Draw/Draw-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\\\\\\\\\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\\\\\\\\\\\\\\\"",
@@ -28807,7 +28813,7 @@
 					"${SRCROOT}/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Draw/Draw-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\\\\\\\\\\\\\\\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\\\\\\\\\\\\\\\"",
@@ -28869,8 +28875,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "fe65e183-734f-4aaf-8294-0a4cbbaec33a";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "fe65e183-734f-4aaf-8294-0a4cbbaec33a";
+				PROVISIONING_PROFILE = "3fd24bfa-45be-4ad4-b803-0b4e8b216475";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3fd24bfa-45be-4ad4-b803-0b4e8b216475";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "armv7s arm64 armv7";
 				WRAPPER_EXTENSION = app;

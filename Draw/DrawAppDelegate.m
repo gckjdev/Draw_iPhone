@@ -208,7 +208,6 @@ NSString* GlobalGetBoardServerURL()
 - (BOOL)addSkipBackupAttributeToItemAtPath:(NSString *) filePathString
 {
     NSURL* URL= [NSURL fileURLWithPath: filePathString];
-//    assert([[NSFileManager defaultManager] fileExistsAtPath: [URL path]]);
     
     if (![[NSFileManager defaultManager] fileExistsAtPath: [URL path]]){
         return NO;

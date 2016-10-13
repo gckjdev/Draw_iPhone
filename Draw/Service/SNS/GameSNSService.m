@@ -34,12 +34,16 @@ GameSNSService* _defaultSNSService;
 
 + (GameSNSService*)defaultService
 {
+    /*
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _defaultSNSService = [[GameSNSService alloc] init];
     });
     
     return _defaultSNSService;
+     */
+    
+    return nil;
 }
 
 - (id)init

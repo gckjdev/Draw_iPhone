@@ -93,6 +93,13 @@
                           fromController:(UIViewController*)fromController
                          startController:(UIViewController*)startController
                                targetUid:(NSString *)targetUid
+                                   photo:(UIImage *)photo
+                                animated:(BOOL)animated;
+
++ (OfflineDrawViewController *)startDraw:(Word *)word
+                          fromController:(UIViewController*)fromController
+                         startController:(UIViewController*)startController
+                               targetUid:(NSString *)targetUid
                                    photo:(UIImage *)photo;
 
 + (OfflineDrawViewController*)practice:(UIViewController*)startController

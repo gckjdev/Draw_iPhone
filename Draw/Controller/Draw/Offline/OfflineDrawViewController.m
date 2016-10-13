@@ -1470,6 +1470,7 @@
                               fromController:_startController
                              startController:_startController
                                    targetUid:nil
+                                       photo:nil
                                     animated:NO];
         
         [_startController release];
@@ -1481,6 +1482,7 @@
                               fromController:nil
                              startController:nil
                                    targetUid:nil
+                                       photo:nil
                                     animated:NO];
     }
 }
