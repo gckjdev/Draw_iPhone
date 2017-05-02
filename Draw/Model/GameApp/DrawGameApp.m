@@ -440,6 +440,9 @@
 
 - (PPViewController *)homeController;
 {
+    return [[[HomeController alloc] init] autorelease];
+    
+    /*
     int style = [[UserManager defaultManager] homeStyle];    
     if (style == HOME_STYLE_CLASSICAL){
         return [[[HomeController alloc] init] autorelease];
@@ -447,6 +450,7 @@
     else{
         return [[[MetroHomeController alloc] init] autorelease];
     }
+     */
 }
 
 - (Class)homeControllerClass
