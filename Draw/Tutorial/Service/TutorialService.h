@@ -11,7 +11,7 @@
 #import "DrawError.h"
 
 #define TUTORIAL_HOST                      [PPConfigManager getTutorialServerURL]
-#define TUTORIAL_FILE_SERVER_URL           ([MobClickUtils getStringValueByKey:@"TUTORIAL_FILE_SERVER_URL" defaultValue:@"http://58.215.184.18:8080/app_res/tutorial/"])
+#define TUTORIAL_FILE_SERVER_URL           ([MobClickUtils getStringValueByKey:@"TUTORIAL_FILE_SERVER_URL" defaultValue:@"http://43.247.90.45:8080/app_res/tutorial/"])
 
 
 

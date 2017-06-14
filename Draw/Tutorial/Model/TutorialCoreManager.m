@@ -379,20 +379,20 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     
     
     NSArray* tutorialImageUrl = @[
-                                  //                                  @"http://58.215.184.18:8080/tutorial/image/2-titlenew.png",
-                                  //                                  @"http://58.215.184.18:8080/tutorial/image/3-titlenew.png",
-                                  //                                  @"http://58.215.184.18:8080/tutorial/image/4-titlenew.png",
-                                  //                                  @"http://58.215.184.18:8080/tutorial/image/5-titlenew.png",
-                                  //                                  @"http://58.215.184.18:8080/tutorial/image/6-titlenew.png",
-                                  @"http://58.215.184.18:8080/app_res/tutorial/image/title-6.png",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/title-4.png",
-                                  @"http://58.215.184.18:8080/app_res/tutorial/image/se-title.png",
-                                  @"http://58.215.184.18:8080/app_res/tutorial/image/title-7.png",
-                                  @"http://58.215.184.18:8080/app_res/tutorial/image/nv-title.png",
-                                  @"http://58.215.184.18:8080/app_res/tutorial/image/title-0.png",
+                                  //                                  @"http://43.247.90.45:8080/tutorial/image/2-titlenew.png",
+                                  //                                  @"http://43.247.90.45:8080/tutorial/image/3-titlenew.png",
+                                  //                                  @"http://43.247.90.45:8080/tutorial/image/4-titlenew.png",
+                                  //                                  @"http://43.247.90.45:8080/tutorial/image/5-titlenew.png",
+                                  //                                  @"http://43.247.90.45:8080/tutorial/image/6-titlenew.png",
+                                  @"http://43.247.90.45:8080/app_res/tutorial/image/title-6.png",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/title-4.png",
+                                  @"http://43.247.90.45:8080/app_res/tutorial/image/se-title.png",
+                                  @"http://43.247.90.45:8080/app_res/tutorial/image/title-7.png",
+                                  @"http://43.247.90.45:8080/app_res/tutorial/image/nv-title.png",
+                                  @"http://43.247.90.45:8080/app_res/tutorial/image/title-0.png",
 
-                                  @"http://58.215.184.18:8080/app_res/tutorial/image/zhongqiu-title.png",
-                                  @"http://58.215.184.18:8080/app_res/tutorial/image/DIY-title.png"
+                                  @"http://43.247.90.45:8080/app_res/tutorial/image/zhongqiu-title.png",
+                                  @"http://43.247.90.45:8080/app_res/tutorial/image/DIY-title.png"
                                   ];
     NSArray* tutorialCategory =
     @[
@@ -470,149 +470,149 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     NSArray* stageImageUrl = @[
                                
                                /* @[
-                                @"http://58.215.184.18:8080/tutorial/image/2-1.png",
-                                @"http://58.215.184.18:8080/tutorial/image/2-2.png",
-                                @"http://58.215.184.18:8080/tutorial/image/2-3.png",
-                                @"http://58.215.184.18:8080/tutorial/image/2-4.png",
-                                @"http://58.215.184.18:8080/tutorial/image/2-5.png",
-                                @"http://58.215.184.18:8080/tutorial/image/2-6.png",
-                                @"http://58.215.184.18:8080/tutorial/image/2-7.png",
-                                @"http://58.215.184.18:8080/tutorial/image/2-8.png"
+                                @"http://43.247.90.45:8080/tutorial/image/2-1.png",
+                                @"http://43.247.90.45:8080/tutorial/image/2-2.png",
+                                @"http://43.247.90.45:8080/tutorial/image/2-3.png",
+                                @"http://43.247.90.45:8080/tutorial/image/2-4.png",
+                                @"http://43.247.90.45:8080/tutorial/image/2-5.png",
+                                @"http://43.247.90.45:8080/tutorial/image/2-6.png",
+                                @"http://43.247.90.45:8080/tutorial/image/2-7.png",
+                                @"http://43.247.90.45:8080/tutorial/image/2-8.png"
                                 ],
                                 @[
-                                @"http://58.215.184.18:8080/tutorial/image/3-1.png",
-                                @"http://58.215.184.18:8080/tutorial/image/3-2.png",
-                                @"http://58.215.184.18:8080/tutorial/image/3-3.png",
-                                @"http://58.215.184.18:8080/tutorial/image/3-4.png",
-                                @"http://58.215.184.18:8080/tutorial/image/3-5.png",
-                                @"http://58.215.184.18:8080/tutorial/image/3-6.png",
-                                @"http://58.215.184.18:8080/tutorial/image/3-7.png",
-                                @"http://58.215.184.18:8080/tutorial/image/3-8.png"
+                                @"http://43.247.90.45:8080/tutorial/image/3-1.png",
+                                @"http://43.247.90.45:8080/tutorial/image/3-2.png",
+                                @"http://43.247.90.45:8080/tutorial/image/3-3.png",
+                                @"http://43.247.90.45:8080/tutorial/image/3-4.png",
+                                @"http://43.247.90.45:8080/tutorial/image/3-5.png",
+                                @"http://43.247.90.45:8080/tutorial/image/3-6.png",
+                                @"http://43.247.90.45:8080/tutorial/image/3-7.png",
+                                @"http://43.247.90.45:8080/tutorial/image/3-8.png"
                                 ],
                                 @[
-                                @"http://58.215.184.18:8080/tutorial/image/4-1.png",
-                                @"http://58.215.184.18:8080/tutorial/image/4-2.png",
-                                @"http://58.215.184.18:8080/tutorial/image/4-3.png",
-                                @"http://58.215.184.18:8080/tutorial/image/4-4.png",
-                                @"http://58.215.184.18:8080/tutorial/image/4-5.png",
-                                @"http://58.215.184.18:8080/tutorial/image/4-6.png",
-                                @"http://58.215.184.18:8080/tutorial/image/4-7.png",
-                                @"http://58.215.184.18:8080/tutorial/image/4-8.png"
-                                ],
-                                
-                                
-                                @[
-                                @"http://58.215.184.18:8080/tutorial/image/5-1.png",
-                                @"http://58.215.184.18:8080/tutorial/image/5-2.png",
-                                @"http://58.215.184.18:8080/tutorial/image/5-3.png",
-                                @"http://58.215.184.18:8080/tutorial/image/5-4.png",
-                                @"http://58.215.184.18:8080/tutorial/image/5-5.png",
-                                @"http://58.215.184.18:8080/tutorial/image/5-6.png",
-                                @"http://58.215.184.18:8080/tutorial/image/5-7.png",
-                                @"http://58.215.184.18:8080/tutorial/image/5-8.png"
+                                @"http://43.247.90.45:8080/tutorial/image/4-1.png",
+                                @"http://43.247.90.45:8080/tutorial/image/4-2.png",
+                                @"http://43.247.90.45:8080/tutorial/image/4-3.png",
+                                @"http://43.247.90.45:8080/tutorial/image/4-4.png",
+                                @"http://43.247.90.45:8080/tutorial/image/4-5.png",
+                                @"http://43.247.90.45:8080/tutorial/image/4-6.png",
+                                @"http://43.247.90.45:8080/tutorial/image/4-7.png",
+                                @"http://43.247.90.45:8080/tutorial/image/4-8.png"
                                 ],
                                 
+                                
                                 @[
-                                @"http://58.215.184.18:8080/tutorial/image/6-1.png",
-                                @"http://58.215.184.18:8080/tutorial/image/6-2.png",
-                                @"http://58.215.184.18:8080/tutorial/image/6-3.png",
-                                @"http://58.215.184.18:8080/tutorial/image/6-4.png",
-                                @"http://58.215.184.18:8080/tutorial/image/6-5.png",
-                                @"http://58.215.184.18:8080/tutorial/image/6-6.png",
-                                @"http://58.215.184.18:8080/tutorial/image/6-7.png",
-                                @"http://58.215.184.18:8080/tutorial/image/6-8.png"
+                                @"http://43.247.90.45:8080/tutorial/image/5-1.png",
+                                @"http://43.247.90.45:8080/tutorial/image/5-2.png",
+                                @"http://43.247.90.45:8080/tutorial/image/5-3.png",
+                                @"http://43.247.90.45:8080/tutorial/image/5-4.png",
+                                @"http://43.247.90.45:8080/tutorial/image/5-5.png",
+                                @"http://43.247.90.45:8080/tutorial/image/5-6.png",
+                                @"http://43.247.90.45:8080/tutorial/image/5-7.png",
+                                @"http://43.247.90.45:8080/tutorial/image/5-8.png"
+                                ],
+                                
+                                @[
+                                @"http://43.247.90.45:8080/tutorial/image/6-1.png",
+                                @"http://43.247.90.45:8080/tutorial/image/6-2.png",
+                                @"http://43.247.90.45:8080/tutorial/image/6-3.png",
+                                @"http://43.247.90.45:8080/tutorial/image/6-4.png",
+                                @"http://43.247.90.45:8080/tutorial/image/6-5.png",
+                                @"http://43.247.90.45:8080/tutorial/image/6-6.png",
+                                @"http://43.247.90.45:8080/tutorial/image/6-7.png",
+                                @"http://43.247.90.45:8080/tutorial/image/6-8.png"
                                 ],*/
                                @[
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/6-1.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/6-2.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/6-3.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/6-4.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/6-5.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/6-6.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/6-7.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/6-8.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/6-9.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/6-10.jpg"
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/6-1.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/6-2.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/6-3.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/6-4.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/6-5.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/6-6.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/6-7.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/6-8.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/6-9.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/6-10.jpg"
                                    ],
                                @[
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/4-1.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/4-2.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/4-3.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/4-4.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/4-5.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/4-6.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/4-7.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/4-8.jpg"
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/4-1.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/4-2.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/4-3.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/4-4.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/4-5.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/4-6.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/4-7.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/4-8.jpg"
                                    ],
                                @[
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/se-8.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/se-7.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/se-8.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/se-7.jpg",
                                    
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/se-5.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/se-6.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/se-1.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/se-5.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/se-6.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/se-1.jpg",
                                 
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/se-3.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/se-2.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/se-3.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/se-2.jpg",
                                    
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/se-4.jpg"
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/se-4.jpg"
                                    ],
                                @[
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/7-2.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/7-8.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/7-4.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/7-6.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/7-5.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/7-3.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/7-7.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/7-9.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/7-1.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/7-10.jpg"
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/7-2.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/7-8.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/7-4.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/7-6.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/7-5.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/7-3.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/7-7.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/7-9.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/7-1.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/7-10.jpg"
                                    ],
                                @[
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/nv-1.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/nv-2.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/nv-3.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/nv-4.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/nv-5.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/nv-6.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/nv-7.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/nv-8.jpg"
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/nv-1.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/nv-2.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/nv-3.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/nv-4.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/nv-5.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/nv-6.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/nv-7.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/nv-8.jpg"
                                    ],
                               
                                @[
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/0-2.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/0-1.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/0-3.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/0-4.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/0-5.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/0-6.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/0-7.jpg"
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/0-2.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/0-1.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/0-3.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/0-4.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/0-5.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/0-6.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/0-7.jpg"
                                    ],
                                @[
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/zhongqiu-1.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/zhongqiu-2.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/zhongqiu-3.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/zhongqiu-4.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/zhongqiu-5.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/zhongqiu-6.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/zhongqiu-7.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/zhongqiu-8.jpg"
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/zhongqiu-1.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/zhongqiu-2.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/zhongqiu-3.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/zhongqiu-4.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/zhongqiu-5.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/zhongqiu-6.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/zhongqiu-7.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/zhongqiu-8.jpg"
                                    ],
                                @[
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/DIY-1.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/DIY-2.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/DIY-3.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/DIY-4.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/DIY-5.jpg",
-                                   @"http://58.215.184.18:8080/app_res/tutorial/image/DIY-6.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/DIY-1.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/DIY-2.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/DIY-3.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/DIY-4.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/DIY-5.jpg",
+                                   @"http://43.247.90.45:8080/app_res/tutorial/image/DIY-6.jpg",
                                    ],
                                
                                ];
     
     /*
-     http://58.215.184.18:8080/draw_data/20140716/f0262460-0c86-11e4-9049-00163e017d23.zip
-     http://58.215.184.18:8080/draw_image/20140716/f01bc420-0c86-11e4-9049-00163e017d23.jpg
+     http://43.247.90.45:8080/draw_data/20140716/f0262460-0c86-11e4-9049-00163e017d23.zip
+     http://43.247.90.45:8080/draw_image/20140716/f01bc420-0c86-11e4-9049-00163e017d23.jpg
      tutorialId-7__stageId-7-0
      */
     //tutorial0chapter

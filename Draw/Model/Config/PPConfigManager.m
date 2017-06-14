@@ -159,13 +159,13 @@
 
 + (NSString*)getAPIServerURL
 {
-    return [MobClickUtils getStringValueByKey:@"API_SERVER_URL" defaultValue:@"http://58.215.184.18:8001/api/i?"];
+    return [MobClickUtils getStringValueByKey:@"API_SERVER_URL" defaultValue:@"http://43.247.90.45:8001/api/i?"];
 }
 
 + (NSString*)getMessageServerURL
 {
 #ifdef DEBUG
-//    return @"http://58.215.184.18:8699/api/i?";
+//    return @"http://43.247.90.45:8699/api/i?";
     //    return @"http://localhost:8100/api/i?";
 //    return @"http://192.168.1.12:8100/api/i?";
     
@@ -179,7 +179,7 @@
 + (NSString*)getBBSServerURL
 {
 #ifdef DEBUG
-//    return @"http://58.215.184.18:8699/api/i?";
+//    return @"http://43.247.90.45:8699/api/i?";
 //    return @"http://localhost:8100/api/i?";
 //    return @"http://192.168.1.11:8100/api/i?";
     
@@ -195,7 +195,7 @@
 {
 #ifdef DEBUG
 //    return @"http://192.168.1.12:8100/api/i?";
-//    return @"http://58.215.184.18:8699/api/i?";
+//    return @"http://43.247.90.45:8699/api/i?";
 //    return @"http://192.168.100.192:8100/api/i?";
 //    return @"http://localhost:8100/api/i?";
     
@@ -1581,7 +1581,7 @@
 {
 #ifdef DEBUG
     //    return @"http://192.168.1.12:8100/api/i?";
-//    return @"http://58.215.184.18:8699/api/i?";
+//    return @"http://43.247.90.45:8699/api/i?";
     //    return @"http://192.168.100.192:8100/api/i?";
 //    return @"http://localhost:8100/api/i?";
 #endif

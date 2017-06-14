@@ -220,12 +220,12 @@ int main(int argc, char *argv[])
  51335a6ae4b0f6620a5e9a1b
  
  
- http://58.215.184.18:8001/api/i?&m1=buyVipCount&uid=4f86469d260958163895b958&app=513819630&gid=Draw&ts=1391423223&mac=G8fF2yjCHDo%2B7eyntp%2BHng%3D%3D&v=8.0
+ http://43.247.90.45:8001/api/i?&m1=buyVipCount&uid=4f86469d260958163895b958&app=513819630&gid=Draw&ts=1391423223&mac=G8fF2yjCHDo%2B7eyntp%2BHng%3D%3D&v=8.0
 
- http://58.215.184.18:8001/api/i?&m1=buyVipCount&uid=4f86469d260958163895b958&app=513819630&gid=Draw&ts=1391423223&mac=G8fF2yjCHDo%2B7eyntp%2BHng%3D%3D&v=8.0
- http://58.215.184.18:8001/api/i?&m1=buyVipCount&uid=4f86469d260958163895b958&app=513819630&gid=Draw&ts=1391423223&mac=G8fF2yjCHDo%2B7eyntp%2BHng%3D%3D&v=8.0
- http://58.215.184.18:8001/api/i?&m1=buyVipCount&uid=4f86469d260958163895b958&app=513819630&gid=Draw&ts=1391423223&mac=G8fF2yjCHDo%2B7eyntp%2BHng%3D%3D&v=8.0
- http://58.215.184.18:8001/api/i?&m1=buyVipCount&uid=4f86469d260958163895b958&app=513819630&gid=Draw&ts=1391423223&mac=G8fF2yjCHDo%2B7eyntp%2BHng%3D%3D&v=8.0
+ http://43.247.90.45:8001/api/i?&m1=buyVipCount&uid=4f86469d260958163895b958&app=513819630&gid=Draw&ts=1391423223&mac=G8fF2yjCHDo%2B7eyntp%2BHng%3D%3D&v=8.0
+ http://43.247.90.45:8001/api/i?&m1=buyVipCount&uid=4f86469d260958163895b958&app=513819630&gid=Draw&ts=1391423223&mac=G8fF2yjCHDo%2B7eyntp%2BHng%3D%3D&v=8.0
+ http://43.247.90.45:8001/api/i?&m1=buyVipCount&uid=4f86469d260958163895b958&app=513819630&gid=Draw&ts=1391423223&mac=G8fF2yjCHDo%2B7eyntp%2BHng%3D%3D&v=8.0
+ http://43.247.90.45:8001/api/i?&m1=buyVipCount&uid=4f86469d260958163895b958&app=513819630&gid=Draw&ts=1391423223&mac=G8fF2yjCHDo%2B7eyntp%2BHng%3D%3D&v=8.0
 
  
  
@@ -234,7 +234,7 @@ int main(int argc, char *argv[])
  52b97d94e4b035f5ca9225a9
  51191487e4b098c397bc56be
  50f57a6de4b05bb0f07ed051
- http://58.215.184.18:8001/api/i?&m1=buyVipCount&uid=526606eee4b096116d7fd0d1&app=513819630&gid=Draw&ts=1391426186&mac=BbRY%2FdCMcqiUzlxyDV5%2BEA%3D%3D&v=8.0
+ http://43.247.90.45:8001/api/i?&m1=buyVipCount&uid=526606eee4b096116d7fd0d1&app=513819630&gid=Draw&ts=1391426186&mac=BbRY%2FdCMcqiUzlxyDV5%2BEA%3D%3D&v=8.0
  
  
  */

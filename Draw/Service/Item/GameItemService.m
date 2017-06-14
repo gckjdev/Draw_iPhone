@@ -119,8 +119,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     return promotionInfo;
 }
 
-#define DRAW_URL_ITEM_IMAGE(name) [NSString stringWithFormat:@"http://58.215.184.18:8080/app_res/smart_data/shop_item_images_Draw/%@", name]
-#define DICE_URL_ITEM_IMAGE(name) [NSString stringWithFormat:@"http://58.215.184.18:8080/app_res/smart_data/shop_item_images_Dice/%@", name]
+#define DRAW_URL_ITEM_IMAGE(name) [NSString stringWithFormat:@"http://43.247.90.45:8080/app_res/smart_data/shop_item_images_Draw/%@", name]
+#define DICE_URL_ITEM_IMAGE(name) [NSString stringWithFormat:@"http://43.247.90.45:8080/app_res/smart_data/shop_item_images_Dice/%@", name]
 
 
 + (void)createTestDataFile

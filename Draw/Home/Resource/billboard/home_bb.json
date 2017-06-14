@@ -5,7 +5,7 @@
      "index" : 1,
      "function" : "enterContest",
      "imageId" : "image2",
-     "image" : "http://58.215.184.18:8080/tutorial/image/completionBill.jpg",
+     "image" : "http://43.247.90.45:8080/tutorial/image/completionBill.jpg",
      "text" : "",
      "parameters" : []
      },
@@ -13,7 +13,7 @@
      "index" : 2,
      "function" : "enterLearnDraw",
      "imageId" : "image1",
-     "image" : "http://58.215.184.18:8080/tutorial/image/courseBill.jpg",
+     "image" : "http://43.247.90.45:8080/tutorial/image/courseBill.jpg",
      "text" : "",
      "parameters" : []
      }
