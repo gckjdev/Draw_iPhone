@@ -992,42 +992,41 @@ typedef enum {
 
 #ifdef DEBUG
     
-    /*
     
     NSString* name = [NSString stringWithFormat:@"作者：%@",[ShareService defaultService].draft.drawUserNickName];
     PPDebug(@"nickname is %@",name);
-    UIImage* srcImage = [self makeEndingImage:[UIImage imageNamed:@"shipinEnding.jpg"] AndText:name];
-    UIImage *beginningSrcImage = [self makeBeginningImage:[srcImgList objectAtIndex:0]];
+//    UIImage* srcImage = [self makeEndingImage:[UIImage imageNamed:@"shipinEnding.jpg"] AndText:name];
+//    UIImage *beginningSrcImage = [self makeBeginningImage:[srcImgList objectAtIndex:0]];
     
     [srcImgList addObject:[srcImgList objectAtIndex:0]];
     [srcImgList addObject:[srcImgList objectAtIndex:0]];
-    [srcImgList insertObject:beginningSrcImage atIndex:0];
-    [srcImgList addObject:srcImage];
-    [srcImgList addObject:srcImage];
-    [srcImgList addObject:srcImage];
+//    [srcImgList insertObject:beginningSrcImage atIndex:0];
+//    [srcImgList addObject:srcImage];
+//    [srcImgList addObject:srcImage];
+//    [srcImgList addObject:srcImage];
     
     NSString *path2 = [NSHomeDirectory() stringByAppendingPathComponent:
                       [NSString stringWithFormat:@"Documents/movie.mp4"]];
     
     [[NSFileManager defaultManager] removeItemAtPath:path2 error:NULL];
     
-    
-    [HJImagesToVideo saveVideoToPhotosWithImages:srcImgList withSize:(CGSize){960, 640}  withFPS:5 animateTransitions:YES  withCallbackBlock:^(BOOL success){
+    CGSize videoSize = (CGSize){960, 640};
+    [HJImagesToVideo saveVideoToPhotosWithImages:srcImgList withSize:videoSize  withFPS:5 animateTransitions:YES  withCallbackBlock:^(BOOL success){
         if (success) {
-            NSLog(@"Success");
+            PPDebug(@"Success, size %@", NSStringFromCGSize(canvasSize));
         } else {
-            NSLog(@"Failed");
+            NSLog(@"Failed, size %@", NSStringFromCGSize(canvasSize));
         }
     }];
     [srcImgList removeLastObject];
     
-    */
     
     
     
     
 #endif
     
+    /*
     //图像目标
     CGImageDestinationRef destImg;
     
@@ -1066,9 +1065,10 @@ typedef enum {
     CFRelease(url);
     
     [srcImgList release];
+     */
     
 #ifdef DEBUG
-//    [HJImagesToVideo addAudioToFileAtPath:@"/Users/chaoso/Desktop/temp.mp4" toPath:@"/Users/chaoso/Desktop/2.mp4"];
+//    [HJImagesToVideo addAudioToFileAtPath:@"/Users/pipi/Desktop/temp.mp4" toPath:@"/Users/pipi/Desktop/2.mp4"];
 #endif
     
     return;
