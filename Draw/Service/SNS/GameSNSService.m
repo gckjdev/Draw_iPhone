@@ -18,10 +18,10 @@
 #import "CommonDialog.h"
 #import "SNSUtils.h"
 #import "CommonMessageCenter.h"
-#import "WXApi.h"
-#import <TencentOpenAPI/QQApi.h>
-#import <TencentOpenAPI/QQApiInterface.h>
-#import <TencentOpenAPI/TencentOAuth.h>
+//#import "WXApi.h"
+//#import <TencentOpenAPI/QQApi.h>
+//#import <TencentOpenAPI/QQApiInterface.h>
+//#import <TencentOpenAPI/TencentOAuth.h>
 #import "GTMBase64.h"
 #import <ShareSDK/ShareSDK.h>
 //#import "WeiboApi.h"
@@ -77,21 +77,21 @@ GameSNSService* _defaultSNSService;
 
         PPDebug(@"end registerApp Facebook");
         
-        [ShareSDK connectWeChatWithAppId:[GameApp weixinId] // @"wx6dd7a9b94f3dd72a"        //此参数为申请的微信AppID
-                               wechatCls:[WXApi class]];
+//        [ShareSDK connectWeChatWithAppId:[GameApp weixinId] // @"wx6dd7a9b94f3dd72a"        //此参数为申请的微信AppID
+//                               wechatCls:[WXApi class]];
 
         PPDebug(@"end registerApp WeChat");
         
         //添加QQ空间应用  注册网址  http://connect.qq.com/intro/login/
-        [ShareSDK connectQZoneWithAppKey:[GameApp qqSpaceAppId]
-                               appSecret:[GameApp qqSpaceAppKey]
-                       qqApiInterfaceCls:[QQApiInterface class]
-                         tencentOAuthCls:[TencentOAuth class]];
+//        [ShareSDK connectQZoneWithAppKey:[GameApp qqSpaceAppId]
+//                               appSecret:[GameApp qqSpaceAppKey]
+//                       qqApiInterfaceCls:[QQApiInterface class]
+//                         tencentOAuthCls:[TencentOAuth class]];
         
         //添加QQ应用  注册网址  http://open.qq.com/
-        [ShareSDK connectQQWithQZoneAppKey:[GameApp qqSpaceAppId]
-                         qqApiInterfaceCls:[QQApiInterface class]
-                           tencentOAuthCls:[TencentOAuth class]];
+//        [ShareSDK connectQQWithQZoneAppKey:[GameApp qqSpaceAppId]
+//                         qqApiInterfaceCls:[QQApiInterface class]
+//                           tencentOAuthCls:[TencentOAuth class]];
 
         PPDebug(@"end registerApp QZone");
         

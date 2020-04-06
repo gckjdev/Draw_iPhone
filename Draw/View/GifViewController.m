@@ -7,6 +7,7 @@
 //
 
 #import "GifViewController.h"
+#import <WebKit/WebKit.h>
 
 @interface GifViewController ()
 
@@ -77,16 +78,17 @@
     PPDebug(@"put in Gif data success!");
 }
 
+// TODO, TBD to be tested after replacing WKWebView
 - (void) displayGifImageInSize:(CGRect)rect
 {
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:rect];
+    WKWebView *webView = [[WKWebView alloc] initWithFrame:rect];
     UITapGestureRecognizer *tabGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singleTab:)];
     [webView addGestureRecognizer:tabGesture];
     [tabGesture release];
     [webView setBackgroundColor:[UIColor clearColor]];
     [webView setOpaque:NO];
-    webView.scalesPageToFit = YES;
-    [webView loadData:gifData MIMEType:@"image/gif" textEncodingName:nil baseURL:nil];
+    webView.contentMode = UIViewContentModeScaleToFill;
+    [webView loadData:gifData MIMEType:@"image/gif" characterEncodingName:@"UTF-8" baseURL:nil];
     [self.view addSubview:webView];
     [webView release];
 }

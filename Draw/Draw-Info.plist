@@ -37,7 +37,6 @@
 			<string>com.orange.draw</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>alipaycchh.gckj</string>
 				<string>fb352182988165711</string>
 				<string>gckjcchh</string>
 				<string>wx427a2f57bc4456d1</string>
@@ -72,8 +71,6 @@
 		<string>weibosdk2.5</string>
 		<string>TencentWeibo</string>
 		<string>tencentweiboSdkv2</string>
-		<string>alipay</string>
-		<string>alipayshare</string>
 		<string>mqqOpensdkSSoLogin</string>
 		<string>mqqopensdkapiV2</string>
 		<string>mqqopensdkapiV3</string>

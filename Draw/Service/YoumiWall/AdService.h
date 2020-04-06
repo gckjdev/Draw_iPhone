@@ -13,7 +13,7 @@
 //#import "AderDelegateProtocal.h"
 //#import "AdMoGoView.h"
 //#import "WapsOffer/AppConnect.h"
-#import <GoogleMobileAds/GADBannerViewDelegate.h>
+//#import <GoogleMobileAds/GADBannerViewDelegate.h>
 
 
 typedef enum
@@ -34,7 +34,7 @@ typedef enum
 
 @end
 
-@interface AdService : NSObject<UIAlertViewDelegate, AccountServiceDelegate, GADBannerViewDelegate>
+@interface AdService : NSObject<UIAlertViewDelegate, AccountServiceDelegate>
 {
     BOOL _isShowAd;
 }

@@ -13,16 +13,19 @@
 - (UIImage *)rotatedImageWithtransform:(CGAffineTransform)rotation
                          croppedToRect:(CGRect)rect
 {
-    UIImage *rotatedImage = [self rotatedImageWithtransform:rotation];
-
-    CGImageRef croppedImage = CGImageCreateWithImageInRect(rotatedImage.CGImage, rect);
+    UIImage *rotatedImage = [self pe_rotatedImageWithtransform:rotation];
+    
+    CGFloat scale = rotatedImage.scale;
+    CGRect cropRect = CGRectApplyAffineTransform(rect, CGAffineTransformMakeScale(scale, scale));
+    
+    CGImageRef croppedImage = CGImageCreateWithImageInRect(rotatedImage.CGImage, cropRect);
     UIImage *image = [UIImage imageWithCGImage:croppedImage scale:self.scale orientation:rotatedImage.imageOrientation];
     CGImageRelease(croppedImage);
     
     return image;
 }
 
-- (UIImage *)rotatedImageWithtransform:(CGAffineTransform)transform
+- (UIImage *)pe_rotatedImageWithtransform:(CGAffineTransform)transform
 {
     CGSize size = self.size;
     

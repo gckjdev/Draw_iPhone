@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BrushEffectFactory.h>
+#import "BrushEffectFactory.h"
 
 @interface SuperCalligraphyBrush : NSObject<BrushEffectProtocol>
 

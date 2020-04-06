@@ -8,7 +8,7 @@
 
 #import "HomeBottomMenuPanel.h"
 #import "DrawImageManager.h"
-#import "MobClick.h"
+#import "MobClickUtils.h"
 
 #define WIDTH self.frame.size.width
 #define HEIGHT self.frame.size.height
@@ -175,8 +175,7 @@
 - (void)didClickMenu:(HomeMenuView *)menu type:(HomeMenuType)type
 {
     [MobClick event:@"CLICK_MENU_BUTTON"
-              label:[HomeMenuView titleForType:type]
-                acc:1];
+              label:[HomeMenuView titleForType:type]];
 
     if (self.delegate && [self.delegate respondsToSelector:@selector(homeBottomMenuPanel:didClickMenu:menuType:)]) {
         [self.delegate homeBottomMenuPanel:self didClickMenu:menu menuType:type];

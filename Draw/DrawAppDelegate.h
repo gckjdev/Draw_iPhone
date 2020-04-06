@@ -10,7 +10,6 @@
 #import "CommonNetworkClient.h"
 #import "PPApplication.h"
 #import "ReviewRequest.h"
-#import "WXApi.h"
 #import "DrawHomeControllerProtocol.h"
 
 //#import "DMSplashAdController.h"
@@ -26,7 +25,7 @@
 @class HomeController;
 @class CPMotionRecognizingWindow;
 
-@interface DrawAppDelegate : PPApplication <UIApplicationDelegate, CommonNetworkClientDelegate, ReviewRequestDelegate, WXApiDelegate> {
+@interface DrawAppDelegate : PPApplication <UIApplicationDelegate, CommonNetworkClientDelegate, ReviewRequestDelegate> {
 
     UIBackgroundTaskIdentifier bgTask;
 //    DMSplashAdController *_splashAd;

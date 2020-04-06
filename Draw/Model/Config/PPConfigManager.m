@@ -1093,66 +1093,64 @@
     return [MobClickUtils getStringValueByKey:@"TAOBAO_CHARGE_URL" defaultValue:@"http://shop102713732.m.taobao.com"];
 }
 
-#define ALIPAY_PARTNER @"2088901423555415"
-#define ALIPAY_SELLER  @"gckjdev@sina.com" // ALIPAY_PARTNER
-
-#define ALIPAY_RSA_PRIVATE_KEY @"MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAL5KqMc4AL1URSC327Qy85E/iqBVaHD/ZPEyqKCJzImrytIiEECLbHqM6Yb9ZzApln0LppDRaXvViS4Z/59PJwewca0gvkwkc+HeyEe6jdrAgDNuTgxvGAgT9wyTIGynmqt5CMeZn15TOQpZ+xW9kf1ELWHeaygYpshcdAKMYnoxAgMBAAECgYBZue53cWq322J1GPyZrWS32lRNYbhLf8FjEdX9TLyLNdv+1V0Acj2GU6dRpW7ggNuavsGdi4DHiVqTyGKGBdaKsrtXR94BA7sOxWUWJxUppaKY2HLCDjOcHK2c4iFJKcnKK9BlTZGFmF7XDyN2APAy0+rD5tHaGtjY2n+T5aD1gQJBAPBXsKwrdqwUQxep/2JJ2cfrBbmthhOGy9ePqZm+8fv5fJ9qfmDXbYHbsXBiadLrnusI8tVKs8gjmZyZ7EmEuVkCQQDKsD7vTWvMaIvnDAchNtNmqXAWQIGT+CPDCrS96j3SbNfrHCXQsNnjTgJ1TDcJ/u3dGOdPVF9VPj5YhvFi4tSZAkEAwe7gPmzr2zqWULf5vMO+mVSJUCQ2tfbk8NGZlte+xwWvi6sQwu/SCyDM8tRWc71whFK6L2WR4ALp5rVFNqWEMQJAXyEfOKOGr7Z1yygLBJy91ZY6xEbcSj2RU05oDCavg16QbImWef83FIcdgj4WKvvaWgYBMmtwHwsKqfQTwQyjKQJAO2PMKq5Z7BulxRT80S0lzgcTvgrnY0XJ6eqOyEdadDctd4/0623L951EzG4ZP0zf4ftsQ+kbNK5NNY84z+2qOw=="
-
-//#define ALIPAY_ALIPAY_PUBLIC_KEY @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCRlOD4Xgor5mSAovA978ZQMMkIPGE5GYGRTxnF k1puI3N/EXwgiijARIxJs23psCI59vMxcE95lmVo0kyHBG9idAiC9/UebKSUJRGNpmrVa3SXk4Ca APH9fzo8HeagqfwldW0jbhBiiObG/yUb/PCexSw7QK4l7LwmJfekBBxGQQIDAQAB"
-
-#define ALIPAY_ALIPAY_PUBLIC_KEY   @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCnxj/9qwVfgoUh/y2W89L6BkRAFljhNhgPdyPuBV64bfQNN1PjbCzkIM6qRdKBoLPXmKKMiFYnkd6rAoprih3/PrQEB/VsW8OoM8fxn67UDYuyBTqA23MML9q1+ilIZwBC2AQ2UBVOrFXfFl75p6/B5KsiNG9zpgmLCUYuLkxpLQIDAQAB"
-
-
-+ (NSString *)getAlipayPartner
-{
-    return [MobClickUtils getStringValueByKey:@"ALI_PAY_PARTNER" defaultValue:ALIPAY_PARTNER];
-}
-
-+ (NSString *)getAlipaySeller
-{
-    return [MobClickUtils getStringValueByKey:@"ALI_PAY_SELLER" defaultValue:ALIPAY_SELLER];
-}
-
-+ (NSString *)getAlipayWebUrl
-{    
-#ifdef DEBUG
-//    return [MobClickUtils getStringValueByKey:@"ALI_PAY_WEB_URL" defaultValue:@"http:/127.0.0.1:9879/api/pay?"];
-#endif
-
-    return [MobClickUtils getStringValueByKey:@"ALI_PAY_WEB_URL" defaultValue:@"http://www.you100.me:9879/api/pay?"];
-}
-
-+ (NSString *)getAlipayRSAPrivateKey
-{
-    return [MobClickUtils getStringValueByKey:@"ALI_PAY_RSA_PRIVATE_KEY" defaultValue:ALIPAY_RSA_PRIVATE_KEY];
-}
-
-+ (NSString *)getAlipayAlipayPublicKey
-{
-    return [MobClickUtils getStringValueByKey:@"ALI_PAY_ALIPAY_PUBLIC_KEY" defaultValue:ALIPAY_ALIPAY_PUBLIC_KEY];
-}
-
-+ (NSString *)getAlipayNotifyUrl
-{
-    NSString* url = @"http://www.you100.me:9879/alipay/api?m1=notify";
-    url = [url encodedURLParameterString];
-    PPDebug(@"<NotifyUrl> url=%@", url);
-    
-    return [MobClickUtils getStringValueByKey:@"ALI_PAY_NOTIFY_URL"
-                                 defaultValue:url];
-}
-
-+ (NSString*)getAlipayAppScheme
-{
-    if (isLittleGeeAPP()){
-        return [MobClickUtils getStringValueByKey:@"ALI_PAY_APP_SCHEME"
-                                     defaultValue:@"alipayxjhh.gckj"];
-    }
-    else{
-        return [MobClickUtils getStringValueByKey:@"ALI_PAY_APP_SCHEME"
-                                     defaultValue:@"alipaycchh.gckj"];
-    }
-}
+//#define ALIPAY_PARTNER @"2088901423555415"
+//#define ALIPAY_SELLER  @"gckjdev@sina.com" // ALIPAY_PARTNER
+//
+//#define ALIPAY_RSA_PRIVATE_KEY @"MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAL5KqMc4AL1URSC327Qy85E/iqBVaHD/ZPEyqKCJzImrytIiEECLbHqM6Yb9ZzApln0LppDRaXvViS4Z/59PJwewca0gvkwkc+HeyEe6jdrAgDNuTgxvGAgT9wyTIGynmqt5CMeZn15TOQpZ+xW9kf1ELWHeaygYpshcdAKMYnoxAgMBAAECgYBZue53cWq322J1GPyZrWS32lRNYbhLf8FjEdX9TLyLNdv+1V0Acj2GU6dRpW7ggNuavsGdi4DHiVqTyGKGBdaKsrtXR94BA7sOxWUWJxUppaKY2HLCDjOcHK2c4iFJKcnKK9BlTZGFmF7XDyN2APAy0+rD5tHaGtjY2n+T5aD1gQJBAPBXsKwrdqwUQxep/2JJ2cfrBbmthhOGy9ePqZm+8fv5fJ9qfmDXbYHbsXBiadLrnusI8tVKs8gjmZyZ7EmEuVkCQQDKsD7vTWvMaIvnDAchNtNmqXAWQIGT+CPDCrS96j3SbNfrHCXQsNnjTgJ1TDcJ/u3dGOdPVF9VPj5YhvFi4tSZAkEAwe7gPmzr2zqWULf5vMO+mVSJUCQ2tfbk8NGZlte+xwWvi6sQwu/SCyDM8tRWc71whFK6L2WR4ALp5rVFNqWEMQJAXyEfOKOGr7Z1yygLBJy91ZY6xEbcSj2RU05oDCavg16QbImWef83FIcdgj4WKvvaWgYBMmtwHwsKqfQTwQyjKQJAO2PMKq5Z7BulxRT80S0lzgcTvgrnY0XJ6eqOyEdadDctd4/0623L951EzG4ZP0zf4ftsQ+kbNK5NNY84z+2qOw=="
+//
+//#define ALIPAY_ALIPAY_PUBLIC_KEY   @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCnxj/9qwVfgoUh/y2W89L6BkRAFljhNhgPdyPuBV64bfQNN1PjbCzkIM6qRdKBoLPXmKKMiFYnkd6rAoprih3/PrQEB/VsW8OoM8fxn67UDYuyBTqA23MML9q1+ilIZwBC2AQ2UBVOrFXfFl75p6/B5KsiNG9zpgmLCUYuLkxpLQIDAQAB"
+//
+//
+//+ (NSString *)getAlipayPartner
+//{
+//    return [MobClickUtils getStringValueByKey:@"ALI_PAY_PARTNER" defaultValue:ALIPAY_PARTNER];
+//}
+//
+//+ (NSString *)getAlipaySeller
+//{
+//    return [MobClickUtils getStringValueByKey:@"ALI_PAY_SELLER" defaultValue:ALIPAY_SELLER];
+//}
+//
+//+ (NSString *)getAlipayWebUrl
+//{
+//#ifdef DEBUG
+////    return [MobClickUtils getStringValueByKey:@"ALI_PAY_WEB_URL" defaultValue:@"http:/127.0.0.1:9879/api/pay?"];
+//#endif
+//
+//    return [MobClickUtils getStringValueByKey:@"ALI_PAY_WEB_URL" defaultValue:@"http://www.you100.me:9879/api/pay?"];
+//}
+//
+//+ (NSString *)getAlipayRSAPrivateKey
+//{
+//    return [MobClickUtils getStringValueByKey:@"ALI_PAY_RSA_PRIVATE_KEY" defaultValue:ALIPAY_RSA_PRIVATE_KEY];
+//}
+//
+//+ (NSString *)getAlipayAlipayPublicKey
+//{
+//    return [MobClickUtils getStringValueByKey:@"ALI_PAY_ALIPAY_PUBLIC_KEY" defaultValue:ALIPAY_ALIPAY_PUBLIC_KEY];
+//}
+//
+//+ (NSString *)getAlipayNotifyUrl
+//{
+//    NSString* url = @"http://www.you100.me:9879/alipay/api?m1=notify";
+//    url = [url encodedURLParameterString];
+//    PPDebug(@"<NotifyUrl> url=%@", url);
+//
+//    return [MobClickUtils getStringValueByKey:@"ALI_PAY_NOTIFY_URL"
+//                                 defaultValue:url];
+//}
+//
+//+ (NSString*)getAlipayAppScheme
+//{
+//    if (isLittleGeeAPP()){
+//        return [MobClickUtils getStringValueByKey:@"ALI_PAY_APP_SCHEME"
+//                                     defaultValue:@"alipayxjhh.gckj"];
+//    }
+//    else{
+//        return [MobClickUtils getStringValueByKey:@"ALI_PAY_APP_SCHEME"
+//                                     defaultValue:@"alipaycchh.gckj"];
+//    }
+//}
 
 + (NSString *)getLastAppVersion
 {

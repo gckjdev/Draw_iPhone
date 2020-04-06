@@ -19,7 +19,7 @@
 #import "Room.h"
 #import "RoomManager.h"
 #import "RoomService.h"
-#import "WXApi.h"
+//#import "WXApi.h"
 #import "DrawAppDelegate.h"
 //#import "DrawUserInfoView.h"
 #import "PPConfigManager.h"

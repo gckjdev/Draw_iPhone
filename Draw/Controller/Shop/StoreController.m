@@ -23,7 +23,7 @@
 #import "GameItemManager.h"
 #import "BalanceNotEnoughAlertView.h"
 #import "PPConfigManager.h"
-#import "TaoBaoController.h"
+//#import "TaoBaoController.h"
 #import "UIViewUtils.h"
 #import "PurchaseVipController.h"
 
@@ -301,10 +301,10 @@ typedef enum{
     if (item.itemId == ItemTypeColor) {
         [self showColorShopView];
     }else{
-        if (item.type == PBDrawItemTypeDrawTaoBao) {
-            TaoBaoController *vc = [[[TaoBaoController alloc] initWithURL:[item url] title:NSLS(@"kTaoBaoProductDetail")] autorelease];
-            [self.navigationController pushViewController:vc animated:YES];
-        }else{
+//        if (item.type == PBDrawItemTypeDrawTaoBao) {
+//            TaoBaoController *vc = [[[TaoBaoController alloc] initWithURL:[item url] title:NSLS(@"kTaoBaoProductDetail")] autorelease];
+//            [self.navigationController pushViewController:vc animated:YES];
+//        }else{
             
             __block typeof (self) bself = self;
             [[AccountService defaultService] setDelegate:bself];
@@ -320,7 +320,7 @@ typedef enum{
                     [bself.dataTableView reloadData];
                 }];
             }
-        }
+//        }
     }
 }
 

@@ -108,11 +108,6 @@
     //    return @"51c65d7fbef9858a5d8bc60014d33ce2";
 }
 
-- (NSString *)alipayCallBackScheme
-{
-    return @"alipayxjhh.gckj";
-}
-
 - (NSString*)feedbackTips
 {
     return NSLS(@"kLittleGeeFeedbackTips");

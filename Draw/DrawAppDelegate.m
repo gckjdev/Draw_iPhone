@@ -24,7 +24,7 @@
 #import "PriceService.h"
 #import "DeviceDetection.h"
 #import "NetworkDetector.h"
-#import "MobClick.h"
+#import "MobClickUtils.h"
 //#import "TKAlertCenter.h"
 #import "PPConfigManager.h"
 #import "AudioManager.h"
@@ -56,6 +56,8 @@
 #import "MyPaintManager.h"
 #import "AppTaskManager.h"
 
+#import <UMCommon/UMCommon.h>
+
 //#import "PPSNSIntegerationService.h"
 //#import "PPSinaWeiboService.h"
 //#import "PPTecentWeiboService.h"
@@ -70,7 +72,7 @@
 //#import "GameAdWallService.h"
 #import "GameItemService.h"
 #import "IAPProductService.h"
-#import "AliPayManager.h"
+//#import "AliPayManager.h"
 #import "SKProductService.h"
 #import "ShareController.h"
 
@@ -101,9 +103,6 @@
 #import "TutorialCoreManager.h"
 #import "BillboardManager.h"
 
-#import <AlipaySDK/AlipaySDK.h>
-#import "WXApi.h"
-#import "WXApiObject.h"
 #import "FileUtil.h"
 
 NSString* GlobalGetServerURL()
@@ -275,17 +274,20 @@ NSString* GlobalGetBoardServerURL()
     srand(time(0));
     
 #ifdef DEBUG
-    [MobClick setLogEnabled:YES];
+    [UMConfigure setLogEnabled:YES];
+//    [UMCommonLogManager setUpUMCommonLogManager];
 #endif
         
     // clear all badges
     application.applicationIconBadgeNumber = 0;
 
     // init mob click
-    [MobClick startWithAppkey:[GameApp umengId]
-                 reportPolicy:BATCH
-                    channelId:[PPConfigManager getChannelId]];
-    [MobClick updateOnlineConfig];
+//    [MobClick startWithAppkey:[GameApp umengId]
+//                 reportPolicy:BATCH
+//                    channelId:[PPConfigManager getChannelId]];
+//    [MobClick updateOnlineConfig];
+    
+    [UMConfigure initWithAppkey:[GameApp umengId] channel:@"App Store"];
         
 //    [self initImageCacheManager];
     [PPSmartUpdateDataUtils initPaths];
@@ -314,7 +316,7 @@ NSString* GlobalGetBoardServerURL()
     
     if ([GameApp supportWeixin] == YES){
         PPDebug(@"Init Weixin SDK, AppId(%@)", [GameApp weixinId]);
-        [WXApi registerApp:[GameApp weixinId]]; //@"wx427a2f57bc4456d1"];
+//        [WXApi registerApp:[GameApp weixinId]]; //@"wx427a2f57bc4456d1"];
     }
     
     // Push Setup
@@ -369,8 +371,8 @@ NSString* GlobalGetBoardServerURL()
 
     }
     
-    //注册微信，用于微信支付
-    [WXApi registerApp:@"wx427a2f57bc4456d1"];
+//    //注册微信，用于微信支付
+//    [WXApi registerApp:@"wx427a2f57bc4456d1"];
     
     return YES;
 }
@@ -394,10 +396,10 @@ NSString* GlobalGetBoardServerURL()
     
     NSString* news = @"";
     if ([PPConfigManager isProVersion]){
-        news = [MobClick getConfigParams:@"NEWS_PRO"];
+        news = nil; // [MobClick getConfigParams:@"NEWS_PRO"];
     }
     else{
-        news = [MobClick getConfigParams:@"NEWS"];
+        news = nil; // [MobClick getConfigParams:@"NEWS"];
     }
     if ([news length] <= 1)
         return;
@@ -545,15 +547,15 @@ NSString* GlobalGetBoardServerURL()
     PPDebug(@"<handleURL> url=%@", url.absoluteString);
     if ([url.absoluteString containsString:@"safepay"]) {
         
-        [[AlipaySDK defaultService] processOrderWithPaymentResult:url
-                                         standbyCallback:^(NSDictionary *resultDic) {
-                                             NSString *resultStr = resultDic[@"result"];
-                                             PPDebug(@"result = %@",resultDic);
-                                             
-                                             // show message
-                                             [[AliPayManager defaultService] handlePayResult:resultDic];
-                                             
-                                         }];
+//        [[AlipaySDK defaultService] processOrderWithPaymentResult:url
+//                                         standbyCallback:^(NSDictionary *resultDic) {
+//                                             NSString *resultStr = resultDic[@"result"];
+//                                             PPDebug(@"result = %@",resultDic);
+//                                             
+//                                             // show message
+//                                             [[AliPayManager defaultService] handlePayResult:resultDic];
+//                                             
+//                                         }];
         
         return YES;
     }
@@ -569,19 +571,20 @@ NSString* GlobalGetBoardServerURL()
 
     PPDebug(@"<handleURL> url=%@, sourceApplication=%@, annotation=%@", url.absoluteString, sourceApplication, [annotation description]);
     
-    if ([url.absoluteString containsString:@"safepay"]) {
-        
-        [[AlipaySDK defaultService] processOrderWithPaymentResult:url
-                                         standbyCallback:^(NSDictionary *resultDic) {
-                                             NSString *resultStr = resultDic[@"result"];
-                                             PPDebug(@"result = %@",resultDic);
-                                             
-                                             // TODO show message
-                                             [[AliPayManager defaultService] handlePayResult:resultDic];
-                                         }];
-     
-        return YES;
-    }
+//    if ([url.absoluteString containsString:@"safepay"]) {
+//
+//        [[AlipaySDK defaultService] processOrderWithPaymentResult:url
+//                                         standbyCallback:^(NSDictionary *resultDic) {
+//                                             NSString *resultStr = resultDic[@"result"];
+//                                             PPDebug(@"result = %@",resultDic);
+//
+//                                             // TODO show message
+//                                             [[AliPayManager defaultService] handlePayResult:resultDic];
+//                                         }];
+//
+//        return YES;
+//    }
+
 //    if ([[url absoluteString] hasPrefix:@"alipay"]){
 //        return [AliPayManager parseURL:url alipayPublicKey:[PPConfigManager getAlipayAlipayPublicKey]];
 //    }
@@ -663,56 +666,56 @@ NSString* GlobalGetBoardServerURL()
     }
 }
 
--(void) onReq:(BaseReq*)req
-{
-    if (self.homeController && [self.homeController conformsToProtocol:@protocol(DrawHomeControllerProtocol)]) {
-        if ([self.homeController isRegistered]) {
-            [self.homeController toRegister];
-        } else {
-            [ShareController shareFromWeiXin:self.homeController];
-        }
-    }
-    
-}
+//-(void) onReq:(BaseReq*)req
+//{
+//    if (self.homeController && [self.homeController conformsToProtocol:@protocol(DrawHomeControllerProtocol)]) {
+//        if ([self.homeController isRegistered]) {
+//            [self.homeController toRegister];
+//        } else {
+//            [ShareController shareFromWeiXin:self.homeController];
+//        }
+//    }
+//
+//}
 
--(void) onResp:(BaseResp*)resp
-{
+//-(void) onResp:(BaseResp*)resp
+//{
     //发送信息到微信的response（分享到朋友圈之类）
-    if([resp isKindOfClass:[SendMessageToWXResp class]])
-    {
-        if (resp.errCode == WXSuccess){
-            [UIUtils alert:@"已成功分享至微信"];
-            PPDebug(@"<onResp> weixin response success");
-        }else {
-            PPDebug(@"<onResp> weixin response fail");
-        }
-    }
+//    if([resp isKindOfClass:[SendMessageToWXResp class]])
+//    {
+//        if (resp.errCode == WXSuccess){
+//            [UIUtils alert:@"已成功分享至微信"];
+//            PPDebug(@"<onResp> weixin response success");
+//        }else {
+//            PPDebug(@"<onResp> weixin response fail");
+//        }
+//    }
     
-    //启动微信支付的response
-    NSString *strMsg = [NSString stringWithFormat:@"errcode:%d", resp.errCode];
-    if([resp isKindOfClass:[PayResp class]]){
-        //支付返回结果，实际支付结果需要去微信服务器端查询
-        switch (resp.errCode) {
-            case 0:
-                strMsg = @"支付结果：成功！";
-                PPDebug(@"支付成功－PaySuccess，retcode = %d", resp.errCode);
-                break;
-            case -1:
-                strMsg = @"支付结果：失败！";
-                PPDebug(@"支付失败－PayFail，retcode = %d", resp.errCode);
-                break;
-            case -2:
-                strMsg = @"用户已经退出支付！";
-                PPDebug(@"支付失败－PayFail，retcode = %d", resp.errCode);
-                break;
-            default:
-                strMsg = [NSString stringWithFormat:@"支付结果：失败！retcode = %d, retstr = %@", resp.errCode,resp.errStr];
-                PPDebug(@"错误，retcode = %d, retstr = %@", resp.errCode,resp.errStr);
-                break;
-        }
-    }
-    POSTMSG2(strMsg, 3);
-}
+//    //启动微信支付的response
+//    NSString *strMsg = [NSString stringWithFormat:@"errcode:%d", resp.errCode];
+//    if([resp isKindOfClass:[PayResp class]]){
+//        //支付返回结果，实际支付结果需要去微信服务器端查询
+//        switch (resp.errCode) {
+//            case 0:
+//                strMsg = @"支付结果：成功！";
+//                PPDebug(@"支付成功－PaySuccess，retcode = %d", resp.errCode);
+//                break;
+//            case -1:
+//                strMsg = @"支付结果：失败！";
+//                PPDebug(@"支付失败－PayFail，retcode = %d", resp.errCode);
+//                break;
+//            case -2:
+//                strMsg = @"用户已经退出支付！";
+//                PPDebug(@"支付失败－PayFail，retcode = %d", resp.errCode);
+//                break;
+//            default:
+//                strMsg = [NSString stringWithFormat:@"支付结果：失败！retcode = %d, retstr = %@", resp.errCode,resp.errStr];
+//                PPDebug(@"错误，retcode = %d, retstr = %@", resp.errCode,resp.errStr);
+//                break;
+//        }
+//    }
+//    POSTMSG2(strMsg, 3);
+//}
 
 @end
 

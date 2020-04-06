@@ -77,7 +77,7 @@
 #define ASK_PS_GAME_ID                  @"AskPs"
 
 // Umeng ID
-#define DRAW_UMENG_ID                   @"4f83980852701565c500003a"
+#define DRAW_UMENG_ID                   @"4f83980852701565c500003a" 
 #define DICE_UMENG_ID                   @"503b13225270150f45000059"
 #define CANDY_UMENG_ID                  @"4f83980852701565c500003a" // TO BE CHANGED
 #define ZJH_UMENG_ID                    @"50c1883752701537100000af"

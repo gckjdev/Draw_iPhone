@@ -28,7 +28,7 @@
 #import "ContestCell.h"
 #import "GroupTopicController.h"
 #import "UIViewController+BGImage.h"
-
+#import <WebKit/WKWebView.h>
 
 typedef enum{
     TabTypeOfficial = 1,
@@ -397,8 +397,8 @@ typedef enum{
 {
     __block ContestController * cp = self;
     [self alertCopyrightStatement:^{
-        UIWebView *webView = [[[UIWebView alloc] initWithFrame:CGRectFromCGSize(StatementViewSize)] autorelease];
-        webView.scalesPageToFit = YES;
+        WKWebView *webView = [[[WKWebView alloc] initWithFrame:CGRectFromCGSize(StatementViewSize)] autorelease];
+        webView.contentMode = UIViewContentModeScaleToFill;
         CustomInfoView *infoView = [CustomInfoView createWithTitle:NSLS(@"kContestRule") infoView:webView hasEdgeSpace:NO];
         
         [infoView showInView:cp.view];

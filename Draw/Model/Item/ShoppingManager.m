@@ -12,7 +12,7 @@
 #import <StoreKit/StoreKit.h>
 #import "CoreDataUtil.h"
 #import "PPDebug.h"
-#import "MobClick.h"
+#import "MobClickUtils.h"
 
 static ShoppingManager *staticShoppingManager = nil;
 
@@ -161,7 +161,7 @@ static ShoppingManager *staticShoppingManager = nil;
 
 - (NSInteger)getColorPrice
 {
-    NSString* price = [MobClick getConfigParams:@"COLOR_PRICE"];
+    NSString* price = [MobClickUtils getConfigParams:@"COLOR_PRICE"];
     if (price == nil) {
         PPDebug(@"<getColorPrice>: price is nil, return default price = %d",DEFAULT_COLOR_PRICE);
         return DEFAULT_COLOR_PRICE;
@@ -173,7 +173,7 @@ static ShoppingManager *staticShoppingManager = nil;
 
 - (NSInteger)getPenPrice
 {
-    NSString* price = [MobClick getConfigParams:@"PEN_PRICE"];
+    NSString* price = [MobClickUtils getConfigParams:@"PEN_PRICE"];
     if (price == nil) {
         PPDebug(@"<getPenPrice>: price is nil, return default price = %d",DEFAULT_PEN_PRICE);
         return DEFAULT_PEN_PRICE;
@@ -185,7 +185,7 @@ static ShoppingManager *staticShoppingManager = nil;
 
 - (NSInteger)getPaletteItemPrice
 {
-    NSString* price = [MobClick getConfigParams:@"PALETTE_PRICE"];
+    NSString* price = [MobClickUtils getConfigParams:@"PALETTE_PRICE"];
     if (price == nil) {
         PPDebug(@"<getpalettePrice>: price is nil, return default price = %d",DEFAULT_PALETTE_PRICE);
         return DEFAULT_PALETTE_PRICE;
@@ -197,7 +197,7 @@ static ShoppingManager *staticShoppingManager = nil;
 
 - (NSInteger)getColorAlphaItemPrice
 {
-    NSString* price = [MobClick getConfigParams:@"ALPHA_PRICE"];
+    NSString* price = [MobClickUtils getConfigParams:@"ALPHA_PRICE"];
     if (price == nil) {
         PPDebug(@"<getAlphaPrice>: price is nil, return default price = %d",DEFAULT_ALPHA_PRICE);
         return DEFAULT_ALPHA_PRICE;
@@ -209,7 +209,7 @@ static ShoppingManager *staticShoppingManager = nil;
 
 - (NSInteger)getPaintPlayerItemPrice
 {
-    NSString* price = [MobClick getConfigParams:@"PAINT_PLAYER_PRICE"];
+    NSString* price = [MobClickUtils getConfigParams:@"PAINT_PLAYER_PRICE"];
     if (price == nil) {
         PPDebug(@"<getPaintPlayerPrice>: price is nil, return default price = %d",DEFAULT_PAINTA_PLAYER_PRICE);
         return DEFAULT_PAINTA_PLAYER_PRICE;
@@ -221,7 +221,7 @@ static ShoppingManager *staticShoppingManager = nil;
 
 - (NSInteger)getStrawPrice
 {
-    NSString* price = [MobClick getConfigParams:@"STRAW_PRICE"];
+    NSString* price = [MobClickUtils getConfigParams:@"STRAW_PRICE"];
     if (price == nil) {
         PPDebug(@"<getStrawPrice>: price is nil, return default price = %d",DEFAULT_STRAW_PRICE);
         return DEFAULT_STRAW_PRICE;
@@ -233,7 +233,7 @@ static ShoppingManager *staticShoppingManager = nil;
 
 - (NSInteger)getRollAgainPrice
 {
-    NSString* price = [MobClick getConfigParams:@"ROLL_AGAIN_PRICE"];
+    NSString* price = [MobClickUtils getConfigParams:@"ROLL_AGAIN_PRICE"];
     if (price == nil) {
         PPDebug(@"<getRollAgainPrice>: price is nil, return default price = %d",DEFAULT_ROLL_AGAIN_PRICE);
         return DEFAULT_ROLL_AGAIN_PRICE;
@@ -245,7 +245,7 @@ static ShoppingManager *staticShoppingManager = nil;
 
 - (NSInteger)getCutPrice
 {
-    NSString* price = [MobClick getConfigParams:@"CUT_PRICE"];
+    NSString* price = [MobClickUtils getConfigParams:@"CUT_PRICE"];
     if (price == nil) {
         PPDebug(@"<getCutPrice>: price is nil, return default price = %d",DEFAULT_CUT_PRICE);
         return DEFAULT_CUT_PRICE;
@@ -257,7 +257,7 @@ static ShoppingManager *staticShoppingManager = nil;
 
 - (NSInteger)getPeekPrice
 {
-    NSString* price = [MobClick getConfigParams:@"PEEK_PRICE"];
+    NSString* price = [MobClickUtils getConfigParams:@"PEEK_PRICE"];
     if (price == nil) {
         PPDebug(@"<getPeekPrice>: price is nil, return default price = %d",DEFAULT_PEEK_PRICE);
         return DEFAULT_PEEK_PRICE;
@@ -269,7 +269,7 @@ static ShoppingManager *staticShoppingManager = nil;
 
 - (NSInteger)getPostPonePrice
 {
-    NSString* price = [MobClick getConfigParams:@"POST_PONE_PRICE"];
+    NSString* price = [MobClickUtils getConfigParams:@"POST_PONE_PRICE"];
     if (price == nil) {
         PPDebug(@"<getPostPonePrice>: price is nil, return default price = %d",DEFAULT_POST_PONE_PRICE);
         return DEFAULT_POST_PONE_PRICE;
@@ -281,7 +281,7 @@ static ShoppingManager *staticShoppingManager = nil;
 
 - (NSInteger)getUrgePrice
 {
-    NSString* price = [MobClick getConfigParams:@"URGE_PRICE"];
+    NSString* price = [MobClickUtils getConfigParams:@"URGE_PRICE"];
     if (price == nil) {
         PPDebug(@"<getUrgePrice>: price is nil, return default price = %d",DEFAULT_URGE_PRICE);
         return DEFAULT_URGE_PRICE;
@@ -293,7 +293,7 @@ static ShoppingManager *staticShoppingManager = nil;
 
 - (NSInteger)getTurtlePrice
 {
-    NSString* price = [MobClick getConfigParams:@"TURTLE_PRICE"];
+    NSString* price = [MobClickUtils getConfigParams:@"TURTLE_PRICE"];
     if (price == nil) {
         PPDebug(@"<getTurtlePrice>: price is nil, return default price = %d",DEFAULT_TURTLE_PRICE);
         return DEFAULT_TURTLE_PRICE;
@@ -305,7 +305,7 @@ static ShoppingManager *staticShoppingManager = nil;
 
 - (NSInteger)getDiceRobotPrice
 {
-    NSString* price = [MobClick getConfigParams:@"DICE_ROBOT_PRICE"];
+    NSString* price = [MobClickUtils getConfigParams:@"DICE_ROBOT_PRICE"];
     if (price == nil) {
         PPDebug(@"<getDiceRobotPrice>: price is nil, return default price = %d",DEFAULT_DICE_ROBOT_PRICE);
         return DEFAULT_DICE_ROBOT_PRICE;
@@ -317,7 +317,7 @@ static ShoppingManager *staticShoppingManager = nil;
 
 - (NSInteger)getReversePrice
 {
-    NSString* price = [MobClick getConfigParams:@"DICE_REVERSE_PRICE"];
+    NSString* price = [MobClickUtils getConfigParams:@"DICE_REVERSE_PRICE"];
     if (price == nil) {
         PPDebug(@"<getReversePrice>: price is nil, return default price = %d",DEFAULT_REVERSE_PRICE);
         return DEFAULT_REVERSE_PRICE;
@@ -329,7 +329,7 @@ static ShoppingManager *staticShoppingManager = nil;
 
 - (NSInteger)getTomatoPrice
 {
-    NSString* price = [MobClick getConfigParams:@"TOMATO_PRICE"];
+    NSString* price = [MobClickUtils getConfigParams:@"TOMATO_PRICE"];
     if (price == nil) {
         PPDebug(@"<getTomatoPrice>: price is nil, return default price = %d",DEFAULT_TOMATO_PRICE);
         return DEFAULT_TOMATO_PRICE;
@@ -341,7 +341,7 @@ static ShoppingManager *staticShoppingManager = nil;
 
 - (NSInteger)getFlowerPrice
 {
-    NSString* price = [MobClick getConfigParams:@"FLOWER_PRICE"];
+    NSString* price = [MobClickUtils getConfigParams:@"FLOWER_PRICE"];
     if (price == nil) {
         PPDebug(@"<getFlowerPrice>: price is nil, return default price = %d",DEFAULT_FLOWER_PRICE);
         return DEFAULT_FLOWER_PRICE;
@@ -353,7 +353,7 @@ static ShoppingManager *staticShoppingManager = nil;
 
 - (NSInteger)getTipBagPrice
 {
-    NSString* price = [MobClick getConfigParams:@"TIPBAG_PRICE"];
+    NSString* price = [MobClickUtils getConfigParams:@"TIPBAG_PRICE"];
     if (price == nil) {
         PPDebug(@"<getTipBagPrice>: price is nil, return default price = %d",DEFAULT_PEN_PRICE);
         return DEFAULT_TIPS_PRICE;
@@ -365,7 +365,7 @@ static ShoppingManager *staticShoppingManager = nil;
 
 - (NSInteger)getRemoveAdPrice
 {
-    NSString* price = [MobClick getConfigParams:@"REMOVE_AD_PRICE"];
+    NSString* price = [MobClickUtils getConfigParams:@"REMOVE_AD_PRICE"];
     if (price == nil) {
         PPDebug(@"<getRemoveAdPrice>: price is nil, return default price = %d",DEFAULT_REMOVE_AD_PRICE);
         return DEFAULT_REMOVE_AD_PRICE;
@@ -377,7 +377,7 @@ static ShoppingManager *staticShoppingManager = nil;
 
 - (NSInteger)getPatriotDicePrice
 {
-    NSString* price = [MobClick getConfigParams:@"PATRIOT_DICE_PRICE"];
+    NSString* price = [MobClickUtils getConfigParams:@"PATRIOT_DICE_PRICE"];
     if (price == nil) {
         PPDebug(@"<getPatriotDicePrice>: price is nil, return default price = %d",DEFAULT_PATRIOT_DICE_PRICE);
         return DEFAULT_PATRIOT_DICE_PRICE;
@@ -389,7 +389,7 @@ static ShoppingManager *staticShoppingManager = nil;
 
 - (NSInteger)getGoldenDicePrice
 {
-    NSString* price = [MobClick getConfigParams:@"GOLDEN_DICE_PRICE"];
+    NSString* price = [MobClickUtils getConfigParams:@"GOLDEN_DICE_PRICE"];
     if (price == nil) {
         PPDebug(@"<getPatriotDicePrice>: price is nil, return default price = %d",DEFAULT_GOLDEN_DICE_PRICE);
         return DEFAULT_GOLDEN_DICE_PRICE;
@@ -401,7 +401,7 @@ static ShoppingManager *staticShoppingManager = nil;
 
 - (NSInteger)getWoodDicePrice
 {
-    NSString* price = [MobClick getConfigParams:@"WOOD_DICE_PRICE"];
+    NSString* price = [MobClickUtils getConfigParams:@"WOOD_DICE_PRICE"];
     if (price == nil) {
         PPDebug(@"<getPatriotDicePrice>: price is nil, return default price = %d",DEFAULT_WOOD_DICE_PRICE);
         return DEFAULT_WOOD_DICE_PRICE;
@@ -413,7 +413,7 @@ static ShoppingManager *staticShoppingManager = nil;
 
 - (NSInteger)getCrystalDicePrice
 {
-    NSString* price = [MobClick getConfigParams:@"CRYSAL_DICE_PRICE"];
+    NSString* price = [MobClickUtils getConfigParams:@"CRYSAL_DICE_PRICE"];
     if (price == nil) {
         PPDebug(@"<getPatriotDicePrice>: price is nil, return default price = %d",DEFAULT_CRYSAL_DICE_PRICE);
         return DEFAULT_CRYSAL_DICE_PRICE;
@@ -426,7 +426,7 @@ static ShoppingManager *staticShoppingManager = nil;
 
 - (NSInteger)getDiamondDicePrice
 {
-    NSString* price = [MobClick getConfigParams:@"DIAMOND_DICE_PRICE"];
+    NSString* price = [MobClickUtils getConfigParams:@"DIAMOND_DICE_PRICE"];
     if (price == nil) {
         PPDebug(@"<getPatriotDicePrice>: price is nil, return default price = %d",DEFAULT_DIAMOND_DICE_PRICE);
         return DEFAULT_DIAMOND_DICE_PRICE;

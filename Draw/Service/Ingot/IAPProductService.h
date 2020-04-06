@@ -19,19 +19,19 @@ typedef void (^GetIngotsListResultHandler)(BOOL success, NSArray *ingotsList);
 - (void)syncData:(GetIngotsListResultHandler)handler;
 
 + (void)createTestDataFile;
-+ (void)createSingCoinsTestDataFile;
+//+ (void)createSingCoinsTestDataFile;
 + (void)createDrawIngotTestDataFile;
 + (void)createLittlegeeIngotTestDataFile;
-+ (void)createLearnDrawIngotTestDataFile;
-+ (void)createPureDrawIngotTestDataFile;
-+ (void)createPureDrawFreeIngotTestDataFile;
-+ (void)createPhotoDrawIngotTestDataFile;
-+ (void)createPhotoDrawFreeIngotTestDataFile;
-+ (void)createDreamAvatarIngotTestDataFile;
-+ (void)createDreamAvatarFreeIngotTestDataFile;
-+ (void)createDreamLockscreenIngotTestDataFile;
-+ (void)createDreamLockscreenFreeIngotTestDataFile;
-+ (void)createZJHCoinTestDataFile;
-+ (void)createDiceCoinTestDataFile;
+//+ (void)createLearnDrawIngotTestDataFile;
+//+ (void)createPureDrawIngotTestDataFile;
+//+ (void)createPureDrawFreeIngotTestDataFile;
+//+ (void)createPhotoDrawIngotTestDataFile;
+//+ (void)createPhotoDrawFreeIngotTestDataFile;
+//+ (void)createDreamAvatarIngotTestDataFile;
+//+ (void)createDreamAvatarFreeIngotTestDataFile;
+//+ (void)createDreamLockscreenIngotTestDataFile;
+//+ (void)createDreamLockscreenFreeIngotTestDataFile;
+//+ (void)createZJHCoinTestDataFile;
+//+ (void)createDiceCoinTestDataFile;
 
 @end

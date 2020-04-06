@@ -17,7 +17,7 @@
 //#import "AdMoGoView.h"
 #import "UserManager.h"
 #import "HomeController.h"
-#import <GoogleMobileAds/GoogleMobileAds.h>
+//#import <GoogleMobileAds/GoogleMobileAds.h>
 
 #import "UserGameItemManager.h"
 #import "GameItemService.h"
@@ -162,14 +162,14 @@ static AdService* _defaultService;
     [_viewController hideActivity];
     
     if (resultCode != 0 && resultCode != PAYMENT_CANCEL){
-        [MobClick event:@"BUY_COINS_FAIL"];        
+//        [MobClick event:@"BUY_COINS_FAIL"];
         POSTMSG(NSLS(@"kFailToConnectIAPServer"));
         // clear view controller after finishing IAP
         [self setViewController:nil]; 
         return;
     }
     else if (resultCode == PAYMENT_CANCEL){
-        [MobClick event:@"BUY_COINS_CANCEL"];
+//        [MobClick event:@"BUY_COINS_CANCEL"];
 
         // clear view controller after finishing IAP
         [self setViewController:nil]; 
@@ -177,7 +177,7 @@ static AdService* _defaultService;
     }
     
     if (resultCode == 0){
-        [MobClick event:@"BUY_COINS_OK"];        
+//        [MobClick event:@"BUY_COINS_OK"];        
         POSTMSG(NSLS(@"kBuyCoinsSucc"));
         // Remove Ad here
         [self setAdDisable];
@@ -568,18 +568,18 @@ static AdService* _defaultService;
 //                        iPadFrame:iPadFrame];
 //}
 
-- (void)loadAdmobView:(GADBannerView*)adView
-{
-    GADRequest* request = [[GADRequest alloc] init];
-    [request setGender:[[UserManager defaultManager] isUserMale] ? kGADGenderMale : kGADGenderFemale];
-    if ([[UserManager defaultManager] hasUser]){
-        [adView loadRequest:request];
-    }
-    else{
-        [adView loadRequest:nil];
-    }
-    [request release];
-}
+//- (void)loadAdmobView:(GADBannerView*)adView
+//{
+//    GADRequest* request = [[GADRequest alloc] init];
+//    [request setGender:[[UserManager defaultManager] isUserMale] ? kGADGenderMale : kGADGenderFemale];
+//    if ([[UserManager defaultManager] hasUser]){
+//        [adView loadRequest:request];
+//    }
+//    else{
+//        [adView loadRequest:nil];
+//    }
+//    [request release];
+//}
 
 - (UIView*)createAdmobAdInView:(UIView*)superView
                          frame:(CGRect)frame
@@ -593,26 +593,27 @@ static AdService* _defaultService;
         return nil;
     }
 
-    GADBannerView* adView = nil;
-    adView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
-    
-    if ([DeviceDetection isIPAD]){
-        [adView setFrame:iPadFrame];
-    }
-    else{
-        [adView setFrame:frame];
-    }
-                  
-    adView.tag = AD_VIEW_TAG;
-    adView.rootViewController = [[UIApplication sharedApplication] delegate].window.rootViewController;
-    adView.adUnitID = [PPConfigManager getAdMobId];
-    adView.delegate = self;
-    
-    [self loadAdmobView:adView];
-              
-    [superView addSubview:adView];
-    return adView;
+//    GADBannerView* adView = nil;
+//    adView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
+//
+//    if ([DeviceDetection isIPAD]){
+//        [adView setFrame:iPadFrame];
+//    }
+//    else{
+//        [adView setFrame:frame];
+//    }
+//
+//    adView.tag = AD_VIEW_TAG;
+//    adView.rootViewController = [[UIApplication sharedApplication] delegate].window.rootViewController;
+//    adView.adUnitID = [PPConfigManager getAdMobId];
+//    adView.delegate = self;
+//
+//    [self loadAdmobView:adView];
+//
+//    [superView addSubview:adView];
+//    return adView;
 
+    return nil;
 }
 
 #pragma mark - Wanpu Delegates
@@ -627,19 +628,19 @@ static AdService* _defaultService;
 //    PPDebug(@"<onWanpuConnectFailed>");    
 //}
 
-#pragma mark - AdMob Delegate
-
-- (void)adViewDidReceiveAd:(GADBannerView *)view
-{
-    PPDebug(@"<adViewDidReceiveAd> success");
-    
-}
-
-- (void)adView:(GADBannerView *)view didFailToReceiveAdWithError:(GADRequestError *)error;
-{
-    PPDebug(@"<didFailToReceiveAdWithError> error=%@", [error description]);
-//    [self loadAdmobView:view];
-}
+//#pragma mark - AdMob Delegate
+//
+//- (void)adViewDidReceiveAd:(GADBannerView *)view
+//{
+//    PPDebug(@"<adViewDidReceiveAd> success");
+//
+//}
+//
+//- (void)adView:(GADBannerView *)view didFailToReceiveAdWithError:(GADRequestError *)error;
+//{
+//    PPDebug(@"<didFailToReceiveAdWithError> error=%@", [error description]);
+////    [self loadAdmobView:view];
+//}
 
 #pragma mark Click-Time Lifecycle Notifications
 

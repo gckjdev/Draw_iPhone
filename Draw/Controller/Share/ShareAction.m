@@ -11,7 +11,7 @@
 #import "UserManager.h"
 #import "PPDebug.h"
 #import "MyPaintManager.h"
-#import "WXApi.h"
+//#import "WXApi.h"
 #import "UIImageExt.h"
 #import "MyPaintManager.h"
 #import "PPDebug.h"

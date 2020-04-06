@@ -125,7 +125,7 @@
 - (BOOL)hasCoinBalance;
 
 
-- (NSString *)alipayCallBackScheme;
+//- (NSString *)alipayCallBackScheme;
 
 - (BOOL)isAutoRegister;
 
@@ -141,7 +141,7 @@
 
 - (BOOL)hasBGOffscreen;
 
-- (BOOL)canPayWithAlipay;
+//- (BOOL)canPayWithAlipay;
 
 - (BOOL)canGift;
 

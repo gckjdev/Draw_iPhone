@@ -8,7 +8,7 @@
 
 #import "HomeMainMenuPanel.h"
 #import "HomeMenuView.h"
-#import "MobClick.h"
+#import "MobClickUtils.h"
 
 @interface HomeMainMenuPanel ()
 {
@@ -269,8 +269,7 @@
 - (void)didClickMenu:(HomeMenuView *)menu type:(HomeMenuType)type
 {
     [MobClick event:@"CLICK_MENU_BUTTON"
-              label:[HomeMenuView titleForType:type]
-                acc:1];
+              label:[HomeMenuView titleForType:type]];
     if (self.delegate && [self.delegate respondsToSelector:@selector(homeMainMenuPanel:didClickMenu:menuType:)]) {
         [self.delegate homeMainMenuPanel:self didClickMenu:menu menuType:type];
     }

@@ -9,7 +9,7 @@
 #import "PECropRectView.h"
 #import "PEResizeControl.h"
 
-@interface PECropRectView ()
+@interface PECropRectView ()<PEResizeControlViewDelegate>
 
 @property (nonatomic) PEResizeControl *topLeftCornerView;
 @property (nonatomic) PEResizeControl *topRightCornerView;
@@ -73,8 +73,6 @@
         self.rightEdgeView = [[PEResizeControl alloc] init];
         self.rightEdgeView.delegate = self;
         [self addSubview:self.rightEdgeView];
-        
-        self.allowEdit = YES;
     }
     
     return self;
@@ -104,12 +102,14 @@
     CGFloat height = CGRectGetHeight(self.bounds);
     
     for (NSInteger i = 0; i < 3; i++) {
+        CGFloat borderPadding = 2.0f;
+        
         if (self.showsGridMinor) {
             for (NSInteger j = 1; j < 3; j++) {
                 [[UIColor colorWithRed:1.0f green:1.0f blue:0.0f alpha:0.3f] set];
                 
-                UIRectFill(CGRectMake(roundf(width / 3 / 3 * j + width / 3 * i), 0.0f, 1.0f, roundf(height)));
-                UIRectFill(CGRectMake(0.0f, roundf(height / 3 / 3 * j + height / 3 * i), roundf(width), 1.0f));
+                UIRectFill(CGRectMake(roundf(width / 3 / 3 * j + width / 3 * i), borderPadding, 1.0f, roundf(height) - borderPadding * 2));
+                UIRectFill(CGRectMake(borderPadding, roundf(height / 3 / 3 * j + height / 3 * i), roundf(width) - borderPadding * 2, 1.0f));
             }
         }
         
@@ -117,8 +117,8 @@
             if (i > 0) {
                 [[UIColor whiteColor] set];
                 
-                UIRectFill(CGRectMake(roundf(width / 3 * i), 0.0f, 1.0f, roundf(height)));
-                UIRectFill(CGRectMake(0.0f, roundf(height / 3 * i), roundf(width), 1.0f));
+                UIRectFill(CGRectMake(roundf(width / 3 * i), borderPadding, 1.0f, roundf(height) - borderPadding * 2));
+                UIRectFill(CGRectMake(borderPadding, roundf(height / 3 * i), roundf(width) - borderPadding * 2, 1.0f));
             }
         }
     }
@@ -165,7 +165,7 @@
 
 #pragma mark -
 
-- (void)resizeConrolViewDidBeginResizing:(PEResizeControl *)resizeConrolView
+- (void)resizeControlViewDidBeginResizing:(PEResizeControl *)resizeControlView
 {
     self.initialRect = self.frame;
     
@@ -174,16 +174,16 @@
     }
 }
 
-- (void)resizeConrolViewDidResize:(PEResizeControl *)resizeConrolView
+- (void)resizeControlViewDidResize:(PEResizeControl *)resizeControlView
 {
-    self.frame = [self cropRectMakeWithResizeControlView:resizeConrolView];
+    self.frame = [self cropRectMakeWithResizeControlView:resizeControlView];
         
     if ([self.delegate respondsToSelector:@selector(cropRectViewEditingChanged:)]) {
         [self.delegate cropRectViewEditingChanged:self];
     }
 }
 
-- (void)resizeConrolViewDidEndResizing:(PEResizeControl *)resizeConrolView
+- (void)resizeControlViewDidEndResizing:(PEResizeControl *)resizeControlView
 {
     if ([self.delegate respondsToSelector:@selector(cropRectViewDidEndEditing:)]) {
         [self.delegate cropRectViewDidEndEditing:self];
@@ -290,19 +290,31 @@
             }
         }
     }
-    
+
     CGFloat minWidth = CGRectGetWidth(self.leftEdgeView.bounds) + CGRectGetWidth(self.rightEdgeView.bounds);
     if (CGRectGetWidth(rect) < minWidth) {
         rect.origin.x = CGRectGetMaxX(self.frame) - minWidth;
-        rect.size = CGSizeMake(minWidth,
-                               !self.fixedAspectRatio ? rect.size.height : rect.size.height * (minWidth / rect.size.width));
+        rect.size.width = minWidth;
     }
-    
+
     CGFloat minHeight = CGRectGetHeight(self.topEdgeView.bounds) + CGRectGetHeight(self.bottomEdgeView.bounds);
     if (CGRectGetHeight(rect) < minHeight) {
         rect.origin.y = CGRectGetMaxY(self.frame) - minHeight;
-        rect.size = CGSizeMake(!self.fixedAspectRatio ? rect.size.width : rect.size.width * (minHeight / rect.size.height),
-                               minHeight);
+        rect.size.height = minHeight;
+    }
+
+    if (self.fixedAspectRatio) {
+        CGRect constrainedRect = rect;
+
+        if (CGRectGetWidth(rect) < minWidth) {
+            constrainedRect.size.width = rect.size.height * (minWidth / rect.size.width);
+        }
+
+        if (CGRectGetHeight(rect) < minHeight) {
+            constrainedRect.size.height = rect.size.width * (minHeight / rect.size.height);
+        }
+
+        rect = constrainedRect;
     }
     
     return rect;
@@ -334,19 +346,6 @@
     rect.size = CGSizeMake(width, height);
     
     return rect;
-}
-
-- (void)setAllowEdit:(BOOL)allowEdit{
-    
-    self.topLeftCornerView.allowReceiveGesture = allowEdit;
-    self.topRightCornerView.allowReceiveGesture = allowEdit;
-    self.bottomLeftCornerView.allowReceiveGesture = allowEdit;
-    self.bottomRightCornerView.allowReceiveGesture = allowEdit;
-    
-    self.topEdgeView.allowReceiveGesture = allowEdit;
-    self.leftEdgeView.allowReceiveGesture = allowEdit;
-    self.bottomEdgeView.allowReceiveGesture = allowEdit;
-    self.rightEdgeView.allowReceiveGesture = allowEdit;
 }
 
 @end

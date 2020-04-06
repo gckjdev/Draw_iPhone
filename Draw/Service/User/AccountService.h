@@ -11,10 +11,10 @@
 #import "Account.h"
 #import "GameBasic.pb.h"
 #import "GameNetworkConstants.h"
-#import "Order.h"
-#import "AliPayManager.h"
+//#import "Order.h"
+//#import "AliPayManager.h"
 
-@class AlixPayOrder;
+//@class AlixPayOrder;
 
 #define VIP_BUY_TYPE_MONTH 1
 #define VIP_BUY_TYPE_YEAR  2
@@ -65,16 +65,16 @@ typedef void (^SyncAccountResultHandler)(int resultCode);
                toUser:(NSString *)toUserId
                source:(BalanceSourceType)source;
 
-- (void)chargeBalance:(PBGameCurrency)currency
-                count:(int)count
-               source:(BalanceSourceType)source
-                order:(AlixPayOrder *)order;
-
-- (void)chargeBalance:(PBGameCurrency)currency
-                count:(int)count
-               toUser:(NSString *)toUserId
-               source:(BalanceSourceType)source
-                order:(AlixPayOrder *)order;
+//- (void)chargeBalance:(PBGameCurrency)currency
+//                count:(int)count
+//               source:(BalanceSourceType)source
+//                order:(AlixPayOrder *)order;
+//
+//- (void)chargeBalance:(PBGameCurrency)currency
+//                count:(int)count
+//               toUser:(NSString *)toUserId
+//               source:(BalanceSourceType)source
+//                order:(AlixPayOrder *)order;
 
 - (void)chargeCoin:(int)amount 
             source:(BalanceSourceType)source;

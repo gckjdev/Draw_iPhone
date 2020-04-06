@@ -19,7 +19,7 @@
 + (NSString *)IAPProductFileVersion;
 
 - (PBIAPProduct *)productWithAppleProductId:(NSString *)appleProductId;
-- (PBIAPProduct *)productWithAlipayProductId:(NSString *)alipayProductId;
+//- (PBIAPProduct *)productWithAlipayProductId:(NSString *)alipayProductId;
 
 + (PBGameCurrency)currencyWithIAPProductType:(PBIAPProductType)type;
 

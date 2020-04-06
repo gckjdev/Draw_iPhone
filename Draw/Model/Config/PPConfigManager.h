@@ -249,14 +249,6 @@ typedef enum{
 
 + (NSString *)getTaobaoHomeUrl;
 
-+ (NSString *)getAlipayPartner;
-+ (NSString *)getAlipaySeller;
-+ (NSString *)getAlipayRSAPrivateKey;
-+ (NSString *)getAlipayAlipayPublicKey;
-+ (NSString *)getAlipayNotifyUrl;
-+ (NSString *)getAlipayWebUrl;
-+ (NSString*)getAlipayAppScheme;
-
 + (NSString *)getLastAppVersion;
 + (NSString *)getLastAppVersionUpdateLog;
 

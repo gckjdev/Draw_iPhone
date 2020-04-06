@@ -11,8 +11,8 @@
 #import "IAPProductManager.h"
 #import "SKProduct+LocalizedPrice.h"
 #import "SKProductManager.h"
-#import "NotificationCenterManager.h"
-#import "NotificationName.h"
+//#import "NotificationCenterManager.h"
+//#import "NotificationName.h"
 
 @implementation SKProductService
 

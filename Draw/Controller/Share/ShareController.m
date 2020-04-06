@@ -19,8 +19,8 @@
 #import "CommonDialog.h"
 #import "PPConfigManager.h"
 #import "FileUtil.h"
-#import "WXApi.h"
-#import "WXApiObject.h"
+//#import "WXApi.h"
+//#import "WXApiObject.h"
 #import "OfflineDrawViewController.h"
 #import "TableTab.h"
 #import "TableTabManager.h"
@@ -218,20 +218,22 @@ typedef enum{
 {
     
     if (self.isFromWeiXin) {
-        WXMediaMessage *message = [WXMediaMessage message];
-        [message setThumbImage:paint.thumbImage];
-        WXImageObject *ext = [WXImageObject object];
-        message.title = [NSString stringWithFormat:NSLS(@"kWXShareImageName"), [UIUtils getAppName]];
-        ext.imageData = [paint.paintImage data] ;
-        message.mediaObject = ext;
-        
-        GetMessageFromWXResp* resp = [[[GetMessageFromWXResp alloc] init] autorelease];
-        resp.message = message;
-        resp.bText = NO;
-        BOOL flag = [WXApi sendResp:resp];
-        if (flag) {
-            [self.navigationController popViewControllerAnimated:NO];
-        }
+//        WXMediaMessage *message = [WXMediaMessage message];
+//        [message setThumbImage:paint.thumbImage];
+//        WXImageObject *ext = [WXImageObject object];
+//        message.title = [NSString stringWithFormat:NSLS(@"kWXShareImageName"), [UIUtils getAppName]];
+//        ext.imageData = [paint.paintImage data] ;
+//        message.mediaObject = ext;
+//
+//        GetMessageFromWXResp* resp = [[[GetMessageFromWXResp alloc] init] autorelease];
+//        resp.message = message;
+//        resp.bText = NO;
+//        BOOL flag = [WXApi sendResp:resp];
+//        if (flag) {
+//            [self.navigationController popViewControllerAnimated:NO];
+//        }
+
+        [self.navigationController popViewControllerAnimated:NO];
         paint.paintImage = nil;
         return;
     }
@@ -312,8 +314,8 @@ typedef enum{
 #pragma mark - offline draw delegate
 - (void)didControllerClickBack:(OfflineDrawViewController *)controller
 {
-    ShowMessageFromWXResp* resp = [[[ShowMessageFromWXResp alloc] init] autorelease];
-    [WXApi sendResp:resp];
+//    ShowMessageFromWXResp* resp = [[[ShowMessageFromWXResp alloc] init] autorelease];
+//    [WXApi sendResp:resp];
     [self.navigationController popToRootViewControllerAnimated:NO];
     return;
 }
@@ -322,20 +324,21 @@ typedef enum{
            canvasSize:(CGSize)size
             drawImage:(UIImage *)drawImage
 {
-    WXMediaMessage *message = [WXMediaMessage message];
-    [message setThumbImage:drawImage];
-    WXImageObject *ext = [WXImageObject object];
-    message.title = [NSString stringWithFormat:NSLS(@"kWXShareImageName"), [UIUtils getAppName]];
-    ext.imageData = [drawImage data] ;
-    message.mediaObject = ext;
-    
-    GetMessageFromWXResp* resp = [[[GetMessageFromWXResp alloc] init] autorelease];
-    resp.message = message;
-    resp.bText = NO;
-    BOOL flag = [WXApi sendResp:resp];
-    if (flag) {
-        [self.navigationController popToRootViewControllerAnimated:NO];
-    }
+//    WXMediaMessage *message = [WXMediaMessage message];
+//    [message setThumbImage:drawImage];
+//    WXImageObject *ext = [WXImageObject object];
+//    message.title = [NSString stringWithFormat:NSLS(@"kWXShareImageName"), [UIUtils getAppName]];
+//    ext.imageData = [drawImage data] ;
+//    message.mediaObject = ext;
+//
+//    GetMessageFromWXResp* resp = [[[GetMessageFromWXResp alloc] init] autorelease];
+//    resp.message = message;
+//    resp.bText = NO;
+//    BOOL flag = [WXApi sendResp:resp];
+//    if (flag) {
+//        [self.navigationController popToRootViewControllerAnimated:NO];
+//    }
+    [self.navigationController popToRootViewControllerAnimated:NO];
     return;
 }
 
@@ -783,9 +786,8 @@ typedef enum{
 - (IBAction)clickClearButton:(id)sender
 {
     if (self.isFromWeiXin) {
-        
-        ShowMessageFromWXResp* resp = [[[ShowMessageFromWXResp alloc] init] autorelease];
-        [WXApi sendResp:resp];
+//        ShowMessageFromWXResp* resp = [[[ShowMessageFromWXResp alloc] init] autorelease];
+//        [WXApi sendResp:resp];
         [self.navigationController popViewControllerAnimated:NO];
         return;
     }

@@ -1845,7 +1845,7 @@ POSTMSG(NSLS(@"kLoginFailure"));
     [builder setDeviceModel:[UIDevice currentDevice].model];
     [builder setDeviceType:STRING_DEVICE_TYPE_IOS];
     [builder setDeviceOs:[DeviceDetection deviceOS]];
-    [builder setIsJailBroken:[MobClick isJailbroken]];
+    [builder setIsJailBroken:NO];
     
     PBGameUser* newUser = [builder build];
     NSData* data = [newUser data];

@@ -55,7 +55,7 @@
 #import "ContestOpusController.h"
 #import "ContestManager.h"
 #import "PurchaseVipController.h"
-#import "TaoBaoController.h"
+//#import "TaoBaoController.h"
 #import "OpusClassInfoManager.h"
 #import "TutorialInfoController.h"
 #import "TutorialCoreManager.h"
@@ -372,9 +372,9 @@
 
 - (void)openWebURL:(NSString*)url title:(NSString*)title
 {
-    TaoBaoController *controller = [[TaoBaoController alloc] initWithURL:url title:title];
-    [self.navigationController pushViewController:controller animated:YES];
-    [controller release];
+//    TaoBaoController *controller = [[TaoBaoController alloc] initWithURL:url title:title];
+//    [self.navigationController pushViewController:controller animated:YES];
+//    [controller release];
 }
 
 - (void)enterVIP

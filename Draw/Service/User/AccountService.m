@@ -20,7 +20,7 @@
 #import "TimeUtils.h"
 #import "StoreKitUtils.h"
 #import "TransactionReceiptManager.h"
-#import "MobClick.h"
+#import "MobClickUtils.h"
 #import "UIDevice+IdentifierAddition.h"
 #import "PPConfigManager.h"
 #import "UserService.h"
@@ -295,51 +295,51 @@ static AccountService* _defaultAccountService;
     }
 }
 
-- (void)chargeBalance:(PBGameCurrency)currency
-                count:(int)count
-               source:(BalanceSourceType)source
-                order:(AlixPayOrder *)order
-{
-    [self chargeBalance:currency
-                  count:count
-                 toUser:[[UserManager defaultManager] userId]
-                 source:source
-                  order:order];
-}
-
-- (void)chargeBalance:(PBGameCurrency)currency
-                count:(int)count
-               toUser:(NSString *)toUserId
-               source:(BalanceSourceType)source
-                order:(AlixPayOrder *)order
-{
-    NSString *alixOrder = order.description;
-    
-    switch (currency) {
-        case PBGameCurrencyCoin:
-            [self chargeCoin:count
-                      source:source
-                      toUser:toUserId
-                      byUser:[[UserManager defaultManager] userId]
-               transactionId:nil
-          transactionRecepit:nil
-                   alixOrder:alixOrder];
-            break;
-            
-        case PBGameCurrencyIngot:
-            [self chargeIngot:count
-                       source:source
-                       toUser:toUserId
-                       byUser:[[UserManager defaultManager] userId]
-                transactionId:nil
-           transactionRecepit:nil
-                    alixOrder:order.description];
-            break;
-            
-        default:
-            break;
-    }
-}
+//- (void)chargeBalance:(PBGameCurrency)currency
+//                count:(int)count
+//               source:(BalanceSourceType)source
+//                order:(AlixPayOrder *)order
+//{
+//    [self chargeBalance:currency
+//                  count:count
+//                 toUser:[[UserManager defaultManager] userId]
+//                 source:source
+//                  order:order];
+//}
+//
+//- (void)chargeBalance:(PBGameCurrency)currency
+//                count:(int)count
+//               toUser:(NSString *)toUserId
+//               source:(BalanceSourceType)source
+//                order:(AlixPayOrder *)order
+//{
+//    NSString *alixOrder = order.description;
+//
+//    switch (currency) {
+//        case PBGameCurrencyCoin:
+//            [self chargeCoin:count
+//                      source:source
+//                      toUser:toUserId
+//                      byUser:[[UserManager defaultManager] userId]
+//               transactionId:nil
+//          transactionRecepit:nil
+//                   alixOrder:alixOrder];
+//            break;
+//
+//        case PBGameCurrencyIngot:
+//            [self chargeIngot:count
+//                       source:source
+//                       toUser:toUserId
+//                       byUser:[[UserManager defaultManager] userId]
+//                transactionId:nil
+//           transactionRecepit:nil
+//                    alixOrder:order.description];
+//            break;
+//
+//        default:
+//            break;
+//    }
+//}
 
 - (void)chargeCoin:(int)amount
             source:(BalanceSourceType)source
@@ -631,7 +631,7 @@ transactionRecepit:(NSString*)transactionRecepit
 
 - (int)getCheckInMaxReward
 {
-    NSString* value = [MobClick getConfigParams:@"REWARD_CHECKIN"];
+    NSString* value = nil; // [MobClick getConfigParams:@"REWARD_CHECKIN"];
     int maxReward = 0;
     if ([value length] > 0){
         maxReward = [value intValue];

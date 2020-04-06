@@ -1,8 +1,27 @@
-platform :ios,'5.0'
+platform :ios,'8.0'
 
-link_with ['Draw', 'Sing', 'LittleGeeDraw']
+target 'Draw' do
 
-pod 'GPUImage'
-pod 'PEPhotoCropEditor'
-pod 'CKCalendar'
-pod 'DAPagesContainer'
+    pod 'GPUImage'
+    pod 'PEPhotoCropEditor'
+    pod 'CKCalendar'
+    pod 'DAPagesContainer'
+
+    pod 'UMCCommon'
+    pod 'UMCAnalytics'
+    pod 'UMCCommonLog'
+
+end
+
+target 'LittleGeeDraw' do
+
+    pod 'GPUImage'
+    pod 'PEPhotoCropEditor'
+    pod 'CKCalendar'
+    pod 'DAPagesContainer'
+
+    pod 'UMCCommon'
+    pod 'UMCAnalytics'
+    pod 'UMCCommonLog'
+
+end

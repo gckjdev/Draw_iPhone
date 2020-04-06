@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BrushEffectFactory.h>
+#import "BrushEffectFactory.h"
 #import "SuperCalligraphyBrush.h"
 
 @interface FilledCalligraphyBrush : SuperCalligraphyBrush
