@@ -365,6 +365,58 @@ BBSService *_staticGroupTopicService;
     return action;
 }
 
+
+/*
+ 
+ db.bbs_board.find({"_id":ObjectId("50bd8c62e4b0e970bbebc747")})
+ db.bbs_board.update({"_id":ObjectId("50bd8c62e4b0e970bbebc747")}, {$set:{"icon":"http://43.247.90.45:8080/bbs/icon/s_draw.png"}})
+ 
+ boardId    __NSCFString *    @"53f1658de4b0400953eec7e7"    0x00006000003f36c0
+ icon    __NSCFString *    @"http://58.215.160.100:8080/bbs/icon/b_picture.png"    0x0000600002e750e0
+
+ db.bbs_board.find({"_id":ObjectId("53f1658de4b0400953eec7e7")})
+ db.bbs_board.update({"_id":ObjectId("53f1658de4b0400953eec7e7")}, {$set:{"icon":"http://43.247.90.45:8080/bbs/icon/b_picture.png"}})
+
+ 
+ boardId    __NSCFString *    @"50bd8c62e4b0e970bbebc74a"    0x00006000003f39c0
+ icon    __NSCFString *    @"http://58.215.160.100:8080/bbs/icon/b_announce.png"    0x0000600002e744b0
+ db.bbs_board.find({"_id":ObjectId("50bd8c62e4b0e970bbebc74a")})
+ db.bbs_board.update({"_id":ObjectId("50bd8c62e4b0e970bbebc74a")}, {$set:{"icon":"http://43.247.90.45:8080/bbs/icon/b_announce.png"}})
+
+ boardId    __NSCFString *    @"532cf231e4b0f2e3448f2f12"    0x00006000003f3c00
+ icon    __NSCFString *    @"http://58.215.160.100:8080/bbs/icon/b_picture.png"    0x0000600002e74e60
+ db.bbs_board.find({"_id":ObjectId("532cf231e4b0f2e3448f2f12")})
+ db.bbs_board.update({"_id":ObjectId("532cf231e4b0f2e3448f2f12")}, {$set:{"icon":"http://43.247.90.45:8080/bbs/icon/b_picture.png"}})
+
+ boardId    __NSCFString *    @"5184884ca1ebdc1c9b49c803"    0x00006000003f0bd0
+ icon    __NSCFString *    @"http://58.215.160.100:8080/bbs/icon/b_student.png"    0x0000600002e75540
+ db.bbs_board.find({"_id":ObjectId("5184884ca1ebdc1c9b49c803")})
+ db.bbs_board.update({"_id":ObjectId("5184884ca1ebdc1c9b49c803")}, {$set:{"icon":"http://43.247.90.45:8080/bbs/icon/b_student.png"}})
+
+ boardId    __NSCFString *    @"53294f12e4b0f2e3448f28c5"    0x00006000003f3db0
+ icon    __NSCFString *    @"http://58.215.160.100:8080/bbs/icon/b_picture.png"    0x0000600002e74c80
+ db.bbs_board.find({"_id":ObjectId("53294f12e4b0f2e3448f28c5")})
+ db.bbs_board.update({"_id":ObjectId("53294f12e4b0f2e3448f28c5")}, {$set:{"icon":"http://43.247.90.45:8080/bbs/icon/b_picture.png"}})
+
+ boardId    __NSCFString *    @"5325a3bae4b0f2e3448f2424"    0x00006000003f6cd0
+ icon    __NSCFString *    @"http://58.215.160.100:8080/bbs/icon/b_picture.png"    0x0000600002e753b0
+ db.bbs_board.find({"_id":ObjectId("5325a3bae4b0f2e3448f2424")})
+ db.bbs_board.update({"_id":ObjectId("5325a3bae4b0f2e3448f2424")}, {$set:{"icon":"http://43.247.90.45:8080/bbs/icon/b_picture.png"}})
+
+ boardId    __NSCFString *    @"5324773de4b0f2e3448f224d"    0x00006000003f6970
+ icon    __NSCFString *    @"http://58.215.160.100:8080/bbs/icon/b_picture.png"    0x0000600002e75090
+ db.bbs_board.find({"_id":ObjectId("5324773de4b0f2e3448f224d")})
+ db.bbs_board.update({"_id":ObjectId("5324773de4b0f2e3448f224d")}, {$set:{"icon":"http://43.247.90.45:8080/bbs/icon/b_picture.png"}})
+
+ boardId    __NSCFString *    @"50f66a804868709cee3eef50"    0x00006000003f79f0
+ icon    __NSCFString *    @"http://58.215.160.100:8080/bbs/icon/b_picture.png"    0x0000600002e75220
+ db.bbs_board.find({"_id":ObjectId("50f66a804868709cee3eef50")})
+ db.bbs_board.update({"_id":ObjectId("50f66a804868709cee3eef50")}, {$set:{"icon":"http://43.247.90.45:8080/bbs/icon/b_picture.png"}})
+
+ 
+ 
+ */
+
 //#pragma mark - change data with remote.
 #pragma mark - bbs board methods
 

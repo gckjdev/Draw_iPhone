@@ -147,6 +147,7 @@ enum{
     [titleView setTarget:self];
     
     //autolayout
+    /* rem by Benson 2020.4.6 to fix crash enter bugs, don't know why yet
     NSLayoutConstraint* constraint = [NSLayoutConstraint constraintWithItem:self.dataTableView
                                                                   attribute:NSLayoutAttributeTop
                                                                   relatedBy:NSLayoutRelationEqual
@@ -154,8 +155,10 @@ enum{
                                                                   attribute:NSLayoutAttributeBottom
                                                                  multiplier:1.0
                                                                    constant:0.0];
-    
+
     [self.view addConstraint:constraint];
+    */
+     
 //    [self setDefaultBGImage];
     [super viewDidLoad];
     self.tutorialCellInfoHeight = [self insertTheCellHeight];
