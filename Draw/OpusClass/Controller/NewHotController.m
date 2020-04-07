@@ -50,8 +50,7 @@
     self.pagesContainer.topBarHeight = COMMON_TAB_BUTTON_HEIGHT;
     self.pagesContainer.topBarBackgroundColor = COLOR_RED;
     self.pagesContainer.pageItemsTitleColor = COLOR_WHITE;
-//    self.pagesContainer.selectedPageItemTitleColor = COLOR_YELLOW;
-    self.pagesContainer.selectedPageItemColor = COLOR_YELLOW;
+    self.pagesContainer.selectedPageItemTitleColor = COLOR_YELLOW;
     self.pagesContainer.topBarItemLabelsFont = BUTTON_FONT;
     
     CGRect frame = CGRectMake(0, COMMON_TAB_BUTTON_Y, self.view.bounds.size.width, self.view.bounds.size.height - COMMON_TAB_BUTTON_Y);
@@ -143,10 +142,10 @@
     [viewControllers addObject:vip];
     [vip release];
     
-//    self.pagesContainer.defaultSelectedIndex = selectIndex;
-    self.pagesContainer.selectedIndex = selectIndex;
     self.pagesContainer.viewControllers = viewControllers;
-    
+    self.pagesContainer.defaultSelectedIndex = selectIndex;
+    self.pagesContainer.selectedIndex = selectIndex;
+
     [viewControllers release];
     
 }

@@ -28,6 +28,7 @@
 #import "UIImageUtil.h"
 #import "PPGameNetworkRequest.h"
 #import "PPConfigManager.h"
+#import "FeedDownloadService.h"
 
 static DrawDataService* _defaultDrawDataService = nil;
 

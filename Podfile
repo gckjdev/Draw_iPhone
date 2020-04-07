@@ -5,8 +5,7 @@ target 'Draw' do
     pod 'GPUImage'
     pod 'PEPhotoCropEditor'
     pod 'CKCalendar'
-    pod 'DAPagesContainer'
-
+    
     pod 'UMCCommon'
     pod 'UMCAnalytics'
     pod 'UMCCommonLog'
@@ -18,7 +17,6 @@ target 'LittleGeeDraw' do
     pod 'GPUImage'
     pod 'PEPhotoCropEditor'
     pod 'CKCalendar'
-    pod 'DAPagesContainer'
 
     pod 'UMCCommon'
     pod 'UMCAnalytics'

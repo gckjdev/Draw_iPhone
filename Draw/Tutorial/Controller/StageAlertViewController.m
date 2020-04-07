@@ -132,7 +132,7 @@ userTutorial:(PBUserTutorial *)pbUserTutorial
     CGFloat  height;
 
     height = [stageDesc sizeWithMyFont:textFont
-                     constrainedToSize:CGSizeMake(130,ISIPAD_TEXT_HEIGHT)
+                     constrainedToSize:CGSizeMake(130, ISIPAD_TEXT_HEIGHT)
                          lineBreakMode:NSLineBreakByWordWrapping].height;
     
     orgRect.size.height=height;//获取自适应文本内容高度

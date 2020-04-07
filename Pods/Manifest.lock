@@ -1,6 +1,5 @@
 PODS:
   - CKCalendar (1.0.0)
-  - DAPagesContainer (1.0.1)
   - GPUImage (0.1.7)
   - PEPhotoCropEditor (1.3.1)
   - UMCAnalytics (6.1.0):
@@ -10,7 +9,6 @@ PODS:
 
 DEPENDENCIES:
   - CKCalendar
-  - DAPagesContainer
   - GPUImage
   - PEPhotoCropEditor
   - UMCAnalytics
@@ -20,7 +18,6 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - CKCalendar
-    - DAPagesContainer
     - GPUImage
     - PEPhotoCropEditor
     - UMCAnalytics
@@ -29,13 +26,12 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   CKCalendar: 1aebf76524bd4c4442e0002f989cd377fcdaf5e2
-  DAPagesContainer: 96a668c1452aa2b628619e0b1a1c116f187551fd
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
   PEPhotoCropEditor: 613292fce009efd085e7aed975f1ebb3fec8bb7b
   UMCAnalytics: 3503f179f7af932b30af9ac161ac11fb48fa72b6
   UMCCommon: b0703b0053323f598e01670ea702b8eb1e66e611
   UMCCommonLog: 05a2d5de21858e3d870551562cff405c1366d244
 
-PODFILE CHECKSUM: 45f0c1af0f7e577daa21c7e423b1dabfaaa9a794
+PODFILE CHECKSUM: 540a22b0a6bb440f8d510b62d8f30429510ed67a
 
 COCOAPODS: 1.7.2
