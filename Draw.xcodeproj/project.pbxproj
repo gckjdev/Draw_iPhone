@@ -12,9 +12,6 @@
 		36099F151AFAFCD800522A4F /* libprotocolc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E65E0D1ACA97720092009D /* libprotocolc.a */; };
 		361DDF121A4D4D2F000B8530 /* PrizeCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D879C91919A7369D003B2A29 /* PrizeCell~ipad.xib */; };
 		361DDF131A4D4D35000B8530 /* StageCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C784BE196A559F00323712 /* StageCell~ipad.xib */; };
-		362330701AB91C7F00BFCD35 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 3623303A1AB91C7F00BFCD35 /* README.md */; };
-		362330711AB91C7F00BFCD35 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 3623303A1AB91C7F00BFCD35 /* README.md */; };
-		362330721AB91C7F00BFCD35 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 3623303A1AB91C7F00BFCD35 /* README.md */; };
 		362330731AB91C7F00BFCD35 /* AbstractMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3623303F1AB91C7F00BFCD35 /* AbstractMessage.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		362330741AB91C7F00BFCD35 /* AbstractMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3623303F1AB91C7F00BFCD35 /* AbstractMessage.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		362330751AB91C7F00BFCD35 /* AbstractMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3623303F1AB91C7F00BFCD35 /* AbstractMessage.m */; };
@@ -23795,7 +23792,6 @@
 				A461B10F174CBAA70088B061 /* SelectWordController.m in Sources */,
 				A461B110174CBAA70088B061 /* GameSession.m in Sources */,
 				A461B111174CBAA70088B061 /* GameSessionManager.m in Sources */,
-				362330721AB91C7F00BFCD35 /* README.md in Sources */,
 				A461B112174CBAA70088B061 /* GameBasic.pb.m in Sources */,
 				A461B113174CBAA70088B061 /* GameMessage.pb.m in Sources */,
 				A461B114174CBAA70088B061 /* GameConstants.pb.m in Sources */,
@@ -25247,7 +25243,6 @@
 				A49972411778349000B01EBE /* HomeController.m in Sources */,
 				CA3D4AF017794748000A8FC7 /* ShadowBox.m in Sources */,
 				C2C09DEB17797EF3009408EB /* DrawToolUpPanel.m in Sources */,
-				362330711AB91C7F00BFCD35 /* README.md in Sources */,
 				A467BBCE17798E0C00455E3A /* OpusDownloadService.m in Sources */,
 				C2C09E7E177A85F7009408EB /* CopyPaintCommand.m in Sources */,
 				C2C09E89177AA71D009408EB /* ShowCopyPaintCommand.m in Sources */,
@@ -26162,7 +26157,6 @@
 				C2CBB18F17745C7200F64956 /* MFMailComposeViewController+ShareEmailSender.m in Sources */,
 				C21455331778279E007D44C7 /* OpusManageController.m in Sources */,
 				C21455391778279E007D44C7 /* OpusView.m in Sources */,
-				362330701AB91C7F00BFCD35 /* README.md in Sources */,
 				C2CA7E4617782BC30086D0FD /* CommonRoomListCell.m in Sources */,
 				C2CA7E4C17782BC30086D0FD /* CommonRoomListController.m in Sources */,
 				A49971F2177831B800B01EBE /* PPTableViewHeader.m in Sources */,
