@@ -199,11 +199,11 @@
 		92CA7176243B2A5F0061CCA2 /* NotificationCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CA7175243B2A5E0061CCA2 /* NotificationCenterManager.m */; };
 		92CA7177243B2A5F0061CCA2 /* NotificationCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CA7175243B2A5E0061CCA2 /* NotificationCenterManager.m */; };
 		92F62D14243C92AB009A6E1E /* DAPagesContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F62D0E243C92AA009A6E1E /* DAPagesContainer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		92F62D15243C92AB009A6E1E /* DAPagesContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F62D0E243C92AA009A6E1E /* DAPagesContainer.m */; };
+		92F62D15243C92AB009A6E1E /* DAPagesContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F62D0E243C92AA009A6E1E /* DAPagesContainer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		92F62D16243C92AB009A6E1E /* DAPagesContainerTopBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F62D0F243C92AA009A6E1E /* DAPagesContainerTopBar.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		92F62D17243C92AB009A6E1E /* DAPagesContainerTopBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F62D0F243C92AA009A6E1E /* DAPagesContainerTopBar.m */; };
+		92F62D17243C92AB009A6E1E /* DAPagesContainerTopBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F62D0F243C92AA009A6E1E /* DAPagesContainerTopBar.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		92F62D18243C92AB009A6E1E /* DAPageIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F62D12243C92AA009A6E1E /* DAPageIndicatorView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		92F62D19243C92AB009A6E1E /* DAPageIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F62D12243C92AA009A6E1E /* DAPageIndicatorView.m */; };
+		92F62D19243C92AB009A6E1E /* DAPageIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F62D12243C92AA009A6E1E /* DAPageIndicatorView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A30A28511580C2AE006CA3CC /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A28461580C2AE006CA3CC /* ChatCell.m */; };
 		A30A28521580C2AE006CA3CC /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A30A28471580C2AE006CA3CC /* ChatCell.xib */; };
 		A30A28531580C2AE006CA3CC /* ChatCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A30A28481580C2AE006CA3CC /* ChatCell~ipad.xib */; };
