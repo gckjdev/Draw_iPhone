@@ -21,7 +21,6 @@
 #import "MyPaintManager.h"
 #import "PPConfigManager.h"
 #import "UIImageExt.h"
-#import "FeedDownloadService.h"
 #import "DrawFeed.h"
 #import "Tutorial.pb.h"
 #import "UserTutorialManager.h"

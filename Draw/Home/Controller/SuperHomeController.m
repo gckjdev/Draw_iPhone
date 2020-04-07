@@ -430,7 +430,6 @@ static NSDictionary* DEFAULT_MENU_SELECTOR_DICT = nil;
 {
     if ([PPConfigManager wallEnabled] && [PPConfigManager isInReviewVersion] == NO){
         POSTMSG2(NSLS(@"kAlreadyCheckInWithFreeCoin"), 3.5);
-        [self enterFreeCoins];
     }
     else{
         POSTMSG2(NSLS(@"kAlreadyCheckIn"), 3.5);
@@ -482,36 +481,15 @@ static NSDictionary* DEFAULT_MENU_SELECTOR_DICT = nil;
     [imageView removeFromSuperview];
 }
 
-#pragma mark - manage rope view
-
-- (void)showAd:(CGRect)frame inView:(UIView*)holderView
-{
-    if (self.adView == nil){
-        self.adView = [[AdService defaultService] createAdmobAdInView:holderView
-                                                                frame:frame
-                                                            iPadFrame:frame];
-    }
-    self.adView.hidden = NO;
-}
-
-- (void)hideAd
-{
-    self.adView.hidden = YES;
-}
-
 - (void)updateAnimation
 {
     DrawHomeHeaderPanel *header = (id)self.homeHeaderPanel;
     DrawMainMenuPanel *mainPanel = (id)self.homeMainMenuPanel;
     HomeBottomMenuPanel *footer = (id)self.homeBottomMenuPanel;
     
-    CGRect adFrame = header.displayHolder.frame;
-    
     [header setClickRopeHandler:^(BOOL open)
      {
          if (open) {
-             
-             [self hideAd];
              
              [mainPanel closeAnimated:YES completion:^(BOOL finished) {
                  [mainPanel moveMenuTypeToBottom:[mainPanel getMainType] Animated:YES completion:NULL];
@@ -525,27 +503,11 @@ static NSDictionary* DEFAULT_MENU_SELECTOR_DICT = nil;
              [footer showAnimated:YES];
              [header closeAnimated:YES completion:^(BOOL finished) {
                  [mainPanel openAnimated:YES completion:NULL];
-                 
-//                 [self showAd:adFrame inView:header.holderView];
              }];
              
          }
      }];
     
-//    [self showAd:adFrame inView:header.holderView];
-    
-    /*
-    if ([[UserManager defaultManager] hasXiaojiNumber] == NO
-        && [[UserManager defaultManager] isOldUserWithoutXiaoji] == NO) {
-        [mainPanel closeAnimated:NO completion:^(BOOL finished) {
-            [mainPanel moveMenuTypeToBottom:[[self class] homeDefaultMenuType]
-                                   Animated:NO
-                                 completion:NULL];
-            [header openAnimated:NO completion:NULL];
-            [footer hideAnimated:NO];
-        }];
-    }
-    */
 }
 
 

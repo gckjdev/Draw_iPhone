@@ -8,7 +8,6 @@
 
 #import "AccountService.h"
 #import "PPDebug.h"
-//#import "ShoppingManager.h"
 #import "AccountManager.h"
 #import "GameNetworkConstants.h"
 #import "GameNetworkRequest.h"
@@ -25,7 +24,6 @@
 #import "PPConfigManager.h"
 #import "UserService.h"
 #import "LevelService.h"
-#import "AdService.h"
 #import "GameBasic.pb.h"
 #import "IAPProductManager.h"
 #import "UserGameItemManager.h"
@@ -813,7 +811,7 @@ transactionRecepit:(NSString*)transactionRecepit
     
     if ([productId isEqualToString:[GameApp removeAdProductId]]){
         // Remove Ad IAP
-        [[AdService defaultService] setAdDisable];
+        PPDebug(@"remove ad item, not support any more ");
     }
     
     // update UI here

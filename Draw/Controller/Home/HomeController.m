@@ -37,7 +37,6 @@
 
 #import "ChatListController.h"
 #import "LevelService.h"
-#import "AdService.h"
 #import "ShowFeedController.h"
 #import "BulletinService.h"
 #import "AnalyticsManager.h"
@@ -148,11 +147,7 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
                                                   self.recommendButton.frame.size.width*2, 
                                                   self.recommendButton.frame.size.height)];
     }
-    if (![[AdService defaultService] isShowAd]) {
-        if ([DeviceDetection isIPAD]){
-            [self.recommendButton setFrame:CGRectMake(65, self.recommendButton.frame.origin.y, self.recommendButton.frame.size.width, self.recommendButton.frame.size.height)];
-        }
-    }
+
 }
 
 - (void)viewDidLoad

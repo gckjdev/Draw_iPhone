@@ -22,7 +22,6 @@
 #import "DeviceDetection.h"
 #import "OfflineDrawViewController.h"
 #import "CustomWordManager.h"
-#import "AdService.h"
 #import "UserGameItemManager.h"
 #import "UserGameItemService.h"
 #import "CommonTitleView.h"
@@ -74,7 +73,6 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
-    [[AdService defaultService] clearAdView:_adView];
     [self setAdView:nil];
 }
 
@@ -211,24 +209,10 @@
     
     [drawGameService registerObserver:self];
     [super viewDidAppear:animated];
-
-    /*
-    if (self.adView == nil){
-        CGFloat originY = [DeviceDetection screenSize].height - 50 - 20;
-        self.adView = [[AdService defaultService] createAdInView:self
-                                                           frame:CGRectMake(0, originY, 320, 50) 
-                                                       iPadFrame:CGRectMake(112, 883, 320, 50)
-                                                         useLmAd:NO];
-    }
-    */
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-//    [self clearUnPopupMessages];
-//    [drawGameService unregisterObserver:self];
-    
-    [[AdService defaultService] clearAdView:_adView];
     [self setAdView:nil];
 
     [super viewDidDisappear:animated];
@@ -236,7 +220,6 @@
 
 - (void)viewDidUnload
 {
-    [[AdService defaultService] clearAdView:_adView];
     [self setAdView:nil];
     
     [self setWordTableView:nil];
@@ -254,7 +237,6 @@
 
 - (void)dealloc {
     
-    [[AdService defaultService] clearAdView:_adView];
     PPRelease(_adView);    
     PPRelease(_wordTableView);
     PPRelease(_clockLabel);

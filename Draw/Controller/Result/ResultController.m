@@ -28,7 +28,6 @@
 #import "CommonMessageCenter.h"
 #import "DrawDataService.h"
 #import "ShareService.h"
-#import "AdService.h"
 #import "UIButtonExt.h"
 #import "FeedService.h"
 #import "DeviceDetection.h"
@@ -506,7 +505,6 @@
 {
     [[DrawGameService defaultService] unregisterObserver:self];
     
-    [[AdService defaultService] clearAdView:_adView];
     [self setAdView:nil];
 
     [super viewDidDisappear:animated];
@@ -518,21 +516,11 @@
     
     [super viewDidAppear:animated];
 
-    /*
-    if (self.adView == nil){
-        self.adView = [[AdService defaultService] createAdInView:self 
-                                                           frame:CGRectMake(0, 47, 320, 50) 
-                                                       iPadFrame:CGRectMake(224, 815, 320, 50)
-                                                         useLmAd:NO];   
-    } 
-    */
 }
 
 - (void)viewDidUnload
-{    
-    
-    [[AdService defaultService] clearAdView:_adView];
-    [self setAdView:nil];    
+{
+    [self setAdView:nil];
     
     [self setUpButton:nil];
     [self setDownButton:nil];
@@ -558,7 +546,6 @@
 
 - (void)dealloc {
 
-    [[AdService defaultService] clearAdView:_adView];
     PPRelease(_adView);
     
     PPRelease(_drawUserId);

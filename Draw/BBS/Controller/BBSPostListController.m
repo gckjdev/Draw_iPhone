@@ -14,7 +14,6 @@
 #import "BoardAdminListView.h"
 
 #import "DrawPlayer.h"
-#import "AdService.h"
 #import "UILabel+Touchable.h"
 #import "MKBlockActionSheet.h"
 #import "FriendController.h"
@@ -199,18 +198,11 @@
     [super viewDidAppear:animated];
     [self.dataTableView reloadData];
     [self updateTempPostListWithTabID:self.currentTab.tabID];
-/*
-    self.adView = [[AdService defaultService] createAdInView:self
-                                                       frame:CGRectMake(0, self.view.bounds.size.height-50, 320, 50)
-                                                   iPadFrame:CGRectMake((self.view.bounds.size.width-320)/2-10, self.view.bounds.size.height-100, 320, 50)
-                                                     useLmAd:YES];
-  */
 
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [[AdService defaultService] clearAdView:self.adView];
     self.adView = nil;
     
     [super viewDidDisappear:animated];
@@ -221,13 +213,11 @@
     [super didReceiveMemoryWarning];
 
     // Dispose of any resources that can be recreated.
-    [[AdService defaultService] clearAdView:self.adView];
     self.adView = nil;
 }
 
 - (void)dealloc {
     
-    [[AdService defaultService] clearAdView:self.adView];
     self.adView = nil;
     
     [_bbsManager setTempPostList:nil];

@@ -9,11 +9,9 @@
 #import "BuyItemSpecialHandler.h"
 #import "UserManager.h"
 #import "ItemType.h"
-#import "AdService.h"
 #import "AccountService.h"
 #import "PPConfigManager.h"
 #import "GameItemManager.h"
-//#import "CustomDiceManager.h"
 
 @implementation BuyItemSpecialHandler
 
@@ -23,7 +21,7 @@
     PBGameItem *item = [[GameItemManager defaultManager] itemWithItemId:itemId];
     switch (item.itemId) {
         case ItemTypeRemoveAd:
-            [[AdService defaultService] disableAd];
+            PPDebug(@"warning, remove ad item not used now");
             break;
             
         case ItemTypePurse:

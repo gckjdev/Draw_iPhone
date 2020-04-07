@@ -87,18 +87,12 @@
 {
     float width = [UIScreen mainScreen].bounds.size.width;
     
-    self.adView = [[AdService defaultService] createAdInView:self
-                                                       frame:CGRectMake(0, self.view.bounds.size.height-50, width, 50)
-                                                   iPadFrame:CGRectMake((self.view.bounds.size.width-width)/2, self.view.bounds.size.height-100, width, 100)
-                                                     useLmAd:YES];
-    
     [super viewDidAppear:animated];
     [self updateBadge];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [[AdService defaultService] clearAdView:self.adView];
     self.adView = nil;
 
     [super viewDidDisappear:animated];
@@ -109,9 +103,6 @@
     [self showActivityWithText:NSLS(@"kLoading")];
     [[BBSService defaultService] getBBSBoardList:self];
     [[BBSService defaultService] getBBSPrivilegeList];
-//    if ([[[BBSManager defaultManager] boardList] count] != 0) {
-    
-//    }
 }
 
 - (void)customBbsBg
@@ -354,7 +345,6 @@
 
 - (void)dealloc {
 
-    [[AdService defaultService] clearAdView:self.adView];
     self.adView = nil;
     
     PPRelease(_backButton);

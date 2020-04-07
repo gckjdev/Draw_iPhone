@@ -17,7 +17,6 @@
 #import "ItemType.h"
 #import "AccountManager.h"
 #import "UserManager.h"
-#import "AdService.h"
 #import "GameNetworkConstants.h"
 #import "CommonMessageCenter.h"
 #import "GameItemManager.h"
