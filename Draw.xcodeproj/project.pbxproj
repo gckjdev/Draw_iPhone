@@ -27817,8 +27817,8 @@
 				PRODUCT_NAME = LittleGeeDraw;
 				PROVISIONING_PROFILE = "9071d6a3-5d9f-4666-b59d-078ada21f5d7";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9071d6a3-5d9f-4666-b59d-078ada21f5d7";
-				SYSTEM_HEADER_SEARCH_PATHS = "$(inherited)/**";
-				USER_HEADER_SEARCH_PATHS = "$(inherited)/**";
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
@@ -27943,8 +27943,8 @@
 				PRODUCT_NAME = LittleGeeDraw;
 				PROVISIONING_PROFILE = "04f97ffc-c446-43aa-b4c8-1a7cbd45edf4";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "04f97ffc-c446-43aa-b4c8-1a7cbd45edf4";
-				SYSTEM_HEADER_SEARCH_PATHS = "$(inherited)/**";
-				USER_HEADER_SEARCH_PATHS = "$(inherited)/**";
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
