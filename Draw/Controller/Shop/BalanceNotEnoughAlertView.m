@@ -25,9 +25,6 @@
     [dialog setClickOkBlock:^(UILabel *label){
             
             if (![PPConfigManager isInReviewVersion]) {
-//                FreeIngotController *vc = [[[FreeIngotController alloc] init] autorelease];
-//                [controller.navigationController pushViewController:vc animated:YES];
-                
                 PurchaseVipController* vc = [[PurchaseVipController alloc] init];
                 [controller.navigationController pushViewController:vc
                                                            animated:YES];

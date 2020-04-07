@@ -1262,14 +1262,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:360]]];
     
-//    [mutableArray addObject:[self itemWithItemId:ItemTypeTaoBao
-//                                            name:@"obb电容笔"
-//                                            desc:@"obb知名电容笔品牌,布头,可换笔头,高精度,包邮29.9元,近期促销23.92元"
-//                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_taobao_obb_pen.png")
-//                             
-//                                            type:PBDrawItemTypeDrawTaoBao
-//                                             url:@"http://re.taobao.com/eauction?e=YABvLk7cRE8jmraEDZVrLu1ZzttXXd5pAUuPt4hhrd%2BLltG5xFicOSZqewpHPyZz6sGY91fAsX0jyOUZkjv5HyzD7IzUEp4zi9vrzXXZm2WB3ujUJI0OeA%3D%3D&ptype=100010&clk1=62dcd709d651c3d38b8f0d239d401ebe&upsid=62dcd709d651c3d38b8f0d239d401ebe"]];
-
     [mutableArray addObject:[self itemWithItemId:ItemTypeTaoBao
                                             name:@"小吉电容笔"
                                             desc:@"专业绘画电容笔，圆盘+布头双头触控, 超高精细，元宝/VIP优惠套餐组合"

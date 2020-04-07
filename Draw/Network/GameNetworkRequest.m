@@ -534,8 +534,6 @@
         str = [str stringByAddQueryParameter:PARA_APPID value:[PPConfigManager appId]];
         str = [str stringByAddQueryParameter:PARA_ADMIN_USER_ID value:byUserId];
         
-//        str = [str stringByAddQueryParameter:PARA_ALIPAY_ORDER value:alixOrder];
-        
         return str;
     };
     
@@ -575,8 +573,6 @@
         str = [str stringByAddQueryParameter:PARA_APPID value:[PPConfigManager appId]];
         str = [str stringByAddQueryParameter:PARA_ADMIN_USER_ID value:byUserId];
         
-//        str = [str stringByAddQueryParameter:PARA_ALIPAY_ORDER value:alixOrder];
-
         return str;
     };
     

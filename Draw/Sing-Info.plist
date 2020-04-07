@@ -43,7 +43,6 @@
 			<string>com.orange.sing</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>alipayxjdst.gckj</string>
 				<string>fb325848464220092</string>
 				<string>gckjxjdst</string>
 				<string>wxdf67334f7e8e0771</string>

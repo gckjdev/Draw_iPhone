@@ -414,8 +414,8 @@ enum PBIAPProductType{
 
 message PBIAPProduct{
   required PBIAPProductType type = 1;           // 类型   
-  required string appleProductId = 2;           // Apple IAP购买ID
-  optional string alipayProductId = 3;          // Ali pay购买ID
+  required string appleProductId = 2;           // AppleIAP购买ID
+  optional string ayProductId = 3;              // AY购买ID
 
 
   optional string name = 5;                     // 产品名称

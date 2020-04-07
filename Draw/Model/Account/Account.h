@@ -49,7 +49,7 @@ typedef enum  {
     ChargeAsAGift = 420,
     
     ChargeViaBuyPurseItem = 430,
-//    ChargeViaAlipay = 431,
+//    ChargeViaAli = 431,
     
     ChargeLearnDraw = 450,
     AwardTakeCoins = 451,                   // 领取金币，用于7.0道具返还

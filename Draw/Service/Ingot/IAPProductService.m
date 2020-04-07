@@ -117,27 +117,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     PBIAPProductPrice *priceUS;
     NSArray *priceList;
     
-//    priceCN = [self cnPriceWithPrice:@"12" saving:nil];
-//    priceUS = [self usPriceWithPrice:@"1.99" saving:nil];
-//    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
-//    [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
-//                                   appleProductId:@"com.orange.draw.coin_10000"
-//                                  alipayProductId:@"draw_coin_10000"
-//                                             name:@"kCoin"
-//                                             desc:@"kCoin"
-//                                            count:10000
-//                                       totalPrice:priceCN.price
-//                                           saving:priceCN.saving
-//                                        taobaoUrl:DRAW_COIN_10000_TAOBAO_URL
-//                                        priceList:priceList
-//                             ]];
-    
     priceCN = [self cnPriceWithPrice:@"18" saving:nil];
     priceUS = [self usPriceWithPrice:@"2.99" saving:nil];
     priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapingot
                                    appleProductId:@"com.orange.draw.ingot_18"
-//                                  alipayProductId:@"draw_ingot_18"
                                              name:@"kIngot"
                                              desc:@"kIngot"
                                             count:18
@@ -152,7 +136,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapingot
                                    appleProductId:@"com.orange.draw.ingot_30"
-//                                  alipayProductId:@"draw_ingot_30"
                                              name:@"kIngot"
                                              desc:@"kIngot"
                                             count:32
@@ -167,7 +150,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapingot
                                    appleProductId:@"com.orange.draw.ingot_68"
-//                                  alipayProductId:@"draw_ingot_68"
                                              name:@"kIngot"
                                              desc:@"kIngot"
                                             count:90
@@ -182,7 +164,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapingot
                                    appleProductId:@"com.orange.draw.ingot_163"
-//                                  alipayProductId:@"draw_ingot_163"
                                              name:@"kIngot"
                                              desc:@"kIngot"
                                             count:250
@@ -191,55 +172,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                         taobaoUrl:DRAW_INGOT_250_TAOBAO_URL
                                         priceList:priceList
                              ]];
-
-    
-//    priceCN = [self cnPriceWithPrice:@"18" saving:nil]; //@"25%"];
-//    priceUS = [self usPriceWithPrice:@"2.99" saving:nil]; //@"25%"];
-//    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
-//    [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
-//                                   appleProductId:@"com.orange.draw.coin_20000"
-//                                  alipayProductId:@"draw_coin_20000"
-//                                             name:@"kCoin"
-//                                             desc:@"kCoin"
-//                                            count:20000
-//                                       totalPrice:priceCN.price
-//                                           saving:priceCN.saving
-//                                        taobaoUrl:DRAW_COIN_20000_TAOBAO_URL
-//                                        priceList:priceList
-//                             ]];
-//    
-//    priceCN = [self cnPriceWithPrice:@"68" saving:@"15%"];
-//    priceUS = [self usPriceWithPrice:@"9.99" saving:@"15%"];
-//    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
-//    [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
-//                                   appleProductId:@"com.orange.draw.coin_80000"
-//                                  alipayProductId:@"draw_coin_80000"
-//                                             name:@"kCoin"
-//                                             desc:@"kCoin"
-//                                            count:80000
-//                                       totalPrice:priceCN.price
-//                                           saving:priceCN.saving
-//                                        taobaoUrl:DRAW_COIN_80000_TAOBAO_URL
-//                                        priceList:priceList
-//                             ]];
-//    
-//    priceCN = [self cnPriceWithPrice:@"163" saving:@"30%"];
-//    priceUS = [self usPriceWithPrice:@"24.99" saving:@"30%"];
-//    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
-//    [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
-//                                   appleProductId:@"com.orange.draw.coin_250000"
-//                                  alipayProductId:@"draw_coin_250000"
-//                                             name:@"kCoin"
-//                                             desc:@"kCoin"
-//                                            count:250000
-//                                       totalPrice:priceCN.price
-//                                           saving:priceCN.saving
-//                                        taobaoUrl:DRAW_COIN_250000_TAOBAO_URL
-//                                        priceList:priceList
-//                             ]];
-//
-    
-    
     
     PBIAPProductListBuilder *listBuilder = [[PBIAPProductListBuilder alloc] init];
     [listBuilder setProductsArray:mutableArray];
@@ -268,7 +200,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
                                    appleProductId:@"com.orange.sing.coin_20000"
-//                                  alipayProductId:@"draw_coin_20000"
                                              name:@"kCoin"
                                              desc:@"kCoin"
                                             count:20000
@@ -283,7 +214,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
                                    appleProductId:@"com.orange.sing.coin_80000"
-//                                  alipayProductId:@"draw_coin_80000"
                                              name:@"kCoin"
                                              desc:@"kCoin"
                                             count:80000
@@ -298,7 +228,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
                                    appleProductId:@"com.orange.sing.coin_250000"
-//                                  alipayProductId:@"draw_coin_250000"
                                              name:@"kCoin"
                                              desc:@"kCoin"
                                             count:250000
@@ -333,27 +262,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     PBIAPProductPrice *priceUS;
     NSArray *priceList;
     
-//    priceCN = [self cnPriceWithPrice:@"12" saving:nil];
-//    priceUS = [self usPriceWithPrice:@"1.99" saving:nil];
-//    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
-//    [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
-//                                   appleProductId:@"com.orange.littlegee.coin_10000"
-//                                  alipayProductId:@"draw_coin_10000"
-//                                             name:@"kCoin"
-//                                             desc:@"kCoin"
-//                                            count:10000
-//                                       totalPrice:priceCN.price
-//                                           saving:priceCN.saving
-//                                        taobaoUrl:DRAW_COIN_10000_TAOBAO_URL
-//                                        priceList:priceList
-//                             ]];
-    
     priceCN = [self cnPriceWithPrice:@"18" saving:nil];
     priceUS = [self usPriceWithPrice:@"2.99" saving:nil];
     priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapingot
                                    appleProductId:@"com.orange.littlegee.ingot_18"
-//                                  alipayProductId:@"draw_ingot_18"
                                              name:@"kIngot"
                                              desc:@"kIngot"
                                             count:18
@@ -368,7 +281,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapingot
                                    appleProductId:@"com.orange.littlegee.ingot_32"
-//                                  alipayProductId:@"draw_ingot_30"
                                              name:@"kIngot"
                                              desc:@"kIngot"
                                             count:32
@@ -383,7 +295,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapingot
                                    appleProductId:@"com.orange.littlegee.ingot_90"
-//                                  alipayProductId:@"draw_ingot_68"
                                              name:@"kIngot"
                                              desc:@"kIngot"
                                             count:90
@@ -398,7 +309,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapingot
                                    appleProductId:@"com.orange.littlegee.ingot_250"
-//                                  alipayProductId:@"draw_ingot_163"
                                              name:@"kIngot"
                                              desc:@"kIngot"
                                             count:250
@@ -407,53 +317,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                         taobaoUrl:DRAW_INGOT_250_TAOBAO_URL
                                         priceList:priceList
                              ]];
-
-    
-//    priceCN = [self cnPriceWithPrice:@"18" saving:nil]; //@"25%"];
-//    priceUS = [self usPriceWithPrice:@"2.99" saving:nil]; // @"25%"];
-//    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
-//    [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
-//                                   appleProductId:@"com.orange.littlegee.coin_20000"
-//                                  alipayProductId:@"draw_coin_20000"
-//                                             name:@"kCoin"
-//                                             desc:@"kCoin"
-//                                            count:20000
-//                                       totalPrice:priceCN.price
-//                                           saving:priceCN.saving
-//                                        taobaoUrl:DRAW_COIN_20000_TAOBAO_URL
-//                                        priceList:priceList
-//                             ]];
-//    
-//    priceCN = [self cnPriceWithPrice:@"68" saving:@"15%"];
-//    priceUS = [self usPriceWithPrice:@"9.99" saving:@"15%"];
-//    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
-//    [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
-//                                   appleProductId:@"com.orange.littlegee.coin_80000"
-//                                  alipayProductId:@"draw_coin_80000"
-//                                             name:@"kCoin"
-//                                             desc:@"kCoin"
-//                                            count:80000
-//                                       totalPrice:priceCN.price
-//                                           saving:priceCN.saving
-//                                        taobaoUrl:DRAW_COIN_80000_TAOBAO_URL
-//                                        priceList:priceList
-//                             ]];
-//    
-//    priceCN = [self cnPriceWithPrice:@"163" saving:@"30%"];
-//    priceUS = [self usPriceWithPrice:@"24.99" saving:@"30%"];
-//    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
-//    [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
-//                                   appleProductId:@"com.orange.littlegee.coin_250000"
-//                                  alipayProductId:@"draw_coin_250000"
-//                                             name:@"kCoin"
-//                                             desc:@"kCoin"
-//                                            count:250000
-//                                       totalPrice:priceCN.price
-//                                           saving:priceCN.saving
-//                                        taobaoUrl:DRAW_COIN_250000_TAOBAO_URL
-//                                        priceList:priceList
-//                             ]];
-    
     
     PBIAPProductListBuilder *listBuilder = [[PBIAPProductListBuilder alloc] init];
     [listBuilder setProductsArray:mutableArray];
@@ -471,196 +334,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     [listBuilder release];
 }
 
-
-+ (void)createLearnDrawIngotTestDataFile
-{
-    NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
-    PBIAPProductPrice *priceCN;
-    PBIAPProductPrice *priceUS;
-    NSArray *priceList;
-    
-//    priceCN = [self cnPriceWithPrice:@"6" saving:nil];
-//    priceUS = [self usPriceWithPrice:@"0.99" saving:nil];
-//    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
-//    [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
-//                                     appleProductId:@"com.orange.learndraw.ingot_6"
-//                                    alipayProductId:@"learn_draw_ingot_6"
-//                                               name:@"kIngot"
-//                                               desc:@"kIngot"
-//                                              count:6
-//                                         totalPrice:priceUS.price
-//                                             saving:priceUS.saving
-//                                          taobaoUrl:nil
-//                                          priceList:priceList]];
-    
-    priceCN = [self cnPriceWithPrice:@"18" saving:@"18%"];
-    priceUS = [self usPriceWithPrice:@"2.99" saving:@"18%"];
-    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
-    [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.learndraw.ingot_22"
-//                                    alipayProductId:@"learn_draw_ingot_22"
-                                               name:@"kIngot"
-                                               desc:@"kIngot"
-                                              count:22
-                                         totalPrice:priceUS.price
-                                             saving:priceUS.saving
-                                          taobaoUrl:nil
-                                          priceList:priceList]];
-    
-    priceCN = [self cnPriceWithPrice:@"30" saving:@"23%"];
-    priceUS = [self usPriceWithPrice:@"4.99" saving:@"23%"];
-    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
-    [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.learndraw.ingot_39"
-//                                    alipayProductId:@"learn_draw_ingot_39"
-                                               name:@"kIngot"
-                                               desc:@"kIngot"
-                                              count:39
-                                         totalPrice:priceUS.price
-                                             saving:priceUS.saving
-                                          taobaoUrl:nil
-                                          priceList:priceList]];
-    
-    priceCN = [self cnPriceWithPrice:@"68" saving:@"28%"];
-    priceUS = [self usPriceWithPrice:@"9.99" saving:@"28%"];
-    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
-    [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.learndraw.ingot_84"
-//                                    alipayProductId:@"learn_draw_ingot_84"
-                                               name:@"kIngot"
-                                               desc:@"kIngot"
-                                              count:84
-                                         totalPrice:priceUS.price
-                                             saving:priceUS.saving
-                                          taobaoUrl:nil
-                                          priceList:priceList]];
-    
-    priceCN = [self cnPriceWithPrice:@"163" saving:@"33%"];
-    priceUS = [self usPriceWithPrice:@"24.99" saving:@"33%"];
-    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
-    [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.learndraw.ingot_225"
-//                                    alipayProductId:@"learn_draw_ingot_225"
-                                               name:@"kIngot"
-                                               desc:@"kIngot"
-                                              count:225
-                                         totalPrice:priceUS.price
-                                             saving:priceUS.saving
-                                          taobaoUrl:nil
-                                          priceList:priceList]];
-    
-    priceCN = [self cnPriceWithPrice:@"328" saving:@"50%"];
-    priceUS = [self usPriceWithPrice:@"49.99" saving:@"50%"];
-    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
-    [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.learndraw.ingot_600"
-//                                    alipayProductId:@"learn_draw_ingot_600"
-                                               name:@"kIngot"
-                                               desc:@"kIngot"
-                                              count:600
-                                         totalPrice:priceUS.price
-                                             saving:priceUS.saving
-                                          taobaoUrl:nil
-                                          priceList:priceList]];
-    
-    PBIAPProductListBuilder *listBuilder = [[PBIAPProductListBuilder alloc] init];
-    [listBuilder setProductsArray:mutableArray];
-    PBIAPProductList *list = [listBuilder build];
-    
-    //write to file
-    NSString *filePath = [@"/game/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
-    if (![[list data] writeToFile:filePath atomically:YES]) {
-        PPDebug(@"<createTestDataFile> error");
-    } else {
-        PPDebug(@"<createTestDataFile> succ");
-    }
-    
-    [listBuilder release];
-}
-
-+ (void)createPureDrawIngotTestDataFile
-{
-    NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
-    PBIAPProductPrice *priceCN;
-    PBIAPProductPrice *priceUS;
-    NSArray *priceList;
-    
-    priceCN = [self cnPriceWithPrice:@"6" saving:nil];
-    priceUS = [self usPriceWithPrice:@"0.99" saving:nil];
-    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
-    [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.puredrawpro.ingot_6"
-//                                    alipayProductId:@"puredrawpro_ingot_6"
-                                               name:@"kIngot"
-                                               desc:@"kIngot"
-                                              count:6
-                                         totalPrice:priceUS.price
-                                             saving:priceUS.saving
-                                          taobaoUrl:INGOT_6_TAOBAO_URL
-                                          priceList:priceList]];
-    
-    priceCN = [self cnPriceWithPrice:@"18" saving:@"18%"];
-    priceUS = [self usPriceWithPrice:@"2.99" saving:@"18%"];
-    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
-    [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.puredrawpro.ingot_22"
-//                                    alipayProductId:@"puredrawpro_ingot_22"
-                                               name:@"kIngot"
-                                               desc:@"kIngot"
-                                              count:22
-                                         totalPrice:priceUS.price
-                                             saving:priceUS.saving
-                                          taobaoUrl:INGOT_22_TAOBAO_URL
-                                          priceList:priceList]];
-    
-    priceCN = [self cnPriceWithPrice:@"30" saving:@"23%"];
-    priceUS = [self usPriceWithPrice:@"4.99" saving:@"23%"];
-    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
-    [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.puredrawpro.ingot_39"
-//                                    alipayProductId:@"puredrawpro_ingot_39"
-                                               name:@"kIngot"
-                                               desc:@"kIngot"
-                                              count:39
-                                         totalPrice:priceUS.price
-                                             saving:priceUS.saving
-                                          taobaoUrl:INGOT_39_TAOBAO_URL
-                                          priceList:priceList]];
-    
-    priceCN = [self cnPriceWithPrice:@"68" saving:@"28%"];
-    priceUS = [self usPriceWithPrice:@"9.99" saving:@"28%"];
-    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
-    [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.puredrawpro.ingot_84"
-//                                    alipayProductId:@"puredrawpro_ingot_84"
-                                               name:@"kIngot"
-                                               desc:@"kIngot"
-                                              count:84
-                                         totalPrice:priceUS.price
-                                             saving:priceUS.saving
-                                          taobaoUrl:INGOT_84_TAOBAO_URL
-                                          priceList:priceList]];
-    
-    PBIAPProductListBuilder *listBuilder = [[PBIAPProductListBuilder alloc] init];
-    [listBuilder setProductsArray:mutableArray];
-    PBIAPProductList *list = [listBuilder build];
-    
-    //write to file
-    NSString *filePath = [@"/game/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
-    if (![[list data] writeToFile:filePath atomically:YES]) {
-        PPDebug(@"<createTestDataFile> error");
-    } else {
-        PPDebug(@"<createTestDataFile> succ");
-    }
-    
-    [listBuilder release];
-}
-
-
-
 + (PBIAPProduct *)usProductWithType:(PBIAPProductType)type
                      appleProductId:(NSString *)appleProductId
-//                    alipayProductId:(NSString *)alipayProductId
                                name:(NSString *)name
                                desc:(NSString *)desc
                               count:(int)count
@@ -671,7 +346,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     PBIAPProductBuilder *builder = [[[PBIAPProductBuilder alloc] init] autorelease];
     [builder setType:type];
     [builder setAppleProductId:appleProductId];
-//    [builder setAlipayProductId:alipayProductId];
     [builder setName:name];
     [builder setDesc:desc];
     [builder setCount:count];
@@ -737,7 +411,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
 
 + (PBIAPProduct *)productWithType:(PBIAPProductType)type
                    appleProductId:(NSString *)appleProductId
-//                  alipayProductId:(NSString *)alipayProductId
                              name:(NSString *)name
                              desc:(NSString *)desc
                             count:(int)count
@@ -749,7 +422,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     PBIAPProductBuilder *builder = [[[PBIAPProductBuilder alloc] init] autorelease];
     [builder setType:type];
     [builder setAppleProductId:appleProductId];
-//    [builder setAlipayProductId:alipayProductId];
     [builder setName:name];
     [builder setDesc:desc];
     [builder setCount:count];

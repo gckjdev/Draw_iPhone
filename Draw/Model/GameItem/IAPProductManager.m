@@ -58,17 +58,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductManager);
     return nil;
 }
 
-//- (PBIAPProduct *)productWithAlipayProductId:(NSString *)alipayProductId
-//{
-//    for (PBIAPProduct *product in _productList) {
-//        if ([product.alipayProductId isEqualToString:alipayProductId]) {
-//            return product;
-//        }
-//    }
-//    
-//    return nil;
-//}
-
 + (NSString *)IAPProductFileNameWithoutSuffix
 {
     return [[IAP_PRODUCT_FILE_WITHOUT_SUFFIX stringByAppendingString:@"_"] stringByAppendingString:[GameApp iapResourceFileName]];

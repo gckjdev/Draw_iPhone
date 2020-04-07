@@ -294,10 +294,6 @@
 #define PARA_FORWARD @"fw"
 #define PARA_RET_COUNT @"cnt"
 
-
-// alix pay order parameters
-//#define PARA_ALIPAY_ORDER  @"alixorder"
-
 // request parameters
 #define METHOD_GET_MYCOMMENT_LIST @"gmcl"
 #define PARA_USERS @"users"
@@ -857,8 +853,6 @@
 #define SORT_BY_BOUGHT 3
 #define SORT_BY_END_DATE 4
 
-#define CATEGORY_TAOBAO_MIAOSHA         100
-#define CATEGORY_TAOBAO_ZHEKOU          150
 #define CATEGORY_AD                     200
 
 #define DATA_UNDEFINE                   (-1)

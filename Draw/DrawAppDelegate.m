@@ -16,41 +16,28 @@
 #import "DrawGameService.h"
 #import "UserManager.h"
 #import "HomeController.h"
-//#import "RegisterUserController.h"
 #import "OnlineGuessDrawController.h"
-//#import "RouterService.h"
 #import "AccountManager.h"
 #import "AccountService.h"
 #import "PriceService.h"
 #import "DeviceDetection.h"
 #import "NetworkDetector.h"
 #import "MobClickUtils.h"
-//#import "TKAlertCenter.h"
 #import "PPConfigManager.h"
 #import "AudioManager.h"
 #import "FriendManager.h"
-//#import "MusicItemManager.h"
 #import "CommonMessageCenter.h"
-//#import "MusicDownloadService.h"
 #import "FriendService.h"
 #import "UIUtils.h"
 #import "LevelService.h"
-//#import "YoumiWallService.h"
 #import "ChatDetailController.h"
 #import "NotificationManager.h"
 #import "UserStatusService.h"
-//#import "FacetimeService.h"
-//#import "DiceGameService.h"
-//#import "DiceFontManager.h"
 #import "WordManager.h"
-//#import "DiceFontManager.h"
-//#import "DiceSoundManager.h"
 #import "CommonHelpManager.h"
-//#import "BoardService.h"
 
 #import "PPResourcePackage.h"
 #import "PPResourceService.h"
-//#import "PPResourceTestViewController.h"
 #import "FeedManager.h"
 
 #import "MyPaintManager.h"
@@ -58,21 +45,14 @@
 
 #import <UMCommon/UMCommon.h>
 
-//#import "PPSNSIntegerationService.h"
-//#import "PPSinaWeiboService.h"
-//#import "PPTecentWeiboService.h"
-//#import "PPFacebookService.h"
-
 #import "GameConfigDataManager.h"
 #import "BulletinService.h"
 #import "PPSmartUpdateDataUtils.h"
 
 #import "BBSService.h"
 #import "DrawBgManager.h"
-//#import "GameAdWallService.h"
 #import "GameItemService.h"
 #import "IAPProductService.h"
-//#import "AliPayManager.h"
 #import "SKProductService.h"
 #import "ShareController.h"
 
@@ -531,32 +511,9 @@ NSString* GlobalGetBoardServerURL()
 
 #pragma mark - Device Notification Delegate
 
-//- (BOOL)handleURL:(NSURL*)url
-//{
-//    PPDebug(@"<handleURL> url=%@", url.absoluteString);
-//    if ([[url absoluteString] hasPrefix:@"alipay"]){
-//        return [AliPayManager parseURL:url alipayPublicKey:[PPConfigManager getAlipayAlipayPublicKey]];
-//    }
-//
-//    [[GameSNSService defaultService] handleOpenURL:url];
-//    return YES;
-//}
-
-
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url { 
     PPDebug(@"<handleURL> url=%@", url.absoluteString);
     if ([url.absoluteString containsString:@"safepay"]) {
-        
-//        [[AlipaySDK defaultService] processOrderWithPaymentResult:url
-//                                         standbyCallback:^(NSDictionary *resultDic) {
-//                                             NSString *resultStr = resultDic[@"result"];
-//                                             PPDebug(@"result = %@",resultDic);
-//                                             
-//                                             // show message
-//                                             [[AliPayManager defaultService] handlePayResult:resultDic];
-//                                             
-//                                         }];
-        
         return YES;
     }
     
@@ -571,24 +528,6 @@ NSString* GlobalGetBoardServerURL()
 
     PPDebug(@"<handleURL> url=%@, sourceApplication=%@, annotation=%@", url.absoluteString, sourceApplication, [annotation description]);
     
-//    if ([url.absoluteString containsString:@"safepay"]) {
-//
-//        [[AlipaySDK defaultService] processOrderWithPaymentResult:url
-//                                         standbyCallback:^(NSDictionary *resultDic) {
-//                                             NSString *resultStr = resultDic[@"result"];
-//                                             PPDebug(@"result = %@",resultDic);
-//
-//                                             // TODO show message
-//                                             [[AliPayManager defaultService] handlePayResult:resultDic];
-//                                         }];
-//
-//        return YES;
-//    }
-
-//    if ([[url absoluteString] hasPrefix:@"alipay"]){
-//        return [AliPayManager parseURL:url alipayPublicKey:[PPConfigManager getAlipayAlipayPublicKey]];
-//    }
-
     // TODO
 //    [WXApi handleOpenURL:url delegate:self];
     
@@ -691,29 +630,6 @@ NSString* GlobalGetBoardServerURL()
 //        }
 //    }
     
-//    //启动微信支付的response
-//    NSString *strMsg = [NSString stringWithFormat:@"errcode:%d", resp.errCode];
-//    if([resp isKindOfClass:[PayResp class]]){
-//        //支付返回结果，实际支付结果需要去微信服务器端查询
-//        switch (resp.errCode) {
-//            case 0:
-//                strMsg = @"支付结果：成功！";
-//                PPDebug(@"支付成功－PaySuccess，retcode = %d", resp.errCode);
-//                break;
-//            case -1:
-//                strMsg = @"支付结果：失败！";
-//                PPDebug(@"支付失败－PayFail，retcode = %d", resp.errCode);
-//                break;
-//            case -2:
-//                strMsg = @"用户已经退出支付！";
-//                PPDebug(@"支付失败－PayFail，retcode = %d", resp.errCode);
-//                break;
-//            default:
-//                strMsg = [NSString stringWithFormat:@"支付结果：失败！retcode = %d, retstr = %@", resp.errCode,resp.errStr];
-//                PPDebug(@"错误，retcode = %d, retstr = %@", resp.errCode,resp.errStr);
-//                break;
-//        }
-//    }
 //    POSTMSG2(strMsg, 3);
 //}
 

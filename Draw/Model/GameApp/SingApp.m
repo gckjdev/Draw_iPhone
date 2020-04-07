@@ -393,11 +393,6 @@
     return @"5y0b3iTlsJJdOUu1JmhJ";
 }
 
-//- (NSString *)alipayCallBackScheme
-//{
-//    return @"alipayxjdst.gckj";
-//}
-
 - (BOOL)isAutoRegister
 {
     return NO;
@@ -432,11 +427,6 @@
 {
     return NO;
 }
-
-//- (BOOL)canPayWithAlipay
-//{
-//    return NO;
-//}
 
 - (BOOL)canGift
 {

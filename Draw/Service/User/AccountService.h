@@ -11,10 +11,6 @@
 #import "Account.h"
 #import "GameBasic.pb.h"
 #import "GameNetworkConstants.h"
-//#import "Order.h"
-//#import "AliPayManager.h"
-
-//@class AlixPayOrder;
 
 #define VIP_BUY_TYPE_MONTH 1
 #define VIP_BUY_TYPE_YEAR  2
