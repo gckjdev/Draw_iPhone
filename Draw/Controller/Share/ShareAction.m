@@ -534,8 +534,10 @@
         // make this because after uploading data, it takes server sometime to process
         progress = 0.99;
     }
-
-    NSString* progressText = [NSString stringWithFormat:NSLS(@"kLoadingProgress"), progress*100];
+    
+    PPDebug(@"setProgress (%f)", progress);
+//    NSString* progressText = [NSString stringWithFormat:@"Loading %.f%%", progress*100.0f.0f];
+    NSString* progressText = [NSString stringWithFormat:NSLS(@"kLoadingProgress"), progress*100.0f];
     [[self superViewController] showProgressViewWithMessage:progressText progress:progress];
     
 //    [self.superViewController.progressView setLabelText:progressText];

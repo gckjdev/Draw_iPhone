@@ -7,7 +7,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>${PRODUCT_NAME}</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>请允许小吉画画保存图片到相册</string>
+	<string>小吉画画需要保存图片到相册，可以吗？</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFiles</key>

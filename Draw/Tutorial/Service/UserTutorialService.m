@@ -634,7 +634,7 @@ static UserTutorialService* _defaultService;
                                           
                                           NSDictionary* userInfo = note.userInfo;
                                           float newProgress = [[userInfo objectForKey:SMART_DATA_PROGRESS] floatValue];
-                                          NSString* message = [NSString stringWithFormat:NSLS(@"kLoadingStageWithProgress"), (int)(newProgress*100)];
+                                          NSString* message = [NSString stringWithFormat:NSLS(@"kLoadingStageWithProgress"), (int)(newProgress*100.0f)];
                                           [viewController showProgressViewWithMessage:message progress:newProgress];
                                           
                                       }];

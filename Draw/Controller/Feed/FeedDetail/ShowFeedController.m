@@ -692,7 +692,7 @@ typedef enum{
         progressText = [NSString stringWithFormat:NSLS(@"kParsingData")];
     }
     else{
-        progressText = [NSString stringWithFormat:NSLS(@"kLoadingProgress"), progress*100];
+        progressText = [NSString stringWithFormat:NSLS(@"kLoadingProgress"), progress*100.0f];
     }
     
     [self showProgressViewWithMessage:progressText progress:progress];
@@ -779,10 +779,10 @@ typedef enum{
             NSString* progressText = @"";
             if (progress == 1.0f){
                 progress = 0.99f;
-                progressText = [NSString stringWithFormat:NSLS(@"kDisplayProgress"), progress*100];
+                progressText = [NSString stringWithFormat:NSLS(@"kDisplayProgress"), progress*100.0f];
             }
             else{
-                progressText = [NSString stringWithFormat:NSLS(@"kParsingProgress"), progress*100];
+                progressText = [NSString stringWithFormat:NSLS(@"kParsingProgress"), progress*100.0f];
             }
             [self showProgressViewWithMessage:progressText progress:progress];
         }];
@@ -853,10 +853,10 @@ typedef enum{
             NSString* progressText = @"";
             if (progress == 1.0f){
                 progress = 0.99f;
-                progressText = [NSString stringWithFormat:NSLS(@"kDisplayProgress"), progress*100];
+                progressText = [NSString stringWithFormat:NSLS(@"kDisplayProgress"), progress*100.0f];
             }
             else{
-                progressText = [NSString stringWithFormat:NSLS(@"kParsingProgress"), progress*100];
+                progressText = [NSString stringWithFormat:NSLS(@"kParsingProgress"), progress*100.0f];
             }
             [viewController showProgressViewWithMessage:progressText progress:progress];
         }];
@@ -1006,10 +1006,10 @@ static dispatch_once_t spotAdOnceToken;
             NSString* progressText = @"";
             if (progress == 1.0f){
                 progress = 0.99f;
-                progressText = [NSString stringWithFormat:NSLS(@"kDisplayProgress"), progress*100];
+                progressText = [NSString stringWithFormat:NSLS(@"kDisplayProgress"), progress*100.0f];
             }
             else{
-                progressText = [NSString stringWithFormat:NSLS(@"kParsingProgress"), progress*100];
+                progressText = [NSString stringWithFormat:NSLS(@"kParsingProgress"), progress*100.0f];
             }
             [self showProgressViewWithMessage:progressText progress:progress];
         }];

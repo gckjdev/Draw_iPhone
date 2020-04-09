@@ -381,10 +381,10 @@ static ShareService* _defaultService;
         NSString* progressText = @"";
         if (progress == 1.0f){
             progress = 0.99f;
-            progressText = [NSString stringWithFormat:NSLS(@"kCreateGIFProgress"), (int)(progress*100)];
+            progressText = [NSString stringWithFormat:NSLS(@"kCreateGIFProgress"), (int)(progress*100.0f)];
         }
         else{
-            progressText = [NSString stringWithFormat:NSLS(@"kCreateGIFProgress"), (int)(progress*100)];
+            progressText = [NSString stringWithFormat:NSLS(@"kCreateGIFProgress"), (int)(progress*100.0f)];
         }
         [superController showProgressViewWithMessage:progressText progress:progress];
     }];
@@ -484,10 +484,10 @@ static ShareService* _defaultService;
         NSString* progressText = @"";
         if (progress == 1.0f){
             progress = 0.99f;
-            progressText = [NSString stringWithFormat:NSLS(@"kCreateGIFProgress"), (int)(progress*100)];
+            progressText = [NSString stringWithFormat:NSLS(@"kCreateGIFProgress"), (int)(progress*100.0f)];
         }
         else{
-            progressText = [NSString stringWithFormat:NSLS(@"kCreateGIFProgress"), (int)(progress*100)];
+            progressText = [NSString stringWithFormat:NSLS(@"kCreateGIFProgress"), (int)(progress*100.0f)];
         }
         [superController showProgressViewWithMessage:progressText progress:progress];
     }];

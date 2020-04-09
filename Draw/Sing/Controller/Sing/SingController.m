@@ -1170,7 +1170,7 @@ enum{
 - (void)processor:(VoiceProcessor *)processor progress:(float)progress{
     PPDebug(@"progress = %f", progress);
     
-    NSString* progressText = [NSString stringWithFormat:NSLS(@"kChangeVoiceDataProgress"), progress*100];
+    NSString* progressText = [NSString stringWithFormat:NSLS(@"kChangeVoiceDataProgress"), progress*100.0f];
     [self showProgressViewWithMessage:progressText progress:progress];
 }
 
@@ -1245,7 +1245,7 @@ enum{
 
 - (void)setProgress:(float)progress{
     
-    NSString* progressText = [NSString stringWithFormat:NSLS(@"kSendingProgress"), progress*100];
+    NSString* progressText = [NSString stringWithFormat:NSLS(@"kSendingProgress"), progress*100.0f];
     [self showProgressViewWithMessage:progressText progress:progress];
 }
 

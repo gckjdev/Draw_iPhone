@@ -1431,9 +1431,9 @@
 "kZodiacArray" = "Aries^Taurus^Gemini^Cancer^Leo^Virgo^Libra^Scorpio^Sagittarius^Capricorn^Aquarius^Pisces";
 
 
-"kLoadingProgress" = "Loading... (%3.f%%)";
-"kDisplayProgress" = "Loading... (%3.f%%)";
-"kParsingProgress" = "Parsing... (%3.f%%)";
+"kLoadingProgress" = "Loading... (%3.lf%%)";
+"kDisplayProgress" = "Loading... (%3.lf%%)";
+"kParsingProgress" = "Parsing... (%3.lf%%)";
 "kParsingData" = "Parsing data...";
 "kZodiac" = "Zodiac";
 "kBirthday" = "Birthday";

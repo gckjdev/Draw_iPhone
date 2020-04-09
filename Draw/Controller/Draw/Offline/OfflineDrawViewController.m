@@ -1990,7 +1990,7 @@
         progress = 0.99;
     }
     
-    NSString* progressText = [NSString stringWithFormat:NSLS(@"kSendingProgress"), progress*100];
+    NSString* progressText = [NSString stringWithFormat:NSLS(@"kSendingProgress"), progress*100.0f];
     [self showProgressViewWithMessage:progressText progress:progress];
 }
 
