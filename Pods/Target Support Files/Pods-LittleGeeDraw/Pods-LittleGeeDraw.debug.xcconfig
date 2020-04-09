@@ -1,9 +1,9 @@
 CLANG_MODULES_AUTOLINK = YES
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/UMCAnalytics" "${PODS_ROOT}/UMCCommon" "${PODS_ROOT}/UMCCommonLog/UMCommonLog"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/UMCAnalytics" "${PODS_ROOT}/UMCCommon" "${PODS_ROOT}/UMCCommonLog/UMCommonLog" "${PODS_ROOT}/UMCSecurityPlugins/thirdparties" "${PODS_ROOT}/UMCShare/UMShare" "${PODS_ROOT}/UMCShare/UMShare/UMSocialUI"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/CKCalendar" "${PODS_ROOT}/Headers/Public/GPUImage" "${PODS_ROOT}/Headers/Public/PEPhotoCropEditor"
-LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/CKCalendar" "${PODS_CONFIGURATION_BUILD_DIR}/GPUImage" "${PODS_CONFIGURATION_BUILD_DIR}/PEPhotoCropEditor"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"CKCalendar" -l"GPUImage" -l"PEPhotoCropEditor" -l"sqlite3" -l"z" -framework "AVFoundation" -framework "CoreGraphics" -framework "CoreMedia" -framework "CoreTelephony" -framework "OpenGLES" -framework "QuartzCore" -framework "SystemConfiguration" -framework "UIKit" -framework "UMAnalytics" -framework "UMCommon" -framework "UMCommonLog"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/CKCalendar" "${PODS_ROOT}/Headers/Public/GPUImage" "${PODS_ROOT}/Headers/Public/PEPhotoCropEditor" "${PODS_ROOT}/Headers/Public/UMCShare"
+LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/CKCalendar" "${PODS_CONFIGURATION_BUILD_DIR}/GPUImage" "${PODS_CONFIGURATION_BUILD_DIR}/PEPhotoCropEditor" "${PODS_ROOT}/UMCShare/UMShare/SocialLibraries/QQ" "${PODS_ROOT}/UMCShare/UMShare/SocialLibraries/Sina" "${PODS_ROOT}/UMCShare/UMShare/SocialLibraries/WeChat"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"CKCalendar" -l"GPUImage" -l"PEPhotoCropEditor" -l"SocialQQ" -l"SocialSina" -l"SocialWeChat" -l"sqlite3" -l"z" -framework "AVFoundation" -framework "CoreGraphics" -framework "CoreMedia" -framework "CoreTelephony" -framework "OpenGLES" -framework "Photos" -framework "QuartzCore" -framework "SecurityEnvSDK" -framework "SystemConfiguration" -framework "UIKit" -framework "UMAnalytics" -framework "UMCommon" -framework "UMCommonLog" -framework "UMShare" -framework "UShareUI" -framework "UTDID" -framework "WebKit"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_PODFILE_DIR_PATH = ${SRCROOT}/.
