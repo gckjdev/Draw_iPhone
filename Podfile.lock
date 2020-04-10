@@ -6,6 +6,21 @@ PODS:
     - UMCCommon
   - UMCCommon (2.1.4)
   - UMCCommonLog (1.0.0)
+  - UMCSecurityPlugins (1.0.6)
+  - UMCShare/Core (6.9.8):
+    - UMCCommon
+  - UMCShare/Social/ReducedQQ (6.9.8):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/ReducedSina (6.9.8):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/ReducedWeChat (6.9.8):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/UI (6.9.8):
+    - UMCCommon
+    - UMCShare/Core
 
 DEPENDENCIES:
   - CKCalendar
@@ -14,6 +29,11 @@ DEPENDENCIES:
   - UMCAnalytics
   - UMCCommon
   - UMCCommonLog
+  - UMCSecurityPlugins
+  - UMCShare/Social/ReducedQQ
+  - UMCShare/Social/ReducedSina
+  - UMCShare/Social/ReducedWeChat
+  - UMCShare/UI
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -23,6 +43,8 @@ SPEC REPOS:
     - UMCAnalytics
     - UMCCommon
     - UMCCommonLog
+    - UMCSecurityPlugins
+    - UMCShare
 
 SPEC CHECKSUMS:
   CKCalendar: 1aebf76524bd4c4442e0002f989cd377fcdaf5e2
@@ -31,7 +53,9 @@ SPEC CHECKSUMS:
   UMCAnalytics: 3503f179f7af932b30af9ac161ac11fb48fa72b6
   UMCCommon: b0703b0053323f598e01670ea702b8eb1e66e611
   UMCCommonLog: 05a2d5de21858e3d870551562cff405c1366d244
+  UMCSecurityPlugins: 0831a08f3988f3cea9f1d3a7626cd9bee4fef150
+  UMCShare: a250203b34a56cde25cc4c28335449b542f0255d
 
-PODFILE CHECKSUM: 540a22b0a6bb440f8d510b62d8f30429510ed67a
+PODFILE CHECKSUM: b93d04784414f619757ee6c361768e0c75ff363e
 
 COCOAPODS: 1.7.2

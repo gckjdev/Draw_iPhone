@@ -133,7 +133,7 @@
             
             [self.tutorialStartBtn setTitle:NSLS(@"kContinueStage")forState:UIControlStateNormal];
             [self.progressInfoLabel setHidden:NO];
-            NSString * progressString = [NSString stringWithFormat:@"%.0f%%",progress*100];
+            NSString * progressString = [NSString stringWithFormat:@"%.0f%%",progress*100.0f];
             [self.progressInfoLabel setText:[NSLS(@"kProgress") stringByAppendingString:progressString]];
             [self.progressInfoLabel setFont:AD_FONT(18, 12)];
             [self.progressInfoLabel setTextColor:COLOR_WHITE];

@@ -383,7 +383,7 @@ allowClickMaskDismiss:(BOOL)allowClickMaskDismiss
         progress = 0.99;
     }
 
-    NSString* progressText = [NSString stringWithFormat:NSLS(@"kLoadingProgress"), progress*100];
+    NSString* progressText = [NSString stringWithFormat:NSLS(@"kLoadingProgress"), progress*100.0f];
     [[self superViewController] showProgressViewWithMessage:progressText progress:progress];
 //    [self.superViewController.progressView setLabelText:progressText];
 //
