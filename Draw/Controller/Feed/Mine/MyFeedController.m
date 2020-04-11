@@ -125,7 +125,8 @@ typedef enum{
         [feedUser release];
         
         CommentController *cc = [[CommentController alloc] initWithFeed:drawFeed commentFeed:_selectedCommentFeed];
-        [self presentViewController:cc animated:YES completion:nil];
+        [self.navigationController pushViewController:cc animated:YES];
+//        [self presentViewController:cc animated:YES completion:nil];
         [cc release];
         
         [drawFeed release];

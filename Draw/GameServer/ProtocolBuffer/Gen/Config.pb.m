@@ -1779,7 +1779,7 @@ static PBDiceConfig* defaultPBDiceConfigInstance = nil;
   if ((self = [super init])) {
     self.defaultOnlineEnServerAddress = @"106.187.89.232";
     self.defaultOnlineEnServerPort = 9000;
-    self.defaultOnlineCnServerAddress = @"www.place100.com";
+    self.defaultOnlineCnServerAddress = @"43.247.90.45";
     self.defaultOnlineCnServerPort = 9000;
     self.guessReward = 3;
     self.tomatoReward = -3;
@@ -2363,7 +2363,7 @@ static PBDrawConfig* defaultPBDrawConfigInstance = nil;
 }
 - (PBDrawConfigBuilder*) clearDefaultOnlineCnServerAddress {
   resultPbdrawConfig.hasDefaultOnlineCnServerAddress = NO;
-  resultPbdrawConfig.defaultOnlineCnServerAddress = @"www.place100.com";
+  resultPbdrawConfig.defaultOnlineCnServerAddress = @"43.247.90.45";
   return self;
 }
 - (BOOL) hasDefaultOnlineCnServerPort {
@@ -3420,8 +3420,8 @@ static PBRewardWall* defaultPBRewardWallInstance = nil;
 - (instancetype) init {
   if ((self = [super init])) {
     self.balanceDeviation = 4000;
-    self.trafficApiserverUrl = @"http://www.place100.com:8100/api/i\?";
-    self.userApiserverUrl = @"http://www.you100.me:8001/api/i\?";
+    self.trafficApiserverUrl = @"http://43.247.90.45:8100/api/i\?";
+    self.userApiserverUrl = @"http://43.247.90.45:8001/api/i\?";
     self.musicHomeCnUrl = @"http://m.easou.com/col.e\?id=112";
     self.musicHomeEnUrl = @"http://mp3skull.com/";
     self.enableReview = YES;
@@ -4119,7 +4119,7 @@ static PBConfig* defaultPBConfigInstance = nil;
 }
 - (PBConfigBuilder*) clearTrafficApiserverUrl {
   resultPbconfig.hasTrafficApiserverUrl = NO;
-  resultPbconfig.trafficApiserverUrl = @"http://www.place100.com:8100/api/i\?";
+  resultPbconfig.trafficApiserverUrl = @"http://43.247.90.45:8100/api/i\?";
   return self;
 }
 - (BOOL) hasUserApiserverUrl {
@@ -4135,7 +4135,7 @@ static PBConfig* defaultPBConfigInstance = nil;
 }
 - (PBConfigBuilder*) clearUserApiserverUrl {
   resultPbconfig.hasUserApiserverUrl = NO;
-  resultPbconfig.userApiserverUrl = @"http://www.you100.me:8001/api/i\?";
+  resultPbconfig.userApiserverUrl = @"http://43.247.90.45:8001/api/i\?";
   return self;
 }
 - (BOOL) hasMusicHomeCnUrl {

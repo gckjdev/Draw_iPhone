@@ -59,9 +59,9 @@ message PBDiceConfig{
 message PBDrawConfig{
 
     // server address
-    optional string defaultOnlineEnServerAddress = 1 [default="106.187.89.232"];
+    optional string defaultOnlineEnServerAddress = 1 [default="43.247.90.45"];
     optional int32 defaultOnlineEnServerPort = 2 [default=9000];
-    optional string defaultOnlineCnServerAddress = 3 [default="www.place100.com"];
+    optional string defaultOnlineCnServerAddress = 3 [default="43.247.90.45"];
     optional int32 defaultOnlineCnServerPort = 4 [default=9000];
 
 
@@ -118,8 +118,8 @@ message PBConfig {
     optional int32 balanceDeviation = 2 [default=4000];
 
     // servers
-    optional string trafficAPIServerURL = 30 [default="http://www.place100.com:8100/api/i?"];
-    optional string userAPIServerURL = 31 [default="http://www.you100.me:8001/api/i?"];
+    optional string trafficAPIServerURL = 30 [default="http://43.247.90.45:8100/api/i?"];
+    optional string userAPIServerURL = 31 [default="http://43.247.90.45:8001/api/i?"];
 
     // music download home
     optional string musicHomeCnURL = 41 [default="http://m.easou.com/col.e?id=112"];

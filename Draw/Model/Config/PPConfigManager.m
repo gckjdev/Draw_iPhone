@@ -150,10 +150,10 @@
 + (NSString*)getTrafficAPIServerURL
 {
     if ([LocaleUtils isChina]){
-        return [MobClickUtils getStringValueByKey:@"TRAFFIC_API_SERVER_CN" defaultValue:@"http://www.place100.com:8100/api/i?"];    
+        return [MobClickUtils getStringValueByKey:@"TRAFFIC_API_SERVER_CN" defaultValue:@"http://43.247.90.45:8100/api/i?"];
     }
     else{
-        return [MobClickUtils getStringValueByKey:@"TRAFFIC_API_SERVER_EN" defaultValue:@"http://www.place100.com:8100/api/i?"];    
+        return [MobClickUtils getStringValueByKey:@"TRAFFIC_API_SERVER_EN" defaultValue:@"http://43.247.90.45:8100/api/i?"];
     }
 }
 
@@ -173,7 +173,7 @@
     
 #endif
 
-    return [MobClickUtils getStringValueByKey:@"MESSAGE_SERVER_URL" defaultValue:@"http://www.place100.com:8300/api/i?"];
+    return [MobClickUtils getStringValueByKey:@"MESSAGE_SERVER_URL" defaultValue:@"http://43.247.90.45:8300/api/i?"];
 }
 
 + (NSString*)getBBSServerURL
@@ -187,7 +187,7 @@
     
 #endif
     
-    return [MobClickUtils getStringValueByKey:@"BBS_SERVER_URL" defaultValue:@"http://www.place100.com:8300/api/i?"];
+    return [MobClickUtils getStringValueByKey:@"BBS_SERVER_URL" defaultValue:@"http://43.247.90.45:8300/api/i?"];
 }
 
 
@@ -202,7 +202,7 @@
     return @"http://43.247.90.45:8300/api/i?";
     
 #endif
-    return [MobClickUtils getStringValueByKey:@"GROUP_SERVER_URL" defaultValue:@"http://www.place100.com:8300/api/i?"];
+    return [MobClickUtils getStringValueByKey:@"GROUP_SERVER_URL" defaultValue:@"http://43.247.90.45:8300/api/i?"];
 }
 
 + (NSString*)getMusicDownloadHomeURL
@@ -314,12 +314,12 @@
 
 + (NSString*)defaultEnglishServer
 {
-    return [MobClickUtils getStringValueByKey:@"ENGLISH_SERVER_ADDRESS" defaultValue:@"106.187.89.232"];
+    return [MobClickUtils getStringValueByKey:@"ENGLISH_SERVER_ADDRESS" defaultValue:@"43.247.90.45"];
 }
 
 + (NSString*)defaultChineseServer
 {
-    return [MobClickUtils getStringValueByKey:@"CHINESE_SERVER_ADDRESS" defaultValue:@"www.place100.com"];
+    return [MobClickUtils getStringValueByKey:@"CHINESE_SERVER_ADDRESS" defaultValue:@"43.247.90.45"];
 }
 
 + (int)defaultEnglishPort
@@ -341,10 +341,10 @@
 #endif
 
     if ([[UserManager defaultManager] getLanguageType] == ChineseType ){
-        return [MobClickUtils getStringValueByKey:@"DRAW_SERVER_LIST_CN_NEW" defaultValue:@"58.215.172.169:9000"];
+        return [MobClickUtils getStringValueByKey:@"DRAW_SERVER_LIST_CN_NEW" defaultValue:@"43.247.90.45:9000"];
     }
     else{
-        return [MobClickUtils getStringValueByKey:@"DRAW_SERVER_LIST_EN_NEW" defaultValue:@"58.215.172.169:9010"];
+        return [MobClickUtils getStringValueByKey:@"DRAW_SERVER_LIST_EN_NEW" defaultValue:@"43.247.90.45:9010"];
     }
 }
 
@@ -1520,7 +1520,7 @@
 //    return @"http://localhost:8100/api/i?";
 #endif
     
-    return [MobClickUtils getStringValueByKey:@"TUTORIAL_SERVER_URL" defaultValue:@"http://www.place100.com:8300/api/i?"];
+    return [MobClickUtils getStringValueByKey:@"TUTORIAL_SERVER_URL" defaultValue:@"http://43.247.90.45:8300/api/i?"];
 }
 
 +(NSInteger)getMinStrokeNum

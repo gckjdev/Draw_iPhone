@@ -1060,7 +1060,8 @@ static dispatch_once_t spotAdOnceToken;
 {
     [_commentHeader setSelectedType:CommentTypeContestComment];
     CommentController *cc = [[CommentController alloc] initWithFeed:self.feed forContestReport:YES];
-    [self presentViewController:cc animated:YES completion:nil];
+//    [self presentViewController:cc animated:YES completion:nil];
+    [self.navigationController pushViewController:cc animated:YES];
     [cc release];
 }
 
@@ -1101,7 +1102,8 @@ static dispatch_once_t spotAdOnceToken;
             CHECK_AND_LOGIN(self.view);
             
             CommentController *cc = [[CommentController alloc] initWithFeed:self.feed forContestReport:NO];
-            [self presentViewController:cc animated:YES completion:nil];
+//            [self presentViewController:cc animated:YES completion:nil];
+            [self.navigationController pushViewController:cc animated:YES];
             [_commentHeader setSelectedType:CommentTypeComment];
             [cc release];
             break;
@@ -1186,7 +1188,8 @@ static dispatch_once_t spotAdOnceToken;
     CHECK_AND_LOGIN(self.view);
     PPDebug(@"<didStartToReplyToFeed>, feed type = %d,comment = %@", feed.feedType,feed.comment);
     CommentController *replyController = [[CommentController alloc] initWithFeed:self.feed commentFeed:feed];
-    [self presentViewController:replyController animated:YES completion:nil];
+//    [self presentViewController:replyController animated:YES completion:nil];
+    [self.navigationController pushViewController:replyController animated:YES];
     [replyController release];
 }
 

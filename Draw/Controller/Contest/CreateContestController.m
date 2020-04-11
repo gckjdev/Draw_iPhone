@@ -59,7 +59,8 @@
     }else{
         
         CreateContestController *vc = [[[CreateContestController alloc] init] autorelease];
-        [controller presentViewController:vc animated:YES completion:NULL];
+//        [controller presentViewController:vc animated:YES completion:NULL];
+        [controller.navigationController pushViewController:vc animated:YES];
     }
 }
 
@@ -83,7 +84,8 @@
 + (void)enterFromController:(PPViewController *)controller withContest:(Contest *)contest{
     
     CreateContestController *vc = [[[CreateContestController alloc] initWithContest:contest] autorelease];
-    [controller presentViewController:vc animated:YES completion:NULL];
+//    [controller presentViewController:vc animated:YES completion:NULL];
+    [controller.navigationController pushViewController:vc animated:YES];
 }
 
 
@@ -290,7 +292,8 @@
                  POSTMSG2(NSLS(@"kCreatingContestFail"), 2);
             }else{
                  POSTMSG2(NSLS(@"kCreateContestSuccess"), 2);
-                 [self dismissViewControllerAnimated:YES completion:NULL];
+//                 [self dismissViewControllerAnimated:YES completion:NULL];
+                [self finishController];
                  [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_CREATE_CONTEST_SUCCESS object:nil];
             }
         }];
@@ -312,7 +315,8 @@
             }else{
                 
                 POSTMSG2(NSLS(@"kUpdateContestSuccess"), 2);
-                [self dismissViewControllerAnimated:YES completion:NULL];
+//                [self dismissViewControllerAnimated:YES completion:NULL];
+                [self finishController];
                 [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_UPDATE_CONTEST_SUCCESS object:nil];
             }
         }];
@@ -325,11 +329,12 @@
 - (IBAction)clickStartTimeButton:(id)sender {
     
 //    [self.calendar setMinDate:nextDate([NSDate date])];
-    [self.calendar setMinDate:[NSDate date]];
+//    [self.calendar setMinDate:[NSDate date]];
 
 //    [self.calendar setMaxDate:self.contest.endDate];
     self.calendar.tag = CALENDAR_TAG_START_TIME;
-    [self.calendar setSelectedDate:self.contest.startDate];
+//    [self.calendar setSelectedDate:self.contest.startDate];
+    [self.calendar selectDate:self.contest.startDate makeVisible:YES];
     [self.view addSubview:self.calendar];
     self.calendarDismissButton.hidden = NO;
     
@@ -339,11 +344,12 @@
 
 - (IBAction)clickEndTimeButton:(id)sender {
     
-    [self.calendar setMinDate:self.contest.startDate];
+//    [self.calendar setMinDate:self.contest.startDate];
     NSDate *maxDate = [NSDate dateWithTimeInterval:24*3600*45 sinceDate:[NSDate date]];
-    [self.calendar setMaxDate:maxDate];
+//    [self.calendar setMaxDate:maxDate];
     self.calendar.tag = CALENDAR_TAG_END_TIME;
-    [self.calendar setSelectedDate:self.contest.endDate];
+    [self.calendar selectDate:self.contest.endDate makeVisible:YES];
+//    [self.calendar setSelectedDate:self.contest.endDate];
     [self.view addSubview:self.calendar];
     self.calendarDismissButton.hidden = NO;
     
@@ -429,13 +435,15 @@
     vc.delegate = self;
     vc.image = image;
     
-    [self presentViewController:vc animated:YES completion:NULL];
+//    [self presentViewController:vc animated:YES completion:NULL];
+    [self.navigationController pushViewController:vc animated:YES];
     [vc release];
 }
 
 - (void)cropViewController:(CropAndFilterViewController *)controller didFinishCroppingImage:(UIImage *)image{
     
-    [controller dismissViewControllerAnimated:YES completion:NULL];
+//    [controller dismissViewControllerAnimated:YES completion:NULL];
+    [controller.navigationController popViewControllerAnimated:YES];
     
     if (image != nil) {
         PPDebug(@"image selected, image size = %@", NSStringFromCGSize(image.size));
@@ -452,7 +460,8 @@
 - (IBAction)clickContestAwardButton:(id)sender {
     
     self.awardEditController = [[[ContestAwardEditController alloc] initWithContest:self.contest] autorelease];
-    [self presentViewController:self.awardEditController animated:YES completion:NULL];
+//    [self presentViewController:self.awardEditController animated:YES completion:NULL];
+    [self.navigationController pushViewController:self.awardEditController animated:YES];
     
     [self registerNotificationWithName:NotificationContestAwardEditDone
                             usingBlock:^(NSNotification *note) {
@@ -467,7 +476,8 @@
 
 - (void)contestAwardHasChanged{
     
-    [self.awardEditController dismissViewControllerAnimated:YES completion:NULL];
+//    [self.awardEditController dismissViewControllerAnimated:YES completion:NULL];
+    [self.awardEditController.navigationController popViewControllerAnimated:YES];
     [self.contestAwardButton setTitle:[self.contest awardRulesShortDesc] forState:UIControlStateNormal];
     
     [self unregisterNotificationWithName:NotificationContestAwardEditDone];
@@ -482,7 +492,12 @@
 - (void)clickBack:(id)sender{
     
     [IQKeyBoardManager disableKeyboardManager];
-    [self dismissViewControllerAnimated:YES completion:NULL];
+//    [self dismissViewControllerAnimated:YES completion:NULL];
+    [self finishController];
+}
+
+- (void)finishController{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)dealloc {

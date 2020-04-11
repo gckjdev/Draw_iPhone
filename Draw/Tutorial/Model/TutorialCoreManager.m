@@ -362,7 +362,7 @@ static TutorialCoreManager* _defaultTutorialCoreManager;
     
 
     
-    NSString* root = @"/Users/huaying/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
+    NSString* root = @"/Users/huaying/git/Draw_iPhone/Draw/Tutorial/Resource/";
 //    NSString* root = @"/Users/pipi/Desktop/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
     //    NSString *root = @"/Users/Linruin/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
 //    NSString *root = @"/Users/jiandan/gitdata/Draw_iPhone/Draw/Tutorial/Resource/";
