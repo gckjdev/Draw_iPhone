@@ -378,15 +378,17 @@
 //#if DEBUG
 //    return NO;
 //#endif
+
+    return NO;
     
-    NSString* currentVersion = [PPApplication getAppVersion];
-    NSString* inReviewVersion = [MobClickUtils getStringValueByKey:@"IN_REVIEW_VERSION" defaultValue:@""];
-    if ([inReviewVersion length] > 0){
-        return [currentVersion isEqualToString:inReviewVersion];
-    }
-    else{
-        return YES;
-    }    
+//    NSString* currentVersion = [PPApplication getAppVersion];
+//    NSString* inReviewVersion = [MobClickUtils getStringValueByKey:@"IN_REVIEW_VERSION" defaultValue:@""];
+//    if ([inReviewVersion length] > 0){
+//        return [currentVersion isEqualToString:inReviewVersion];
+//    }
+//    else{
+//        return YES;
+//    }
 }
 
 + (ChatVoiceEnable)getChatVoiceEnable

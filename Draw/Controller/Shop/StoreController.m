@@ -126,11 +126,12 @@ typedef enum{
 
 - (BOOL)needHideTaoboTab
 {
-    if ([PPConfigManager isInReviewVersion] ||
-        ([LocaleUtils isChina] || [LocaleUtils isChinese]) == NO) {
-        return YES;
-    }
-    return NO;
+    return YES;
+//    if ([PPConfigManager isInReviewVersion] ||
+//        ([LocaleUtils isChina] || [LocaleUtils isChinese]) == NO) {
+//        return YES;
+//    }
+//    return NO;
 }
 
 
@@ -204,9 +205,10 @@ typedef enum{
     [self.chargeButton setTitle:NSLS(@"kCharge") forState:UIControlStateNormal];
     
     [self.buyVipButton setTitle:NSLS(@"kBuyVip") forState:UIControlStateNormal];
-    if ([PPConfigManager isInReviewVersion]){
+//    if ([PPConfigManager isInReviewVersion]){
+    // TODO finish IAP VIP buy next version
         self.buyVipButton.hidden = YES;
-    }
+//    }
     
     [self updateBalance];
     [self updateItemData];
@@ -302,17 +304,17 @@ typedef enum{
             __block typeof (self) bself = self;
             [[AccountService defaultService] setDelegate:bself];
             
-            if ([PPConfigManager isInReviewVersion] == NO && [GameApp canGift]) {
-                [BuyItemView showBuyItemView:item.itemId inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
-                    [bself updateBalance];
-                    [bself.dataTableView reloadData];
-                }];
-            } else {
+//            if ([PPConfigManager isInReviewVersion] == NO && [GameApp canGift]) {
+//                [BuyItemView showBuyItemView:item.itemId inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
+//                    [bself updateBalance];
+//                    [bself.dataTableView reloadData];
+//                }];
+//            } else {
                 [BuyItemView showOnlyBuyItemView:item.itemId inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
                     [bself updateBalance];
                     [bself.dataTableView reloadData];
                 }];
-            }
+//            }
     }
 }
 

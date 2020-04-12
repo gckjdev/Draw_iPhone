@@ -197,6 +197,7 @@ static TaskManager* _defaultTaskManager;
     
     if ([PPConfigManager isInReviewVersion] == NO){
         
+        /*
         if ([UIUtils checkAppHasUpdateVersion]){
             [retList addObject:taskAppUpgrade];
         }
@@ -204,7 +205,6 @@ static TaskManager* _defaultTaskManager;
         [retList addObject:reviewTask];
         
         // add app task
-        
         NSArray* appTaskList = [[AppTaskManager defaultManager] taskList];
         for (AppTask* appTask in appTaskList){
             if ([appTask show]){
@@ -233,6 +233,7 @@ static TaskManager* _defaultTaskManager;
                 
             }
         }
+         */
         
     }
     else{

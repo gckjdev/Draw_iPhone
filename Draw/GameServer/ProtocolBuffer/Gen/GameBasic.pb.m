@@ -14126,7 +14126,7 @@ static PBGameItemList* defaultPBGameItemListInstance = nil;
 @interface PBIAPProduct ()
 @property PBIAPProductType type;
 @property (strong) NSString* appleProductId;
-@property (strong) NSString* alipayProductId;
+@property (strong) NSString* apyProductId;
 @property (strong) NSString* name;
 @property (strong) NSString* desc;
 @property SInt32 count;
@@ -14154,13 +14154,13 @@ static PBGameItemList* defaultPBGameItemListInstance = nil;
   hasAppleProductId_ = !!_value_;
 }
 @synthesize appleProductId;
-- (BOOL) hasAlipayProductId {
-  return !!hasAlipayProductId_;
+- (BOOL) hasapyProductId {
+  return !!hasapyProductId_;
 }
-- (void) setHasAlipayProductId:(BOOL) _value_ {
-  hasAlipayProductId_ = !!_value_;
+- (void) setHasapyProductId:(BOOL) _value_ {
+  hasapyProductId_ = !!_value_;
 }
-@synthesize alipayProductId;
+@synthesize apyProductId;
 - (BOOL) hasName {
   return !!hasName_;
 }
@@ -14223,7 +14223,7 @@ static PBGameItemList* defaultPBGameItemListInstance = nil;
   if ((self = [super init])) {
     self.type = PBIAPProductTypeIapcoin;
     self.appleProductId = @"";
-    self.alipayProductId = @"";
+    self.apyProductId = @"";
     self.name = @"";
     self.desc = @"";
     self.count = 1;
@@ -14269,8 +14269,8 @@ static PBIAPProduct* defaultPBIAPProductInstance = nil;
   if (self.hasAppleProductId) {
     [output writeString:2 value:self.appleProductId];
   }
-  if (self.hasAlipayProductId) {
-    [output writeString:3 value:self.alipayProductId];
+  if (self.hasapyProductId) {
+    [output writeString:3 value:self.apyProductId];
   }
   if (self.hasName) {
     [output writeString:5 value:self.name];
@@ -14314,8 +14314,8 @@ static PBIAPProduct* defaultPBIAPProductInstance = nil;
   if (self.hasAppleProductId) {
     size_ += computeStringSize(2, self.appleProductId);
   }
-  if (self.hasAlipayProductId) {
-    size_ += computeStringSize(3, self.alipayProductId);
+  if (self.hasapyProductId) {
+    size_ += computeStringSize(3, self.apyProductId);
   }
   if (self.hasName) {
     size_ += computeStringSize(5, self.name);
@@ -14385,8 +14385,8 @@ static PBIAPProduct* defaultPBIAPProductInstance = nil;
   if (self.hasAppleProductId) {
     [output appendFormat:@"%@%@: %@\n", indent, @"appleProductId", self.appleProductId];
   }
-  if (self.hasAlipayProductId) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"alipayProductId", self.alipayProductId];
+  if (self.hasapyProductId) {
+    [output appendFormat:@"%@%@: %@\n", indent, @"apyProductId", self.apyProductId];
   }
   if (self.hasName) {
     [output appendFormat:@"%@%@: %@\n", indent, @"name", self.name];
@@ -14433,8 +14433,8 @@ static PBIAPProduct* defaultPBIAPProductInstance = nil;
       (!self.hasType || self.type == otherMessage.type) &&
       self.hasAppleProductId == otherMessage.hasAppleProductId &&
       (!self.hasAppleProductId || [self.appleProductId isEqual:otherMessage.appleProductId]) &&
-      self.hasAlipayProductId == otherMessage.hasAlipayProductId &&
-      (!self.hasAlipayProductId || [self.alipayProductId isEqual:otherMessage.alipayProductId]) &&
+      self.hasapyProductId == otherMessage.hasapyProductId &&
+      (!self.hasapyProductId || [self.apyProductId isEqual:otherMessage.apyProductId]) &&
       self.hasName == otherMessage.hasName &&
       (!self.hasName || [self.name isEqual:otherMessage.name]) &&
       self.hasDesc == otherMessage.hasDesc &&
@@ -14462,8 +14462,8 @@ static PBIAPProduct* defaultPBIAPProductInstance = nil;
   if (self.hasAppleProductId) {
     hashCode = hashCode * 31 + [self.appleProductId hash];
   }
-  if (self.hasAlipayProductId) {
-    hashCode = hashCode * 31 + [self.alipayProductId hash];
+  if (self.hasapyProductId) {
+    hashCode = hashCode * 31 + [self.apyProductId hash];
   }
   if (self.hasName) {
     hashCode = hashCode * 31 + [self.name hash];
@@ -14541,8 +14541,8 @@ static PBIAPProduct* defaultPBIAPProductInstance = nil;
   if (other.hasAppleProductId) {
     [self setAppleProductId:other.appleProductId];
   }
-  if (other.hasAlipayProductId) {
-    [self setAlipayProductId:other.alipayProductId];
+  if (other.hasapyProductId) {
+    [self setapyProductId:other.apyProductId];
   }
   if (other.hasName) {
     [self setName:other.name];
@@ -14610,7 +14610,7 @@ static PBIAPProduct* defaultPBIAPProductInstance = nil;
         break;
       }
       case 26: {
-        [self setAlipayProductId:[input readString]];
+        [self setapyProductId:[input readString]];
         break;
       }
       case 42: {
@@ -14686,20 +14686,20 @@ static PBIAPProduct* defaultPBIAPProductInstance = nil;
   resultPbiapproduct.appleProductId = @"";
   return self;
 }
-- (BOOL) hasAlipayProductId {
-  return resultPbiapproduct.hasAlipayProductId;
+- (BOOL) hasapyProductId {
+  return resultPbiapproduct.hasapyProductId;
 }
-- (NSString*) alipayProductId {
-  return resultPbiapproduct.alipayProductId;
+- (NSString*) apyProductId {
+  return resultPbiapproduct.apyProductId;
 }
-- (PBIAPProductBuilder*) setAlipayProductId:(NSString*) value {
-  resultPbiapproduct.hasAlipayProductId = YES;
-  resultPbiapproduct.alipayProductId = value;
+- (PBIAPProductBuilder*) setapyProductId:(NSString*) value {
+  resultPbiapproduct.hasapyProductId = YES;
+  resultPbiapproduct.apyProductId = value;
   return self;
 }
-- (PBIAPProductBuilder*) clearAlipayProductId {
-  resultPbiapproduct.hasAlipayProductId = NO;
-  resultPbiapproduct.alipayProductId = @"";
+- (PBIAPProductBuilder*) clearapyProductId {
+  resultPbiapproduct.hasapyProductId = NO;
+  resultPbiapproduct.apyProductId = @"";
   return self;
 }
 - (BOOL) hasName {

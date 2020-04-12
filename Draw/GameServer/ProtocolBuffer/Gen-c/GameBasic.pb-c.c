@@ -4782,12 +4782,12 @@ static const ProtobufCFieldDescriptor game__pbiapproduct__field_descriptors[12] 
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "alipayProductId",
+    "apyProductId",
     3,
     PROTOBUF_C_LABEL_OPTIONAL,
     PROTOBUF_C_TYPE_STRING,
     0,   /* quantifier_offset */
-    offsetof(Game__PBIAPProduct, alipayproductid),
+    offsetof(Game__PBIAPProduct, apyproductid),
     NULL,
     NULL,
     0,             /* flags */
@@ -4903,7 +4903,7 @@ static const ProtobufCFieldDescriptor game__pbiapproduct__field_descriptors[12] 
   },
 };
 static const unsigned game__pbiapproduct__field_indices_by_name[] = {
-  2,   /* field[2] = alipayProductId */
+  2,   /* field[2] = apyProductId */
   1,   /* field[1] = appleProductId */
   5,   /* field[5] = count */
   8,   /* field[8] = country */

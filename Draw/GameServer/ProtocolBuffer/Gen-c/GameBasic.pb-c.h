@@ -1140,7 +1140,7 @@ struct  _Game__PBIAPProduct
   /*
    * Ali pay购买ID
    */
-  char *alipayproductid;
+  char *apyproductid;
   /*
    * 产品名称
    */

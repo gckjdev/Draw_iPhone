@@ -31,6 +31,11 @@
 
 + (PurchaseVipController*)enter:(PPViewController*)fromController
 {
+    // TODO IAP implementation later
+    if (TRUE){
+        return nil;
+    }
+    
     if ([PPConfigManager isInReviewVersion]){
         POSTMSG(NSLS(@"kTaskVipUnderDev"));
         return nil;

@@ -307,12 +307,12 @@ NSString* GlobalGetBoardServerURL()
     }
     
     // Ask For Review
-    if ([PPConfigManager isInReviewVersion] == NO){
-        if ([DeviceDetection isOS5]){
-            self.reviewRequest = [ReviewRequest startReviewRequest:[PPConfigManager appId] appName:GlobalGetAppName() isTest:YES];
-            self.reviewRequest.delegate = self;
-        }
-    }
+//    if ([PPConfigManager isInReviewVersion] == NO){
+//        if ([DeviceDetection isOS5]){
+//            self.reviewRequest = [ReviewRequest startReviewRequest:[PPConfigManager appId] appName:GlobalGetAppName() isTest:YES];
+//            self.reviewRequest.delegate = self;
+//        }
+//    }
 
     // Init Home Controller As Root View Controller
     PPViewController* rootController = [GameApp homeController];

@@ -109,19 +109,19 @@
         rowOfReportBug = count++;
         rowOfFeedback = count++;
         
-        if ([PPConfigManager isInReviewVersion] == NO){
-            rowOfAppUpdate = count++;
-        }
-        else{
+//        if ([PPConfigManager isInReviewVersion] == NO){
+//            rowOfAppUpdate = count++;
+//        }
+//        else{
             rowOfAppUpdate = -1;
-        }
+//        }
         
-        if ([PPConfigManager isInReviewVersion] == NO){
-            rowOfGiveReview = count++;
-        }
-        else{
+//        if ([PPConfigManager isInReviewVersion] == NO){
+//            rowOfGiveReview = count++;
+//        }
+//        else{
             rowOfGiveReview = -1;
-        }
+//        }
         rowOfAbout = count++;
 //        rowOfMoreApp = count++;
         numberOfRows = count;
@@ -135,15 +135,17 @@
         rowOfFeedback = count++;
 //        rowOfMoreApp = count++;
         rowOfAppUpdate = count++;
-        if ([PPConfigManager isInReviewVersion] == NO){
-            rowOfGiveReview = count++;
-            rowOfAppUpdate = count++;
-        }
-        else{
-            rowOfGiveReview = -1;
-            rowOfAppUpdate = -1;
-        }
-        
+//        if ([PPConfigManager isInReviewVersion] == NO){
+//            rowOfGiveReview = count++;
+//            rowOfAppUpdate = count++;
+//        }
+//        else{
+//            rowOfGiveReview = -1;
+//            rowOfAppUpdate = -1;
+//        }
+        rowOfGiveReview = -1;
+        rowOfAppUpdate = -1;
+
         rowOfCleanCache = count++;
         rowOfAbout = count++;
         numberOfRows = count;
