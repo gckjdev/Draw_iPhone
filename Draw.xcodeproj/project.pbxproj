@@ -196,6 +196,7 @@
 		923A175E243B83770037D7DC /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 923A175D243B83760037D7DC /* WebKit.framework */; };
 		923A175F243B83800037D7DC /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 923A175D243B83760037D7DC /* WebKit.framework */; };
 		928092A423F798030060A4C5 /* face_wry@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D8FCC217DB089C0085061F /* face_wry@2x.png */; };
+		92B78E882442D08F006FC503 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92B78E872442D08D006FC503 /* Assets.xcassets */; };
 		92CA7176243B2A5F0061CCA2 /* NotificationCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CA7175243B2A5E0061CCA2 /* NotificationCenterManager.m */; };
 		92CA7177243B2A5F0061CCA2 /* NotificationCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CA7175243B2A5E0061CCA2 /* NotificationCenterManager.m */; };
 		92F62D14243C92AB009A6E1E /* DAPagesContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F62D0E243C92AA009A6E1E /* DAPagesContainer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -8275,6 +8276,7 @@
 		923A174F243B830D0037D7DC /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
 		923A1750243B830D0037D7DC /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		923A175D243B83760037D7DC /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		92B78E872442D08D006FC503 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		92CA7171243B1F890061CCA2 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		92CA7172243B1FBB0061CCA2 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		92CA7174243B2A5E0061CCA2 /* NotificationCenterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationCenterManager.h; sourceTree = "<group>"; };
@@ -16473,6 +16475,7 @@
 		CA745D291503B1B500600024 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				92B78E872442D08D006FC503 /* Assets.xcassets */,
 				A489BFE517B4F0FF003E5150 /* Themes.plist */,
 				EA411F2D17606A6700DA72D0 /* AskPs-Info.plist */,
 				A461B079174CBA490088B061 /* Sing-Info.plist */,
@@ -22073,6 +22076,7 @@
 				A4D8FD7F17DB089C0085061F /* old_draw_bg@2x.jpg in Resources */,
 				A4D8FD8317DB089C0085061F /* selected_pen_brush@2x.png in Resources */,
 				D80518B4196BD12200D350B3 /* huahua.png in Resources */,
+				92B78E882442D08F006FC503 /* Assets.xcassets in Resources */,
 				A4D8FD8717DB089C0085061F /* selected_pen_feather@2x.png in Resources */,
 				D8C784B2196A4E2600323712 /* UserTutorialMainCell~ipad.xib in Resources */,
 				A4D8FD8B17DB089C0085061F /* selected_pen_ice-cream@2x.png in Resources */,

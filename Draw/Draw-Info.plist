@@ -20,6 +20,8 @@
 		<string>icon120.png</string>
 		<string>icon152.png</string>
 	</array>
+	<key>CFBundleIconName</key>
+	<string>AppIcon</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.orange.draw</string>
 	<key>CFBundleInfoDictionaryVersion</key>
