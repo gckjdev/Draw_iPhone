@@ -28031,7 +28031,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development: Lingzhe Peng (9WG829Y3AG)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development: Lingzhe Peng (9WG829Y3AG)";
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 10.18.3;
+				CURRENT_PROJECT_VERSION = 10.18.4;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -28165,7 +28165,7 @@
 				CODE_SIGN_IDENTITY = "Apple Distribution: Guangzhou Bei Ji Fan Xing Technology Co., Ltd. (LPN7A567X3)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Distribution: Guangzhou Bei Ji Fan Xing Technology Co., Ltd. (LPN7A567X3)";
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 10.18.3;
+				CURRENT_PROJECT_VERSION = 10.18.4;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
